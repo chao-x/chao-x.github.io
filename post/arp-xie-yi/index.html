@@ -1,13 +1,20 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>ARP协议 | 知识在于积累</title>
-<link rel="shortcut icon" href="https://chao-x.github.io/favicon.ico?v=1603269557804">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://chao-x.github.io/favicon.ico?v=1603269878954">
 <link rel="stylesheet" href="https://chao-x.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="ARP协议 | 知识在于积累 - Atom Feed" href="https://chao-x.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
 
@@ -23,82 +30,81 @@
 
 ARP协议是局域网内部协议。它解决的是同一局域网内部的主机或..." />
     <meta name="keywords" content="" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://chao-x.github.io">
-  <img class="avatar" src="https://chao-x.github.io/images/avatar.png?v=1603269557804" alt="">
-  </a>
-  <h1 class="site-title">
-    知识在于积累
-  </h1>
-  <p class="site-description">
-    
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://chao-x.github.io">
+        <img src="https://chao-x.github.io/images/avatar.png?v=1603269878954" class="site-logo">
+        <h1 class="site-title">知识在于积累</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
   </div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://chao-x.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
   </div>
 </div>
 
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              ARP协议
-            </h2>
-            <div class="post-info">
-              <span>
-                2020-09-30
-              </span>
-              <span>
-                6 min read
-              </span>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">ARP协议</h2>
+            <div class="post-date">2020-09-30</div>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <h1 id="arp协议">ARP协议</h1>
+            <div class="post-content" v-pre>
+              <h1 id="arp协议">ARP协议</h1>
 <h2 id="1概述">1.概述</h2>
 <ul>
 <li>
@@ -223,107 +229,45 @@ ARP协议是局域网内部协议。它解决的是同一局域网内部的主�
 <li>用于已知硬件地址，而IP地址未知的情况。</li>
 </ul>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li><a href="#arp%E5%8D%8F%E8%AE%AE">ARP协议</a>
-<ul>
-<li><a href="#1%E6%A6%82%E8%BF%B0">1.概述</a></li>
-<li><a href="#2%E6%8A%A5%E6%96%87">2.报文</a><br>
-*
-<ul>
-<li><a href="#arp%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87">ARP请求报文：</a></li>
-<li><a href="#arp%E5%BA%94%E7%AD%94%E6%8A%A5%E6%96%87">ARP应答报文：</a></li>
-</ul>
-</li>
-<li><a href="#3arp%E9%AB%98%E9%80%9F%E7%BC%93%E5%AD%98">3.ARP高速缓存</a></li>
-<li><a href="#4%E5%85%8D%E8%B4%B9arp">4.免费ARP</a><br>
-*
-<ul>
-<li><a href="#%E4%BD%9C%E7%94%A8">作用</a></li>
-</ul>
-</li>
-<li><a href="#5%E4%BB%A3%E7%90%86arp">5.代理ARP</a><br>
-*
-<ul>
-<li><a href="#%E5%AE%9A%E4%B9%89">定义</a></li>
-<li><a href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E4%BB%A3%E7%90%86arp">为什么需要代理ARP？</a></li>
-<li><a href="#%E5%B7%A5%E4%BD%9C%E8%BF%87%E7%A8%8B">工作过程</a></li>
-<li><a href="#%E4%BB%A3%E7%90%86arp%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9">代理ARP的优缺点</a></li>
-</ul>
-</li>
-<li><a href="#6rarp">6.RARP</a></li>
-</ul>
-</li>
-</ul>
-
-              </div>
             </div>
-          </article>
-        </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://chao-x.github.io/post/yi-tai-wang-xie-yi/">
+                  <h3 class="post-title">
+                    以太网协议
+                  </h3>
+                </a>
+              </div>
+            
 
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://chao-x.github.io/post/yi-tai-wang-xie-yi/">
-              <h3 class="post-title">
-                以太网协议
-              </h3>
-            </a>
+            
+
           </div>
-        
 
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://chao-x.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
+        </div>
       </div>
     </div>
 
-    <script>
-      hljs.initHighlightingOnLoad()
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+AOS.init();
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
+</script>
 
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
 
-    </script>
+
+
+
+
   </body>
 </html>

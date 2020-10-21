@@ -1,13 +1,20 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" >
+
 <title>HTTP协议 | 知识在于积累</title>
-<link rel="shortcut icon" href="https://chao-x.github.io/favicon.ico?v=1603269557804">
-<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+<link rel="shortcut icon" href="https://chao-x.github.io/favicon.ico?v=1603269878954">
 <link rel="stylesheet" href="https://chao-x.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="HTTP协议 | 知识在于积累 - Atom Feed" href="https://chao-x.github.io/atom.xml">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+<link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
 
 
@@ -26,82 +33,81 @@ HTTP/HTTPS 使用的传输协议
 
 URL统一资源定位符，URI统一资源标识..." />
     <meta name="keywords" content="" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
-    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
   </head>
   <body>
-    <div class="main">
-      <div class="main-content">
-        <div class="site-header">
-  <a href="https://chao-x.github.io">
-  <img class="avatar" src="https://chao-x.github.io/images/avatar.png?v=1603269557804" alt="">
-  </a>
-  <h1 class="site-title">
-    知识在于积累
-  </h1>
-  <p class="site-description">
-    
-  </p>
-  <div class="menu-container">
-    
+    <div id="app" class="main">
+
+      <div class="sidebar" :class="{ 'full-height': menuVisible }">
+  <div class="top-container" data-aos="fade-right">
+    <div class="top-header-container">
+      <a class="site-title-container" href="https://chao-x.github.io">
+        <img src="https://chao-x.github.io/images/avatar.png?v=1603269878954" class="site-logo">
+        <h1 class="site-title">知识在于积累</h1>
+      </a>
+      <div class="menu-btn" @click="menuVisible = !menuVisible">
+        <div class="line"></div>
+      </div>
+    </div>
+    <div>
       
-        <a href="/" class="menu">
-          首页
-        </a>
+        
+          <a href="/" class="site-nav">
+            首页
+          </a>
+        
       
-    
+        
+          <a href="/archives" class="site-nav">
+            归档
+          </a>
+        
       
-        <a href="/archives" class="menu">
-          归档
-        </a>
+        
+          <a href="/tags" class="site-nav">
+            标签
+          </a>
+        
       
-    
+        
+          <a href="/post/about" class="site-nav">
+            关于
+          </a>
+        
       
-        <a href="/tags" class="menu">
-          标签
-        </a>
-      
-    
-      
-        <a href="/post/about" class="menu">
-          关于
-        </a>
-      
-    
+    </div>
   </div>
-  <div class="social-container">
-    
+  <div class="bottom-container" data-aos="flip-up" data-aos-offset="0">
+    <div class="social-container">
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
       
-    
+        
+      
+    </div>
+    <div class="site-description">
+      
+    </div>
+    <div class="site-footer">
+      Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a> | <a class="rss" href="https://chao-x.github.io/atom.xml" target="_blank">RSS</a>
+    </div>
   </div>
 </div>
 
-        <div class="post-detail">
-          <article class="post">
-            <h2 class="post-title">
-              HTTP协议
-            </h2>
-            <div class="post-info">
-              <span>
-                2020-10-11
-              </span>
-              <span>
-                8 min read
-              </span>
-              
-            </div>
+
+      <div class="main-container">
+        <div class="content-container" data-aos="fade-up">
+          <div class="post-detail">
+            <h2 class="post-title">HTTP协议</h2>
+            <div class="post-date">2020-10-11</div>
             
-            <div class="post-content-wrapper">
-              <div class="post-content">
-                <h1 id="http协议">HTTP协议</h1>
+            <div class="post-content" v-pre>
+              <h1 id="http协议">HTTP协议</h1>
 <h2 id="1概述">1.概述</h2>
 <ul>
 <li>HTTP，超文本传输协议，是一种应用层协议</li>
@@ -361,107 +367,45 @@ URL统一资源定位符，URI统一资源标识..." />
 </ul>
 <figure data-type="image" tabindex="2"><img src="https://user-gold-cdn.xitu.io/2018/9/23/1660543eb1adb41a?imageView2/0/w/1280/h/960/format/webp/ignore-error/1" alt="img" loading="lazy"></figure>
 
-              </div>
-              <div class="toc-container">
-                <ul class="markdownIt-TOC">
-<li><a href="#http%E5%8D%8F%E8%AE%AE">HTTP协议</a>
-<ul>
-<li><a href="#1%E6%A6%82%E8%BF%B0">1.概述</a></li>
-<li><a href="#2%E6%8A%A5%E6%96%87">2.报文</a><br>
-*
-<ul>
-<li><a href="#%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87">请求报文</a></li>
-</ul>
-</li>
-<li><a href="#3http%E5%90%84%E7%89%88%E6%9C%AC">3.HTTP各版本</a><br>
-*
-<ul>
-<li><a href="#http-09">HTTP 0.9</a></li>
-<li><a href="#http-10">HTTP 1.0</a></li>
-<li><a href="#http-11">HTTP 1.1</a></li>
-<li><a href="#http-2">HTTP 2</a></li>
-</ul>
-</li>
-<li><a href="#4get%E5%92%8Cposthead%E7%9A%84%E5%8C%BA%E5%88%AB">4.GET和POST，HEAD的区别</a></li>
-<li><a href="#5http%E7%8A%B6%E6%80%81%E7%A0%81">5.HTTP状态码</a></li>
-<li><a href="#6https%E5%8D%8F%E8%AE%AE">6.HTTPS协议</a><br>
-*
-<ul>
-<li><a href="#%E5%8A%A0%E5%AF%86%E8%BF%87%E7%A8%8B">加密过程</a></li>
-</ul>
-</li>
-<li><a href="#7%E8%BE%93%E5%85%A5%E4%B8%80%E4%B8%AAurl%E5%8F%91%E7%94%9F%E4%BA%86%E4%BB%80%E4%B9%88">7.输入一个URL发生了什么</a></li>
-</ul>
-</li>
-</ul>
-
-              </div>
             </div>
-          </article>
-        </div>
+            
+            
+              <div class="next-post">
+                <div class="next">下一篇</div>
+                <a href="https://chao-x.github.io/post/sql/">
+                  <h3 class="post-title">
+                    《MySQL必知必会》学习笔记一
+                  </h3>
+                </a>
+              </div>
+            
 
-        
-          <div class="next-post">
-            <div class="next">下一篇</div>
-            <a href="https://chao-x.github.io/post/sql/">
-              <h3 class="post-title">
-                《MySQL必知必会》学习笔记一
-              </h3>
-            </a>
+            
+
           </div>
-        
 
-        
-
-        <div class="site-footer">
-  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
-  <a class="rss" href="https://chao-x.github.io/atom.xml" target="_blank">
-    <i class="ri-rss-line"></i> RSS
-  </a>
-</div>
-
+        </div>
       </div>
     </div>
 
-    <script>
-      hljs.initHighlightingOnLoad()
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script type="application/javascript">
 
-      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+AOS.init();
 
-      // This should probably be throttled.
-      // Especially because it triggers during smooth scrolling.
-      // https://lodash.com/docs/4.17.10#throttle
-      // You could do like...
-      // window.addEventListener("scroll", () => {
-      //    _.throttle(doThatStuff, 100);
-      // });
-      // Only not doing it here to keep this Pen dependency-free.
+var app = new Vue({
+  el: '#app',
+  data: {
+    menuVisible: false,
+  },
+})
 
-      window.addEventListener("scroll", event => {
-        let fromTop = window.scrollY;
+</script>
 
-        mainNavLinks.forEach((link, index) => {
-          let section = document.getElementById(decodeURI(link.hash).substring(1));
-          let nextSection = null
-          if (mainNavLinks[index + 1]) {
-            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
-          }
-          if (section.offsetTop <= fromTop) {
-            if (nextSection) {
-              if (nextSection.offsetTop > fromTop) {
-                link.classList.add("current");
-              } else {
-                link.classList.remove("current");    
-              }
-            } else {
-              link.classList.add("current");
-            }
-          } else {
-            link.classList.remove("current");
-          }
-        });
-      });
 
-    </script>
+
+
+
+
   </body>
 </html>
