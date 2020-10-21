@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+<title>
+    知识在于积累
+</title>
+<!--[if lt IE 9]><script src="//cdn.bootcss.com/html5shiv/r29/html5.js"></script><![endif]-->
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta http-equiv="x-dns-prefetch-control" content="on">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<meta name="author" content="">
+<meta name="description" content="">
+<meta name="keywords" content="">
+<script async src="//instant.page/3.0.0" type="module" defer integrity="sha384-OeDn4XE77tdHo8pGtE1apMPmAipjoxUQ++eeJa6EtJCfHlvijigWiJpD7VDPWXV1"></script>
+<link rel="stylesheet" href="https://chao-x.github.io/styles/main.css" />
+<link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/1.7.1/jquery.min.js"></script>
+
+        <link rel="stylesheet" href="/assets/media/css/style.min.css" />
+        <script src="/assets/media/script/tocbot.min.js"></script>
+        <script src="/assets/media/script/script.min.js"></script>
+        <script src="/assets/media/script/icon.min.js"></script>
+        
+            <script src="https://cdn.jsdelivr.net/gh/ITJoker233/ITJoker233.github.io@latest/CDN/js/Card/prism.min.js"></script>
+            <link rel="stylesheet" href="" />
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.css">
+            <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.1/dist/katex.min.js"></script>
+            
+</head>
+
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo">
+                <a href="https://chao-x.github.io">
+                    知识在于积累
+                </a>
+            </div>
+            <div id="tp-weather-widget"></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/">
+                        首页
+                    </a>
+                    
+                    <a class="menu-item" href="/archives">
+                        归档
+                    </a>
+                    
+                    <a class="menu-item" href="/tags">
+                        标签
+                    </a>
+                    
+                    <a class="menu-item" href="/post/about">
+                        关于
+                    </a>
+                    
+                        <input id="switch_default" type="checkbox" class="switch_default">
+                        <label for="switch_default" class="toggleBtn"></label>
+            </div>
+            <form id="gridea-search-form" data-update="1603269083187" action="/search/index.html">
+                <input class="search-input" autocomplete="off" spellcheck="false" name="q" autofocus="true" placeholder="Search...">
+            </form>
+        </div>
+    </nav>
+
+    
+        <nav class="navbar-mobile" id="nav-mobile">
+            <div class="container">
+                <div class="navbar-header">
+                    <div>
+                        <a href="https://chao-x.github.io">
+                            知识在于积累
+                        </a>
+                        <!--en-->
+                        <a id="mobile-toggle-theme-en" class="a en">&nbsp;Dark</a>
+                        <!--zh-->
+                        <a id="mobile-toggle-theme-zh" class="a zh">&nbsp;&#x6697;&#x9ED1;</a>
+                    </div>
+                    <form id="gridea-search-form" data-update="1603269083187" action="/search/index.html">
+                        <input class="search-input" autocomplete="off" spellcheck="false" name="q" autofocus="true" placeholder="Search...">
+                    </form>
+                    <!--en-->
+                    <div class="menu-toggle" id="menu-toggle-en" onclick="mobileBtn()">&#9776; Menu</div>
+                    <!--zh-->
+                    <div class="menu-toggle" id="menu-toggle-zh" onclick="mobileBtn()">&#9776; &#x83DC;&#x5355;</div>
+
+                </div>
+                <div class="menu" id="mobile-menu">
+                    
+                        <a class="menu-item" href="/">
+                            首页
+                        </a>
+                        
+                        <a class="menu-item" href="/archives">
+                            归档
+                        </a>
+                        
+                        <a class="menu-item" href="/tags">
+                            标签
+                        </a>
+                        
+                        <a class="menu-item" href="/post/about">
+                            关于
+                        </a>
+                        
+                </div>
+            </div>
+        </nav>
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementById("menu-toggle-en");
+        var toggleMenu_zh = document.getElementById("menu-toggle-zh");
+
+        var mobileMenu = document.getElementById("mobile-menu");
+        if (toggleMenu.display != "none") {
+            if (toggleMenu.classList.contains("active")) {
+                toggleMenu.classList.remove("active")
+                mobileMenu.classList.remove("active")
+            } else {
+                toggleMenu.classList.add("active")
+                mobileMenu.classList.add("active")
+            }
+        } else if (toggleMenu_zh.display != "none") {
+            if (toggleMenu_zh.classList.contains("active")) {
+                toggleMenu_zh.classList.remove("active")
+                mobileMenu.classList.remove("active")
+            } else {
+                toggleMenu_zh.classList.add("active")
+                mobileMenu.classList.add("active")
+            }
+        }
+
+    }
+</script>
+
+            <div class="main">
+                <div class="container">
+                    <article class="post-wrap">
+                        <header class="post-header">
+                            <h1 class="post-title">
+                                计算机网络
+                            </h1>
+                            
+                                    <!--zh-->
+                                    <div class="post-meta zh">
+                                        &#x4F5C;&#x8005;:
+                                        <a itemprop="author" rel="author" href="/">
+                                            知识在于积累
+                                        </a>
+                                        <span class="post-time">&#x65E5;&#x671F;: <a href="#">2020-09-18</a></span>
+                                        <span class="post-readtime">&#x9605;&#x8BFB;&#x65F6;&#x95F4;:<a
+                                    href="#">19.8
+                                    &#x5206;&#x949F;</a></span>
+                                        <span class="post-words">&#x5B57;&#x6570;:<a href="#">5448</a></span>
+                                        
+                                            <span class="post-category">&#x5206;&#x7C7B;:
+                                
+                                <a href="https://chao-x.github.io/tag/L4__aYgkN/">基础知识</a>
+                                
+                            </span>
+                                            
+                                    </div>
+                                    
+                        </header>
+                        
+                        <div class="post-content">
+                            <p><strong>1.以太网协议</strong></p>
+<p><strong>2.ARP协议</strong></p>
+<p><strong>3.IP协议</strong></p>
+<p><strong>4.子网掩码</strong></p>
+<p><strong>5.路由协议</strong></p>
+<p><strong>6.UDP协议</strong></p>
+<p><strong>7.TCP协议</strong></p>
+<p><strong>8.TCP的拥塞控制</strong></p>
+<p><strong>9.HTTP协议</strong></p>
+<p><strong>10.HTTPS协议</strong></p>
+<p><strong>11.DNS协议</strong></p>
+<p><strong>12.NAT协议</strong></p>
+<p><strong>13.DHCP协议</strong></p>
+<h2 id="1以太网协议">1.以太网协议</h2>
+<p>​	我们的主机要和外界互联网进行通信需要加入网络，我可以通过通过光纤，双绞线，无线电报等方式进行网络的连接，它们规定了网络的一些电气特征，主要的作用是传输0和1的电信号。这是物理层的作用。</p>
+<p>​	单纯的0和1是没有意义的。在数据链路层中以太网协议将规定了解读电信号的方式。它把0和1进行分组，每一组为一帧。</p>
+<p>以太网数据帧由三个部分组成：</p>
+<p>头部，数据部，尾部</p>
+<figure data-type="image" tabindex="1"><img src="https://img-blog.csdn.net/2018060615493515?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2xpdWNoZW54aWE4/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70" alt="这里写图片描述" loading="lazy"></figure>
+<p>​	目的地址和原地址都是MAC地址</p>
+<p>​	MAC地址：网卡的地址，48位  6字节   12个16进制数表示 FF-FF-FF-FF-FF-FF*</p>
+<p>​	<strong>目的地址</strong>有<strong>三类</strong>：为单播地址，广播地址，多播地址</p>
+<blockquote>
+<p>以太网数据帧的传输顺序和从左往右传输的，但是目的地址的低位先被传输。如 F1-E2的传输顺序为1F2E</p>
+<p>单播地址：一对一传输，目的地址即为目的主机的MAC地址（第一个字节的最低位必须为0）</p>
+<p>广播地址：一对多传输，目的地址为FF-FF-FF-FF-FF-FF-FF-FF</p>
+<p>多播地址:一对多传输，目的地址最先发送的位必须为1（第一个字节的最低位），这样目的地址不会与任何MAC地址相同，多播数据可以被很多网卡接收</p>
+</blockquote>
+<p>​	<strong>类型</strong>：表示的是数据属于哪个上层协议（例如0x800，代表IP数据包；0x806，代表ARP数据包）。</p>
+<p>在使用网卡进行数据包的发送与接收时，网卡已为我们完成了物理层的所有工作，驱动程序要做的是，在发送数据时，将目的地址、源地址、类型/长度、数据和填充这些值写入网卡，网卡自动计算其CRC并添加在数据帧尾部，同时对数据帧进行物理层的封装，最后将数据帧发送出去</p>
+<p><strong>以太网基于CSMA/CD，以CSMA/CD作为MAC<a href="http://lib.csdn.net/base/datastructure">算法</a>的一类LAN称为以太网。CSMA/CD冲突避免的方法：先听后发、边听边发、冲突停止、随机延迟后重发。</strong></p>
+<h2 id="2arp协议">2.ARP协议</h2>
+<p>​	地址解析协议，ARP协议在TCP/IP协议族中是属于网络层的，而在OSI七层模型中属于数据链路层。</p>
+<p>​	它的主要作用是将IP地址和MAC地址相对应。</p>
+<p>​	ARP协议是局域网内部协议。它解决的是同一局域网内部的主机或路由器的 <strong>IP 地址</strong>和其对应的<strong>硬件地址</strong>的映射问题。它不能识别其他网络中的MAC地址。实际上ARP协议不也需要解析其他网络，IP协议为它解决了该问题。</p>
+<figure data-type="image" tabindex="2"><img src="https://chao-x.github.io/post-images/1601303648769.png" alt="" loading="lazy"></figure>
+<p>ARP协议一共有9个字段</p>
+<p>字段4为MAC地址类型，以太网类型为1</p>
+<p>字段5为要映射的协议类型，IPv4协议为0x0800</p>
+<p><strong>字段8为操作类型字段，值为1为ARP请求，2为ARP应答，3为RARP请求，4为RARP应答</strong></p>
+<p>ARP请求报文：</p>
+<figure data-type="image" tabindex="3"><img src="https://chao-x.github.io/post-images/1601303678474.png" alt="" loading="lazy"></figure>
+<p>ARP应答报文：<br>
+<img src="https://chao-x.github.io/post-images/1601303703039.png" alt="" loading="lazy"></p>
+<p>ARP高速缓存：</p>
+<p>​	ARP缓存是一个缓冲区，用来储存IP地址和MAC地址，本质就是&lt;IP地址，MAC地址&gt;的对应表。表中一个条目记录了网络上一个主机的IP地址和其对应的MAC地址。</p>
+<p>​	当地址解析协议被询问一个已知IP地址节点的MAC地址时，先在ARP缓存中查看，若存在，就直接返回与之对应的MAC地址，若不存在，才发送ARP请求向局域网查询。</p>
+<p>ARP缓存表项的生存时间TTL</p>
+<p>ARP缓存包含动态和静态项目：</p>
+<p>动态项目随时间推移自动添加和删除，每个动态ARP缓存项都有都设置了TTL(生存时间)，TTL为0时此项目就从表中删除，Windows下TTL一般不超过10分钟。</p>
+<p>静态 ARP 缓存条目是永久性的，可以使用 TCP/IP 工具手动添加和删除。<strong>静态 ARP 缓存条目用来对常用的本地IPv4地址（例如路由器和服务器的 IPv4 地址）的ARP请求。</strong></p>
+<p>ARP高速缓存的优缺点</p>
+<p>优点：从ARP高速缓存的使用中可以看到，ARP高速缓存可以减小广播量，进而减小网络通信量，提高计算机之间的通信效率。</p>
+<p>缺点：造成安全隐患（参考下面免费ARP的作用）</p>
+<p>免费ARP：</p>
+<p>免费ARP指主机发送ARP查找自己的IP地址，通常发生在系统引导期间进行接口配置时。</p>
+<p>与标准ARP的区别就是免费ARP分组的目的IP地址字段封装的是自己的IP地址，即向所在网络请求自己的MAC地址。</p>
+<p>作用</p>
+<p>免费ARP的作用有：<br>
+　　1) 一个主机可以通过它来确定另一个主机是否设置了相同的 IP地址。</p>
+<p>正常情况下发送免费ARP请求不会收到ARP应答，如果收到了一个ARP应答，则说明网络中存在与本机相同的IP地址的主机，发生了地址冲突。</p>
+<p>2)更新其他主机高速缓存中旧的硬件地址进行。</p>
+<p>如果发送免费ARP的主机正好改变了硬件地址，如更换了接口卡。</p>
+<p>其他主机接收到这个ARP请求的时候，发现自己的ARP高速缓存表中存在对应的IP地址，但是MAC地址不匹配，那么就需要利用接收的ARP请求来更新本地的ARP高速缓存表表项。</p>
+<p>3)ARP防御，网关利用免费ARP防止ARP攻击</p>
+<p>有些网关设备在一定的时间间隔内向网络主动发送免费ARP报文，让网络内的其他主机更新ARP表项中的网关MAC地址信息，以达到防止或缓解ARP攻击的效果。</p>
+<p>4)ARP攻击，利用免费ARP进行ARP攻击</p>
+<p>ARP协议并不只在发送了ARP请求才接收ARP应答，<strong>计算机只要接收到ARP应答数据包，就会使用应答中的IP和MAC地址对本地的ARP缓存进行更新。</strong></p>
+<p>主机可以构造虚假的免费ARP应答，将ARP的源MAC地址设为错误的MAC地址，并把这个虚假的免费ARP应答发送到网络中，那么所有接收到这个免费ARP应答的主机都会更新本地ARP表项中相应IP地址对应的MAC地址。更新成功后，这些主机的数据报文就会被转发到错误的MAC地址，从而实现了<strong>ARP欺骗</strong>的攻击。</p>
+<p>代理ARP：</p>
+<p>定义</p>
+<p>代理ARP就是通过使用一个主机(通常为路由器)，来作为指定的设备使用自己的 MAC 地址来对另一设备的ARP请求作出应答。</p>
+<p>为什么需要代理ARP？</p>
+<p>先要了解，路由器的重要功能之一就是把局域网的广播包限制在该网内，阻止其扩散，否则会造成网络风暴。</p>
+<p>ARP请求是个广播包，它询问的对象如果在同一个局域网内，就会收到应答。但是如果<strong>询问的对象不在同一个局域网该如何处理</strong>？路由器就提供的代理ARP为这个问题提供了解决方案。</p>
+<p>工作过程</p>
+<p>两台主机A和B处于同一网段但不同的广播段时，主机A发送ARP请求主机B的MAC地址时，因为路由器不转发广播包的原因，ARP请求只能到达路由器。如果路由器启用了代理ARP功能，并知道主机B属于它连接的网络，那么路由器就用自己接口的MAC地址代替主机B的MAC地址来对主机A进行ARP应答。主机A接收ARP应答，但并不知道代理ARP的存在。</p>
+<p>代理ARP的优缺点</p>
+<p>优点：代理ARP能在不影响路由表的情况下添加一个新的Router，使子网对该主机变得透明化。一般代理ARP应该使用在主机没有配置默认网关或没有任何路由策略的网络上。</p>
+<p>缺点：从工作工程可以看到，这其实是一种ARP欺骗。而且，通过两个物理网络之间的路由器的代理ARP功能其实互相隐藏了物理网络，这导致无法对网络拓扑进行网络概括。此外，代理ARP增加了使用它的那段网络的ARP流量，主机需要更大的ARP缓存空间，也不会为不使用ARP进行地址解析的网络工作。</p>
+<p><strong>RARP用于已知硬件地址，而IP地址未知的情况。</strong></p>
+<h2 id="3ip协议">3.IP协议</h2>
+<p>IP协议为上层协议提供无状态、无连接、不可靠的服务。</p>
+<p>IP地址：32位，4个十进制数表示。</p>
+<figure data-type="image" tabindex="4"><img src="https://chao-x.github.io/post-images/1601303762965.jpg" alt="" loading="lazy"></figure>
+<p>版本号：IP协议版本号，如IPv4</p>
+<p>头部长度：单位为4字节（32位），4位最大为15，所以表示<strong>长度最多为64字节</strong></p>
+<p>服务类型：区分服务才会被用到，被路由器用来进行流量的优先排序</p>
+<p>总长度：单位为1字节，头部长度加上数据长度为总长度。占16位因此总长度最大为2的16次方-1=65535</p>
+<p>标识：每产生一个数据报，标识长度+1。注意这里的标识不是指序号，因为IP是无连接服务，因此不存在按序接收。当一个数据报的长度超过网络的最大传输单元必须分片时，相同标识的数据报可以被识别，最后能正确被重装为原来的数据报。</p>
+<p>标志：占3位，但目前只有2位有意义。<br>
+●　标志字段中的最低位记为MF(More Fragment)。MF=1即表示后面“还有分片”的数据报。MF=0表示这已是若干数据报片中的最后一个<br>
+●　标志字段中间的一位记为DF(Don’t Fragment)，意思是“不能分片”。只有当DF=0时才允许分片。</p>
+<p>片偏移：单位为8字节。是指分片后相对于原分组的位置。也就是说分片的大小必须是8字节的整数倍</p>
+<blockquote>
+<p>生存时间：TTL，Time to Live。当为0时，表示过期。</p>
+</blockquote>
+<p>协议：表明携带的数据是使用何种协议，以便使目的主机的IP层知道应将数据部分上交给哪个处理过程。</p>
+<p>首部检验和：当收到一份IP数据包后，同样对首部的每个16位进行反码求和。由于接收方在计算过程中包含了发送发在首部中的校验和，如果传输过程中没有差错，计算结果应全为1，不是全1，即检验和错误。但不包括数据部分。这是因为数据报每经过一个路由器，路由器都要重新计算一下首部检验和（一些字段，如生存时间、标志、片偏移等都可能发生变化）。不检验数据部分可减少计算的工作量。</p>
+<p>可选字段：较少用到，长度可变。由于头部必须是4字节的整数倍。当不满足时，填充部分全填充0满足</p>
+<p>IP地址分类：</p>
+<p><img src="https://chao-x.github.io/post-images/1601303797817.png" alt="" loading="lazy"><br>
+1&gt;. A类地址（ 0.0.0.0 - 127.255.255.255 ）以”0”头，网络段长度为8位，其中可变部分的长度为7位；主机段长度为24位。7位的可变网络段可识别2^7=128 (0~127)个网络，其中0和127另有用途，故只有126个可用的A类网络地址。另外，<strong>主机位全”0”代表网络本身，全”1”代表网内广播</strong>，因此一个A类网络地址可识别的可分配地址有 2^24-2 个。</p>
+<p>2&gt;. B类地址（ 128.0.0.0 - 191.255.255.255 ）以”10”开头，网络段长度为16位，可变部分的长度为14位；主机段长度为16位。14位的可变网络段可以识别的网络数为 2^14 个。另外，主机位全”0”与全”1”功能同A类地址，因此一个B类网络可以分配地址有 2^16-2 个。</p>
+<p>3&gt;. C类地址（ 192.0.0.0 - 223.255.255.255 ）以”110”开头，网络段长度为24位，其中可变部分的长度为21位；主机段长度为8位。21位的可变网络段可以识别的网络数为 2^21 个。可分配的主机地址是 2^8-2 个。</p>
+<p>4&gt;. D类地址（ 224.0.0.0 - 239.255.255.255 ）为组播地址，使用”1110”开头，不分网络段和主机段，有 2^28 个组播地址。用于标识预先定义的一组主机。主机使用组播通信时，可以将组播数据报一次性发送给所有同组的主机。</p>
+<p>5&gt;. E类地址（ 240.0.0.0 - 255.255.255.255 ）是保留地址，用于研究使用。以”1111”开头，不区分网络段和主机段，其中32位全1代表本网络内广播，因此E类地址共有 2^28-1 个。</p>
+<p>A类IP地址 地址范围从1.0.0.1到127.255.255.254 。最后一个是广播地址。<br>
+B类IP地址地址范围从128.0.0.1-191.255.255.254 。 最后一个是广播地址。<br>
+C类IP地址范围从192.0.0.1-223.255.255.254 。最后一个是广播地址。</p>
+<p><strong>适用范围不同：</strong><br>
+A类适用的类型为大型网络，A类网络地址数量较少，有126个网络，每个网络支持的最大主机数为256的3次方-2=16777214台；<br>
+B类适用的类型为中型网络，B类网络地址数量适中，有16384个网络，每个网络支持的最大主机数为256的2次方-2=65534台；<br>
+C类适用的类型为小型网络，C类网络地址数量较多，有209万余个网络，适用于小规模的局域网络，每个网络支持的最大主机数为256的1次方-2=254台。</p>
+<h2 id="4子网掩码">4.子网掩码</h2>
+<p><strong>私有IP地址和特殊IP地址</strong></p>
+<p>根据用途和安全性级别的不同，IP地址还可以大致分为两类：公共地址和私有地址。公用地址在Internet中使用，可以在Internet中随意访问。</p>
+<p>一个机构网络要连入Internet，必须申请公用IP地址。但是考虑到网络安全和内部实验等特殊情况，在IP地址中专门保留了三个区域作为私有地址，其地址范围如下：</p>
+<p>A类：10.0.0.0/8（子网掩码表示） 10.0.0.0-10.255.255.255<br>
+B类：172.16.0.0/12 172.16.0.0-172.31.255.255<br>
+C类：192.168.0.0/16 192.168.0.0-192.168.255.255</p>
+<p><strong>子网掩码：</strong></p>
+<figure data-type="image" tabindex="5"><img src="https://chao-x.github.io/post-images/1601303840304.png" alt="" loading="lazy"></figure>
+<p>子网掩码与IP地址进行与操作得到的是网络号，子网掩码取反，与IP地址进行与操作得到的是主机号</p>
+<h2 id="5路由协议"><strong>5.路由协议</strong></h2>
+<p>​	用于选择路由器</p>
+<h2 id="6udp协议"><strong>6.UDP协议</strong></h2>
+<p>UDP协议，用户数据报协议，是无连接的，不可靠的协议</p>
+<p>它更像是IP协议的封装，是暴露在传出层的接口。为什么不适用IP协议而是用UDP协议呢，是因为IP协议没有端口的概念。如果需要多个信道通信则需要UPD协议</p>
+<figure data-type="image" tabindex="6"><img src="https://img-blog.csdnimg.cn/20181130180544486.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80MjY4MjgwNg==,size_16,color_FFFFFF,t_70" alt="img" loading="lazy"></figure>
+<p>UDP只在IP的数据报服务之上增加了一点的功能，这就是<strong>复用和分用</strong>的功能以及差错检测的功能，UDP的主要特定是：</p>
+<p>1.UDP是无连接的，即发送数据之前不需要建立连接，因此减少了开销和发送数据之前的时延。</p>
+<p>2.UDP使用尽最大努力交付，即不保证可靠交付，因此主机不需要维持复杂的连接状态表</p>
+<p>3.UDP是面向报文的。发送方的UDP对应程序交下来的报文，在添加首部后就向下交付IP层。UDP对应用层交下来的报文既不合并也不拆分，而是保留这些报文的边界</p>
+<figure data-type="image" tabindex="7"><img src="https://www.linuxidc.com/upload/2018_09/180924145972613.jpg" alt="img" loading="lazy"></figure>
+<p>4.UDP没有拥塞控制</p>
+<p>5.UDP支持一对一，一对多，多对一和多对多交换通信。</p>
+<p>6.UDP的首部开销小，只有8个字节，比TCP的20个字节的首部要短。</p>
+<p><strong>源端口是可选的</strong></p>
+<figure data-type="image" tabindex="8"><img src="http://c.biancheng.net/uploads/allimg/191111/6-1911111249535K.gif" alt="img" loading="lazy"></figure>
+<p>UDP头部长度为8字节，总长度为2的十六次方减一为65535字节</p>
+<p>减去UDP头部长度，再减去IP头部长度20字节（最少）所以UDP数据部分最多为65507字节</p>
+<p>UDP协议的优点：快速，相比TCP更安全一些</p>
+<p>适用UDP的协议：</p>
+<p>DNS协议（域名和IP地址的映射），DHCP协议（应用层协议，一个局域网的网络协议，C/S架构，用于当一个客户机接入局域网后，给它自动分配IP地址和子网掩码），SNMP协议（应用层协议，帮助管理设备的网络性能，发现和解决网络问题），实时的语音 视频</p>
+<h2 id="11dns协议">11.DNS协议</h2>
+<h2 id="12nat协议">12.NAT协议</h2>
+<p>NAT是 Network Address Translation 网络地址转换的缩写。<br>
+NAT是将私有IP地址通过边界路由转换成外网IP地址，在边界路由的NAT地址转换表记录下这个转换映射记录，当外部数据返回时，路由使用NAT技术查询NAT转换表，再将目标地址替换成内网用户IP地址。</p>
+<p><strong>RFC1918规定了三块专有的地址，作为私有的内部组网使用：</strong></p>
+<ul>
+<li>A类：10.0.0.0—10.255.255.255      10.0.0.0/8</li>
+<li>B类：172.16.0.0—172.31.255.255   172.16.0.0/12</li>
+<li>C类：192.168.0.0—192.168.255.255 192.168.0.0/16</li>
+</ul>
+<p>这三块私有地址本身是可路由的，只是公网上的路由器不会转发这三块私有地址的流量</p>
+<p><strong>3.三种NAT技术</strong></p>
+<p>静态NAT</p>
+<p>静态NAT就是一对一映射，内部有多少私有地址需要和外部通信，就要配置多少外网IP地址与其对应，并不节省外网IP，所以一般不用</p>
+<p>NAT静态映射表</p>
+<p>动态NAT</p>
+<p>动态NAT是在路由器上配置一个外网IP地址池，当内部有计算机需要和外部通信时，就从地址池里动态的取出一个外网IP，并将他们的对应关系绑定到NAT表中，通信结束后，这个外网IP才被释放，可供其他内部IP地址转换使用，这个DHCP租约IP有相似之处。</p>
+<p>NAT动态映射表</p>
+<p>NAPT  /   PAT(port address Translation，端口地址转换，也叫端口地址复用)<br>
+这是最常用的NAT技术，也是IPv4能够维持到今天的最重要的原因之一，它提供了一种多对一的方式，对多个内网IP地址，边界路由可以给他们分配一个外网IP，利用这个外网IP的不同端口和外部进行通信。</p>
+<h2 id="13dhcp协议">13.DHCP协议</h2>
+<p>DHCP（动态主机配置协议）是一个应用层的局域网的网络协议。指的是由服务器控制一段IP地址范围，客户机登录服务器时就可以自动获得服务器分配的IP地址和子网掩码。</p>
+<p>DHCP是基于UDP协议的，为什么是基于UDP而不是TCP?</p>
+<p>1.DHCP是通过广播的形式，像DHCP服务器申请分配资源的，TCP是面向连接的，不能广播</p>
+<p>2.UDP快速，且DHCP只需要一问一答，没有后面的数据传输，无需建立连接</p>
+<p>三种分配方式：</p>
+<ol>
+<li>
+<p>自动分配方式（Automatic Allocation），DHCP服务器为主机指定一个永久性的IP地址，一旦DHCP客户端第一次成功从DHCP服务器端租用到IP地址后，就可以永久性的使用该地址。</p>
+</li>
+<li>
+<p>动态分配方式（Dynamic Allocation），DHCP服务器给主机指定一个具有时间限制的IP地址，时间到期或主机明确表示放弃该地址时，该地址可以被其他主机使用。</p>
+</li>
+<li>
+<p>手工分配方式（Manual Allocation），客户端的IP地址是由网络管理员指定的，DHCP服务器只是将指定的IP地址告诉客户端主机。</p>
+</li>
+</ol>
+<p>三种地址分配方式中，只有动态分配可以重复使用客户端不再需要的地址。</p>
+<h2 id="14snmp协议">14.SNMP协议</h2>
+<p>在大型网络管理中，网络管理员比较头痛的问题就是如何实时了解不在身边的网络设备的运行状况。若要一台一台的去查看网络设备的运行现状，那明显不是很现实。SNMP协议可以自动帮助管理员收集网络运行状况的方法。通过这种方法，网络管理员只需要坐在自己的位置上，就可以了解全公司的网络设备的运行情况。</p>
+<p>SNMP，其中文名字叫做简单网络管理协议，这是一个应用层协议。有了这个简单网络管理协议，则网络管理员可以很方便的在SNMP代理和管理器之间交换管理信息。它的主要作用就是帮助企业网络管理人员更方便的了解网络性能、发现并解决网络问题、规划网络的未来发展。</p>
+
+                        </div>
+                        
+                                
+                                                    
+                                                                    <!--Share-->
+                                                                    <span style="margin-right:15px">
+                        <i class="post-share"></i>
+                        <span>&#x5206;&#x4EAB;:</span>
+                                                                    <a title="QR 码" target="_blank" href="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://chao-x.github.io/post/ji-suan-ji-wang-luo/"><i class="fa fa-qrcode"></i></a>
+                                                                    <a title="QQ" target="_blank" href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://chao-x.github.io/post/ji-suan-ji-wang-luo/&sharesource=qzone&title=计算机网络&pics=https://chao-x.github.io/images/avatar.png?v=1603269083187&summary="><i class="fa fa-qq"></i></a>
+                                                                    <a title="新浪微博" target="_blank" href="https://service.weibo.com/share/share.php?url=https://chao-x.github.io/post/ji-suan-ji-wang-luo/&sharesource=weibo&title=计算机网络 + " - " + &pic="https://chao-x.github.io/images/avatar.png?v=1603269083187 "><i class="fa fa-weibo "></i></a>
+
+                                                                    </span>
+                                                                    
+                                                                            <!--zh-->
+                                                                            <section class="post-tags zh ">
+                                                                                <div>
+                                                                                    <span>&#x6807;&#x7B7E;:</span>
+                                                                                    <span class="tag ">
+                        
+                        
+                        <a href="https://chao-x.github.io/tag/L4__aYgkN/">#
+                    基础知识
+                        </a>
+                        
+                            
+                                </span>
+                                                                                </div>
+                                                                                <div>
+                                                                                    <a href="javascript:window.history.back();">
+                        &#x8FD4;&#x56DE;</a>
+                                                                                    <span>&dot;</span>
+                                                                                    <a href="#">&#x4E3B;&#x9875;</a>
+                                                                                </div>
+                                                                            </section>
+
+                                                                            
+                                                                                <!---->
+                                                                                <section class="post-nav">
+                                                                                    
+                                                                                        <a class="prev" rel="prev" href="https://chao-x.github.io/post/cao-zuo-xi-tong/">
+                                                                                            操作系统
+                                                                                        </a>
+                                                                                        
+                                                                                            
+                                                                                                <a class="next" rel="next" href="https://chao-x.github.io/post/go-yu-yan/">
+                                                                                                    Go语言
+                                                                                                </a>
+                                                                                                
+                                                                                </section>
+                    </article>
+                </div>
+                
+                                            
+            </div>
+    </div>
+    </div>
+    </div>
+    
+        <footer id="footer" class="footer">
+            <div class="copyright">
+                
+                        Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+                            
+                                    <div style="width:300px;margin:0 auto; padding:0px 0;">
+                                        <a target="_blank" href="https://www.beian.gov.cn/portal/registerSystemInfo?recordcode=" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+                                            <img src="https://yanxuan.nosdn.127.net/b610ced5ac6a0e25cf6edf5606c69775.png" style="float:left;">
+                                            <p id="icpinfo" style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#939393;"></p>
+                                        </a>
+                                    </div>
+                                    
+                                        <svg viewBox="0 0 1024 1024" style="margin-left: 5px;margin-right: 5px;" version="1.0" width="8" height="8" class="my-face">
+            <path
+                d="M863.597631 513.574282l-271.33965-140.213484L729.783667 81.926656c3.583731-7.87141 7.167462-15.742819 7.167462-25.214109C736.887134 25.226908 708.345275 0.012799 672.635953 0.012799a63.611229 63.611229 0 0 0-39.293053 12.607055c-1.791866 1.59988-3.519736 3.19976-5.311602 3.19976L147.87531 418.925381a55.547834 55.547834 0 0 0-19.646527 47.356448c1.791866 17.278704 14.27093 33.021523 32.125591 42.492813l271.33965 141.749369L292.504463 945.221908c-12.479064 25.214109-1.791866 53.563983 23.166262 69.306802 10.751194 6.335525 23.230258 9.47129 35.709322 9.47129 16.062795 0 32.125591-4.735645 44.604655-15.742819l480.091993-403.297753a55.547834 55.547834 0 0 0 19.646526-47.228458 61.243407 61.243407 0 0 0-32.12559-44.156688z"
+                fill="#93b5cf"></path>
+        </svg>
+                                        知识在于积累 &copy;Copyright
+                                            <script>
+                                                var date = new Date();
+                                                document.write("" + date.getFullYear());
+                                            </script>
+                                            | Powered by
+                                            <a href="" target="_blank">
+                                                
+                                            </a>
+            </div>
+            <div id="update" style="display:none;">
+                
+            </div>
+            
+                    <script>
+                        var port = '';
+                        
+                        document.write('<div id="home_path" style="display:none;">' + document.location.protocol + '//' + window.document.location.hostname + port + '</div>')
+                    </script>
+        </footer>
+        
+                <script>
+                    
+                    
+                    
+                    var icp = document.getElementById('icpinfo');
+                    icp.innerText = "";
+                    
+                    getStar();
+                    hljs.initHighlighting();
+                    console.clear();
+                    
+                    var newDate = new Date();
+                    newDate.setTime(1603269083187);
+                    console.log(" Blog Update Time: " + newDate.toLocaleDateString());
+                    console.log("\n %c \u26a1Theme:Chic Author's Blog:https://blog.itjoker.cn  Write By ITJoker  \n\n", "color: #ffffff; background: rgba(49, 49, 49, 0.85); padding:5px 0;border-radius:5px;");
+                </script>
+        </div>
+</body>
+<script>
+    scroll();
+</script>
+
+</html>
