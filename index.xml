@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>CHAOXIN BLOG</title>
+    <title>WUCHAOXIN&#39;S BLOG</title>
     <link>https://chao-x.github.io/</link>
-    <description>Recent content on CHAOXIN BLOG</description>
+    <description>Recent content on WUCHAOXIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-cn</language>
-    <lastBuildDate>Sat, 31 Oct 2020 13:01:26 +0800</lastBuildDate><atom:link href="https://chao-x.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>zh-cn</language><atom:link href="https://chao-x.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>New Post</title>
-      <link>https://chao-x.github.io/posts/hugo-integrated-gitment-plugin/</link>
-      <pubDate>Sat, 31 Oct 2020 13:01:26 +0800</pubDate>
+      <title>About</title>
+      <link>https://chao-x.github.io/about/</link>
+      <pubDate>Sun, 01 Nov 2020 10:30:14 +0800</pubDate>
       
-      <guid>https://chao-x.github.io/posts/hugo-integrated-gitment-plugin/</guid>
-      <description>adada</description>
+      <guid>https://chao-x.github.io/about/</guid>
+      <description>关于博主 喜欢阅读的年轻人，目前算是初步入门后端，深入学习较少。 主力语言是 Golang，稍微会点 Java。 喜欢Web编程，计算机网络，操作系统</description>
     </item>
     
   </channel>
