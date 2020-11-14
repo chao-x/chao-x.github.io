@@ -18,118 +18,22 @@
   </url>
   
   <url>
+    <loc>https://chao-x.github.io/post/linux%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2020-11-14T19:00:13+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://chao-x.github.io/post/</loc>
     <lastmod>2020-11-14T19:00:13+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chao-x.github.io/post/second/</loc>
-    <lastmod>2020-11-14T19:00:13+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/post/first/</loc>
+    <loc>https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/</loc>
     <lastmod>2020-11-14T18:55:42+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chao-x.github.io/publication-type/3/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/publication/preprint/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://chao-x.github.io/authors/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/author/nelson-bighetti/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/publication_types/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/publication/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/tag/source-themes/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/tags/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/slides/</loc>
-    <lastmod>2019-02-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/slides/example/</loc>
-    <lastmod>2019-02-05T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/tag/deep-learning/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/tag/demo/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/project/external-project/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/project/internal-project/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/project/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/publication-type/2/</loc>
-    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/publication/journal-article/</loc>
-    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/author/robert-ford/</loc>
-    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/publication-type/1/</loc>
-    <lastmod>2013-07-01T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/publication/conference-paper/</loc>
-    <lastmod>2013-07-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -137,7 +41,15 @@
   </url>
   
   <url>
-    <loc>https://chao-x.github.io/courses/</loc>
+    <loc>https://chao-x.github.io/publication_types/</loc>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/tags/</loc>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/author/wu-chaoxin/</loc>
   </url>
   
 </urlset>
