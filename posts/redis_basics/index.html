@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-		<title>About &middot; WUCHAOXIN&#39;S BLOG</title>
+		<title>Redis_basics &middot; WUCHAOXIN&#39;S BLOG</title>
 
 		
   		<link rel="stylesheet" href="/css/style.css">
@@ -63,36 +63,54 @@
     <span>Written by</span>
         
         <br>
-        <span>on&nbsp;</span><time datetime="2020-11-01 10:30:14 &#43;0800 CST">November 1, 2020</time>
+        <span>on&nbsp;</span><time datetime="2020-11-14 14:51:35 &#43;0800 CST">November 14, 2020</time>
 </div>
 
-		<h1 class="post-title">About</h1>
+		<h1 class="post-title">Redis_basics</h1>
 <div class="post-line"></div>
 
 		
 
-		<h1 id="关于博主">关于博主</h1>
-<p>喜欢阅读的年轻人，目前算是初步入门后端，深入学习较少。</p>
-<p>主力语言是 Golang，稍微会点 Java。</p>
-<p>喜欢Web编程，计算机网络，操作系统</p>
-<p>联系方式（微信）:</p>
-<p><img src="/image-20201101141817226.png" alt="image-20201101141817226"></p>
-<h1 id="关于本博客">关于本博客</h1>
-<p>博客使用的是Hugo+Tale主题。</p>
-<p>之前使用过Hexo还有Gridea来搭建博客，但是速度均不理想。</p>
-<p>希望能用此博客来记录学习笔记，生活心得。</p>
-<p>写博客的心得：</p>
+		<h1 id="redis">Redis</h1>
+<p>![image-20201109173525679](/Users/didi/Library/Application Support/typora-user-images/image-20201109173525679.png)</p>
+<h1 id="stirng">Stirng</h1>
 <ul>
-<li>
-<p>博客文章在精不在多</p>
-</li>
-<li>
-<p>写博客频率不宜太高</p>
-</li>
-<li>
-<p>博客界面简洁好些，不然容易产生审美疲劳</p>
-</li>
+<li>GET</li>
+<li>SET</li>
+<li>DEL</li>
 </ul>
+<h2 id="list">List</h2>
+<ul>
+<li>LPUSH</li>
+<li>RPUSH</li>
+<li>LPOP</li>
+<li>RPOP</li>
+<li>LINDEX</li>
+<li>LRANGE</li>
+</ul>
+<pre><code>lrange 0 -1   //从左往右便利全部列表
+</code></pre><h2 id="set">SET</h2>
+<ul>
+<li>SADD</li>
+<li>SREM</li>
+<li>SISMEMBER</li>
+<li>SMEMBER</li>
+</ul>
+<h2 id="hash">HASH</h2>
+<ul>
+<li>HSET</li>
+<li>HGET</li>
+<li>HGETALL</li>
+<li>HDEL</li>
+</ul>
+<h2 id="zset">ZSET</h2>
+<ul>
+<li>ZADD</li>
+<li>ZRANGE</li>
+<li>ZRANGEBYSCORE</li>
+<li>ZREM</li>
+</ul>
+
 
 		
 	</div> 
@@ -115,7 +133,8 @@
 </div>
 
 	<div class="pagination">
-		<a href="/posts/redis_basics/" class="right arrow">&#8594;</a>
+		<a href="/about/" class="left arrow">&#8592;</a>
+		<a href="/posts/docker_basics/" class="right arrow">&#8594;</a>
 
 		<a href="#" class="top">Top</a>
 	</div>
@@ -125,7 +144,7 @@
         		<footer>
 			
 			<span>
-			&copy; <time datetime="2020-11-14 15:10:54.0319705 &#43;0800 CST m=&#43;0.068999801">2020</time> . Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			&copy; <time datetime="2020-11-14 15:10:54.0309702 &#43;0800 CST m=&#43;0.067999501">2020</time> . Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
 			</span>
 		</footer>
 

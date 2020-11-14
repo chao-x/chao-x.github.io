@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>WUCHAOXIN&#39;S BLOG</title>
-    <link>https://chao-x.github.io/</link>
-    <description>Recent content on WUCHAOXIN&#39;S BLOG</description>
+    <title>Posts on WUCHAOXIN&#39;S BLOG</title>
+    <link>https://chao-x.github.io/posts/</link>
+    <description>Recent content in Posts on WUCHAOXIN&#39;S BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 14 Nov 2020 14:53:21 +0800</lastBuildDate><atom:link href="https://chao-x.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 14 Nov 2020 14:53:21 +0800</lastBuildDate><atom:link href="https://chao-x.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker_basics</title>
       <link>https://chao-x.github.io/posts/docker_basics/</link>
@@ -23,15 +23,6 @@
       
       <guid>https://chao-x.github.io/posts/redis_basics/</guid>
       <description>Redis ![image-20201109173525679](/Users/didi/Library/Application Support/typora-user-images/image-20201109173525679.png) Stirng GET SET DEL List LPUSH RPUSH LPOP RPOP LINDEX LRANGE lrange 0 -1 //从左往右便利全部列表 SET SADD SREM SISMEMBER SMEMBER HASH HSET HGET HGETALL HDEL ZSET ZADD ZRANGE ZRANGEBYSCORE ZREM</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://chao-x.github.io/about/</link>
-      <pubDate>Sun, 01 Nov 2020 10:30:14 +0800</pubDate>
-      
-      <guid>https://chao-x.github.io/about/</guid>
-      <description></description>
     </item>
     
   </channel>

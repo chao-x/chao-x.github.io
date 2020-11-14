@@ -3,6 +3,26 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://chao-x.github.io/posts/docker_basics/</loc>
+    <lastmod>2020-11-14T14:53:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/posts/</loc>
+    <lastmod>2020-11-14T14:53:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/</loc>
+    <lastmod>2020-11-14T14:53:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/posts/redis_basics/</loc>
+    <lastmod>2020-11-14T14:51:35+08:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://chao-x.github.io/about/</loc>
     <lastmod>2020-11-01T10:30:14+08:00</lastmod>
   </url>
@@ -13,10 +33,6 @@
   
   <url>
     <loc>https://chao-x.github.io/tags/</loc>
-  </url>
-  
-  <url>
-    <loc>https://chao-x.github.io/</loc>
   </url>
   
 </urlset>

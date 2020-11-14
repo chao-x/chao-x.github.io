@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>Docker_basics &middot; WUCHAOXIN&#39;S BLOG</title>
+
+		
+  		<link rel="stylesheet" href="/css/style.css">
+		<link rel="stylesheet" href="/css/fonts.css">
+		
+		<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+		
+		<link href="" rel="alternate" type="application/rss+xml" title="WUCHAOXIN&#39;S BLOG" />
+	</head>
+
+    <body>
+        		<nav class="nav">
+			<div class="nav-container">
+				<a href="/">
+					<h2 class="nav-title">WUCHAOXIN&#39;S BLOG</h2>
+				</a>
+				<ul>
+    
+    
+        <li>
+            <a href="/posts/">
+                
+                <span>Home</span>
+                
+            </a>
+        </li>
+    
+        <li>
+            <a href="/categories/">
+                
+                <span>Categories</span>
+                
+            </a>
+        </li>
+    
+        <li>
+            <a href="/about/">
+                
+                <span>About</span>
+                
+            </a>
+        </li>
+    
+</ul>
+			</div>
+		</nav>
+
+        
+
+<main>
+	<div class="post">
+		<div class="post-info">
+    <span>Written by</span>
+        
+        <br>
+        <span>on&nbsp;</span><time datetime="2020-11-14 14:53:21 &#43;0800 CST">November 14, 2020</time>
+</div>
+
+		<h1 class="post-title">Docker_basics</h1>
+<div class="post-line"></div>
+
+		
+
+		<h1 id="docker入门">Docker入门</h1>
+<blockquote>
+<p>Docker是采用写实复制的模式，如果想修改一个文件，会先从读写层下面的只读层复制到读写层，该文件的只读版本仍然存在，但是已经被读写层的文件副本所隐藏。</p>
+</blockquote>
+<h2 id="启动容器">启动容器</h2>
+<pre><code>docker run -i -t --name &quot;ubuntu-system&quot; ubuntu /bin/bash
+</code></pre><ul>
+<li>需要root权限时要加上sudo开头</li>
+<li>-i 表示 容器中的STDIN是开启的</li>
+<li>-t 表示 为容器分配一个伪tty的终端</li>
+<li>&ndash;name 唯一标识容器名字 只允许 : a-z A-Z 0-9 _ . -</li>
+<li>&ndash;restart 可以使用该命令自动重启容器当发生某种错误
+<ul>
+<li>&ndash;restart=always，无论退出代码是什么都会重启</li>
+<li>&ndash;restart=on-failure，只有退出代码不为0才会重启</li>
+<li>&ndash;re start=on-failure:5，限制重启次数</li>
+</ul>
+</li>
+</ul>
+<h2 id="查看容器">查看容器</h2>
+<pre><code>docker ps -a
+</code></pre><ul>
+<li>-a 表示查看所有容器，包括已经停止的 【 -all 】</li>
+<li>-l 表示查看最后一次运行的容器 【 -laste 】</li>
+</ul>
+<pre><code>docker start ubuntu
+docker stop ubuntu
+</code></pre><ul>
+<li>启动已经停止的容器</li>
+<li>停止一个容器</li>
+</ul>
+<p><strong>查看容器内部运行的进程</strong></p>
+<pre><code>docker top ubuntu
+</code></pre><p><strong>查看容器内部日志</strong></p>
+<pre><code>docker logs -f ubuntu_code_2
+</code></pre><ul>
+<li>显示实时日志</li>
+<li>-t 显示时间 【 time 】</li>
+</ul>
+<p><strong>查看容器详细信息</strong></p>
+<pre><code>docker inspect ubuntu-system
+</code></pre><h2 id="附着容器">附着容器</h2>
+<pre><code>docker attach ubuntu
+</code></pre><ul>
+<li>我们启动了之前停止的ubuntu容器后是不能直接进入/bin/bash的</li>
+<li>使用 attach 可以附着到已经启动的容器上</li>
+</ul>
+<h2 id="守护式容器">守护式容器</h2>
+<pre><code>docker run --name ubuntu-code -d ubuntu /bin/sh -c &quot;while true;do echo hello world;sleep 1;done&quot;
+</code></pre><ul>
+<li>-d 分离的，在后台运行 【 detached 】</li>
+<li>-c 运行的代码 【 code 】</li>
+</ul>
+<h2 id="在容器内部运行进程">在容器内部运行进程</h2>
+<pre><code>docker exec -d ubuntu-system touch /etc/new_config_file
+</code></pre><ul>
+<li>创建一个文件</li>
+</ul>
+<pre><code>docker exec -t -i ubuntu-system /bin/bash
+</code></pre><ul>
+<li>开启一个新终端</li>
+</ul>
+<h2 id="删除容器">删除容器</h2>
+<pre><code>docker rm ubuntu-system
+docker rm `docker ps -a -q`
+</code></pre><ul>
+<li>-q 只显示容器的ID 【 -quiet 】</li>
+</ul>
+<h1 id="docker镜像">Docker镜像</h1>
+<h2 id="查看镜像">查看镜像</h2>
+<pre><code>docker images
+docker images ubuntu
+</code></pre><ul>
+<li>只看指定的镜像</li>
+</ul>
+<pre><code>docker history image-name
+</code></pre><ul>
+<li>查看镜像的构建过程</li>
+</ul>
+<h2 id="拉取镜像">拉取镜像</h2>
+<pre><code>docker pull ubuntu
+</code></pre><h2 id="指定镜像版本">指定镜像版本</h2>
+<pre><code>docker run -i -t  --name ubuntu-system ubuntu:12.04 /bin/bash
+</code></pre><h2 id="查找镜像">查找镜像</h2>
+<pre><code>docker search ubuntu
+</code></pre><h2 id="commit方式构建镜像">Commit方式构建镜像</h2>
+<pre><code>docker login
+</code></pre><ul>
+<li>需要登陆docker hub</li>
+</ul>
+<pre><code>docker commit -m=&quot;first-test-with-ubuntu&quot; --author=&quot;chaox&quot; ubuntu-system wallace2504/ubuntu-test
+docker commit -m=&quot;first-test-with-ubuntu&quot; --author=&quot;chaox&quot; ubuntu-system:system wallace2504/ubuntu-test
+</code></pre><ul>
+<li>-m 备注</li>
+<li>: 指定标签，后面的标签设置都类似此方式</li>
+</ul>
+<h2 id="dockerfile方式构建镜像">Dockerfile方式构建镜像</h2>
+<pre><code># Version 0.0.v1
+From ubuntu:14.04
+MAINTAINER Author Name &quot;Author's Email&quot;
+RUN apt-get update
+RUN apt-get install -y nginx
+Run echo 'Hi I am in your container'\
+		&gt; /usr/share/nginx/html/index.html
+EXPOSE 80
+</code></pre><ul>
+<li>Docker会从基础镜像生成一个容器，执行一条执行后，对容器作出修改生成一个新的镜像层（类似commit操作），再基于刚刚的新镜像生成新容器，以此类推。</li>
+<li>可以看出，当某条指令失效时，返回的镜像依旧是可用的镜像。</li>
+<li>RUN [&ldquo;apt-update&rdquo;,&ldquo;update&rdquo;] ，不支持shell或不希望用shell，可以使用exec格式</li>
+</ul>
+<pre><code>docker build -t=&quot;chaox/nginx-1&quot; .
+</code></pre><ul>
+<li>注意需要加路径【 . 】</li>
+<li>&ndash;no-cache 略过缓存</li>
+</ul>
+<pre><code># Version 0.0.v1
+From ubuntu:14.04
+MAINTAINER Author Name &quot;Author's Email&quot;
+ENV REFRESHED_AT 2020-11-10
+RUN apt-get update
+EXPOSE 80
+</code></pre><ul>
+<li>使用ENV设置环境变量，使用该模版时，仅需改变时间，后面的指令无须依赖缓存</li>
+</ul>
+<pre><code>docker run -d -p 80 --name ubuntu-sysy chaox/nginx-1 nginx -g &quot;daemon off;&quot;
+</code></pre><ul>
+<li>需要安装nginx， -g &ldquo;daemon off&rdquo; 使得nginx前台运行</li>
+<li>需要指定端口</li>
+</ul>
+<blockquote>
+<p>前台运行和后台运行的差异（存疑）</p>
+<p>1.前台是可见可交互的，后台是不可见不可交互</p>
+<p>2.前台会占用大量的系统资源，后台适合占用资源小的</p>
+<p>3.前台类似我们的网页，游戏。后台类似我们的网络进程</p>
+</blockquote>
+<h2 id="docker-端口映射">Docker 端口映射</h2>
+<pre><code>docker ps -l
+docker port ubuntu-sys 80
+</code></pre><ul>
+<li>查看映射的端口信息</li>
+</ul>
+<p><strong>指定映射关系</strong></p>
+<pre><code>docker run -d -p 127.0.0.1:8080:80 --name nginx-test chaox/nginx-1  nginx -g &quot;daemon off;&quot;
+</code></pre><ul>
+<li>宿主机8080端口映射到容器80端口</li>
+<li><strong>-P</strong> 可以公开在Dockerfile中指定的端口</li>
+</ul>
+<h2 id="推送到dockerhub">推送到DockerHub</h2>
+<pre><code>docker push chaox/nginx-1
+</code></pre><h2 id="删除镜像">删除镜像</h2>
+<pre><code>docker rmi chaox/nginx-1
+docker rmi `docker images -q`
+</code></pre>
+
+		
+	</div> 
+<div class="post-comment">
+      
+             
+      
+      
+      
+<div class="post bg-white">
+    <script src="https://utteranc.es/client.js"
+          repo="chao-x/chao-x.github.io"
+          issue-term="pathname"
+          theme="github-light"
+          crossorigin="anonymous"
+          async>
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://github.com/utterance">comments powered by utterances.</a></noscript>
+</div>
+</div>
+
+	<div class="pagination">
+		<a href="/posts/redis_basics/" class="left arrow">&#8592;</a>
+
+		<a href="#" class="top">Top</a>
+	</div>
+</main>
+
+
+        		<footer>
+			
+			<span>
+			&copy; <time datetime="2020-11-14 15:10:54.0319705 &#43;0800 CST m=&#43;0.068999801">2020</time> . Made with <a href='https://gohugo.io'>Hugo</a> using the <a href='https://github.com/EmielH/tale-hugo/'>Tale</a> theme.
+			</span>
+		</footer>
+
+    </body>
+</html>
