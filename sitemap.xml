@@ -3,28 +3,133 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://chao-x.github.io/posts/docker_basics/</loc>
-    <lastmod>2020-11-14T14:53:21+08:00</lastmod>
+    <loc>https://chao-x.github.io/talk/example/</loc>
+    <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chao-x.github.io/posts/</loc>
-    <lastmod>2020-11-14T14:53:21+08:00</lastmod>
+    <loc>https://chao-x.github.io/talk/</loc>
+    <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://chao-x.github.io/</loc>
-    <lastmod>2020-11-14T14:53:21+08:00</lastmod>
+    <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chao-x.github.io/posts/redis_basics/</loc>
-    <lastmod>2020-11-14T14:51:35+08:00</lastmod>
+    <loc>https://chao-x.github.io/post/</loc>
+    <lastmod>2020-11-14T19:00:13+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://chao-x.github.io/about/</loc>
-    <lastmod>2020-11-01T10:30:14+08:00</lastmod>
+    <loc>https://chao-x.github.io/post/second/</loc>
+    <lastmod>2020-11-14T19:00:13+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/post/first/</loc>
+    <lastmod>2020-11-14T18:55:42+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/publication-type/3/</loc>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/publication/preprint/</loc>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/authors/</loc>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/author/nelson-bighetti/</loc>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/publication_types/</loc>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/publication/</loc>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/tag/source-themes/</loc>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/tags/</loc>
+    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/slides/</loc>
+    <lastmod>2019-02-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/slides/example/</loc>
+    <lastmod>2019-02-05T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/tag/deep-learning/</loc>
+    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/tag/demo/</loc>
+    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/project/external-project/</loc>
+    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/project/internal-project/</loc>
+    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/project/</loc>
+    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/publication-type/2/</loc>
+    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/publication/journal-article/</loc>
+    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/author/robert-ford/</loc>
+    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/publication-type/1/</loc>
+    <lastmod>2013-07-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/publication/conference-paper/</loc>
+    <lastmod>2013-07-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -32,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://chao-x.github.io/tags/</loc>
+    <loc>https://chao-x.github.io/courses/</loc>
   </url>
   
 </urlset>
