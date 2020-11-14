@@ -1,302 +1,271 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>POSTS | WUCHAOXIN&#39;S BLOG</title>
-    <link>https://chao-x.github.io/post/</link>
-      <atom:link href="https://chao-x.github.io/post/index.xml" rel="self" type="application/rss+xml" />
-    <description>POSTS</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sat, 14 Nov 2020 19:00:13 +0800</lastBuildDate>
-    <image>
-      <url>https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
-      <title>POSTS</title>
-      <link>https://chao-x.github.io/post/</link>
-    </image>
-    
-    <item>
-      <title>Linux命令</title>
-      <link>https://chao-x.github.io/post/linux%E5%91%BD%E4%BB%A4/</link>
-      <pubDate>Sat, 14 Nov 2020 19:00:13 +0800</pubDate>
-      <guid>https://chao-x.github.io/post/linux%E5%91%BD%E4%BB%A4/</guid>
-      <description>&lt;hr&gt;
-&lt;p&gt;Linux系统是后发开发必须要掌握的，而命令是其核心知识。&lt;/p&gt;
-&lt;p&gt;本文主要记录了Linux常用的命令，加以整理以防不时之需。&lt;/p&gt;
-&lt;h2&gt;目录&lt;/h2&gt;
-&lt;nav id=&#34;TableOfContents&#34;&gt;
-  &lt;ul&gt;
-    &lt;li&gt;
-      &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&#34;#apt&#34;&gt;apt&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/nav&gt;
-&lt;h3 id=&#34;apt&#34;&gt;apt&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;参考：https://man.linuxde.net/apt-get-2&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre&gt;&lt;code&gt;apt-get update
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;获取包的最新版本，更新数据库信息&lt;/li&gt;
-&lt;li&gt;HIT 包版本没有变化&lt;/li&gt;
-&lt;li&gt;IGN 包别忽略。可能是因为包版本新，懒得去查，也可能是获取信息错误&lt;/li&gt;
-&lt;li&gt;GET 包版本可以升级&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;apt-get upgrade
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;升级包&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;apt-cache search [package name]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;查找包&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;apt-cache pkgnames [package name]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;只查找特定包名&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;apt-get update &amp;amp;&amp;amp; apt-get dist-upgrade
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;快速升级到最新版本&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;apt-get showpkg [detail package name] 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;查看该包的详情&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;apt-get install [detail package name] &amp;lt;...&amp;gt;  &amp;lt;...&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;安装包&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;apt-get remove [detail package name]
-apt-get purge  [detail package name]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;删除包&lt;/li&gt;
-&lt;li&gt;remove 只删除二进制文件，不删除配置文件&lt;/li&gt;
-&lt;li&gt;purge 全部删除&lt;/li&gt;
-&lt;/ul&gt;</description>
-    </item>
-    
-    <item>
-      <title>Docker入门</title>
-      <link>https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/</link>
-      <pubDate>Sat, 14 Nov 2020 18:55:42 +0800</pubDate>
-      <guid>https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/</guid>
-      <description>&lt;hr&gt;
-&lt;p&gt;Docker是一个能够把开发的应用程序自动部署到容器的开源引擎，&lt;/p&gt;
-&lt;p&gt;提供了一个简单、轻量的建模方式。&lt;/p&gt;
-&lt;h2&gt;目录&lt;/h2&gt;
-&lt;nav id=&#34;TableOfContents&#34;&gt;
-  &lt;ul&gt;
-    &lt;li&gt;&lt;a href=&#34;#docker&#34;&gt;Docker&lt;/a&gt;
-      &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&#34;#启动容器&#34;&gt;启动容器&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#查看容器&#34;&gt;查看容器&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#附着容器&#34;&gt;附着容器&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#守护式容器&#34;&gt;守护式容器&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#在容器内部运行进程&#34;&gt;在容器内部运行进程&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#删除容器&#34;&gt;删除容器&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/li&gt;
-    &lt;li&gt;&lt;a href=&#34;#docker镜像&#34;&gt;Docker镜像&lt;/a&gt;
-      &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&#34;#查看镜像&#34;&gt;查看镜像&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#拉取镜像&#34;&gt;拉取镜像&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#指定镜像版本&#34;&gt;指定镜像版本&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#查找镜像&#34;&gt;查找镜像&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#commit方式构建镜像&#34;&gt;Commit方式构建镜像&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#dockerfile方式构建镜像&#34;&gt;Dockerfile方式构建镜像&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#docker-端口映射&#34;&gt;Docker 端口映射&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#推送到dockerhub&#34;&gt;推送到DockerHub&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#删除镜像&#34;&gt;删除镜像&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/nav&gt;
-&lt;h2 id=&#34;docker&#34;&gt;Docker&lt;/h2&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Docker是采用写实复制的模式，如果想修改一个文件，会先从读写层下面的只读层复制到读写层，该文件的只读版本仍然存在，但是已经被读写层的文件副本所隐藏。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;启动容器&#34;&gt;启动容器&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;docker run -i -t --name &amp;quot;ubuntu-system&amp;quot; ubuntu /bin/bash
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;需要root权限时要加上sudo开头&lt;/li&gt;
-&lt;li&gt;-i 表示 容器中的STDIN是开启的&lt;/li&gt;
-&lt;li&gt;-t 表示 为容器分配一个伪tty的终端&lt;/li&gt;
-&lt;li&gt;&amp;ndash;name 唯一标识容器名字 只允许 : a-z A-Z 0-9 _ . -&lt;/li&gt;
-&lt;li&gt;&amp;ndash;restart 可以使用该命令自动重启容器当发生某种错误
-&lt;ul&gt;
-&lt;li&gt;&amp;ndash;restart=always，无论退出代码是什么都会重启&lt;/li&gt;
-&lt;li&gt;&amp;ndash;restart=on-failure，只有退出代码不为0才会重启&lt;/li&gt;
-&lt;li&gt;&amp;ndash;re start=on-failure:5，限制重启次数&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;查看容器&#34;&gt;查看容器&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;docker ps -a
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;-a 表示查看所有容器，包括已经停止的 【 -all 】&lt;/li&gt;
-&lt;li&gt;-l 表示查看最后一次运行的容器 【 -laste 】&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;docker start ubuntu
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>POSTS | WUCHAOXIN'S BLOG</title><link>https://chao-x.github.io/post/</link><atom:link href="https://chao-x.github.io/post/index.xml" rel="self" type="application/rss+xml"/><description>POSTS</description><generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sat, 14 Nov 2020 19:00:13 +0800</lastBuildDate><image><url>https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url><title>POSTS</title><link>https://chao-x.github.io/post/</link></image><item><title>Linux命令</title><link>https://chao-x.github.io/post/linux%E5%91%BD%E4%BB%A4/</link><pubDate>Sat, 14 Nov 2020 19:00:13 +0800</pubDate><guid>https://chao-x.github.io/post/linux%E5%91%BD%E4%BB%A4/</guid><description>&lt;hr>
+&lt;p>Linux系统是后发开发必须要掌握的，而命令是其核心知识。&lt;/p>
+&lt;p>本文主要记录了Linux常用的命令，加以整理以防不时之需。&lt;/p>
+&lt;h2>目录&lt;/h2>
+&lt;nav id="TableOfContents">
+&lt;ul>
+&lt;li>
+&lt;ul>
+&lt;li>&lt;a href="#apt">apt&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/nav>
+&lt;h3 id="apt">apt&lt;/h3>
+&lt;blockquote>
+&lt;p>参考：https://man.linuxde.net/apt-get-2&lt;/p>
+&lt;/blockquote>
+&lt;pre>&lt;code>apt-get update
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>获取包的最新版本，更新数据库信息&lt;/li>
+&lt;li>HIT 包版本没有变化&lt;/li>
+&lt;li>IGN 包别忽略。可能是因为包版本新，懒得去查，也可能是获取信息错误&lt;/li>
+&lt;li>GET 包版本可以升级&lt;/li>
+&lt;/ul>
+&lt;pre>&lt;code>apt-get upgrade
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>升级包&lt;/li>
+&lt;/ul>
+&lt;pre>&lt;code>apt-cache search [package name]
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>查找包&lt;/li>
+&lt;/ul>
+&lt;pre>&lt;code>apt-cache pkgnames [package name]
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>只查找特定包名&lt;/li>
+&lt;/ul>
+&lt;pre>&lt;code>apt-get update &amp;amp;&amp;amp; apt-get dist-upgrade
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>快速升级到最新版本&lt;/li>
+&lt;/ul>
+&lt;pre>&lt;code>apt-get showpkg [detail package name]
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>查看该包的详情&lt;/li>
+&lt;/ul>
+&lt;pre>&lt;code>apt-get install [detail package name] &amp;lt;...&amp;gt; &amp;lt;...&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>安装包&lt;/li>
+&lt;/ul>
+&lt;pre>&lt;code>apt-get remove [detail package name]
+apt-get purge [detail package name]
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>删除包&lt;/li>
+&lt;li>remove 只删除二进制文件，不删除配置文件&lt;/li>
+&lt;li>purge 全部删除&lt;/li>
+&lt;/ul></description></item><item><title>Docker入门</title><link>https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/</link><pubDate>Sat, 14 Nov 2020 18:55:42 +0800</pubDate><guid>https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/</guid><description>&lt;hr>
+&lt;p>Docker是一个能够把开发的应用程序自动部署到容器的开源引擎，&lt;/p>
+&lt;p>提供了一个简单、轻量的建模方式。&lt;/p>
+&lt;h2>目录&lt;/h2>
+&lt;nav id="TableOfContents">
+&lt;ul>
+&lt;li>&lt;a href="#docker">Docker&lt;/a>
+&lt;ul>
+&lt;li>&lt;a href="#启动容器">启动容器&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#查看容器">查看容器&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#附着容器">附着容器&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#守护式容器">守护式容器&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#在容器内部运行进程">在容器内部运行进程&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#删除容器">删除容器&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="#docker镜像">Docker镜像&lt;/a>
+&lt;ul>
+&lt;li>&lt;a href="#查看镜像">查看镜像&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#拉取镜像">拉取镜像&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#指定镜像版本">指定镜像版本&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#查找镜像">查找镜像&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#commit方式构建镜像">Commit方式构建镜像&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#dockerfile方式构建镜像">Dockerfile方式构建镜像&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#docker-端口映射">Docker 端口映射&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#推送到dockerhub">推送到DockerHub&lt;/a>&lt;/li>
+&lt;li>&lt;a href="#删除镜像">删除镜像&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/nav>
+&lt;h2 id="docker">Docker&lt;/h2>
+&lt;blockquote>
+&lt;p>Docker是采用写实复制的模式，如果想修改一个文件，会先从读写层下面的只读层复制到读写层，该文件的只读版本仍然存在，但是已经被读写层的文件副本所隐藏。&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="启动容器">启动容器&lt;/h3>
+&lt;pre>&lt;code>docker run -i -t --name &amp;quot;ubuntu-system&amp;quot; ubuntu /bin/bash
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>需要root权限时要加上sudo开头&lt;/li>
+&lt;li>-i 表示 容器中的STDIN是开启的&lt;/li>
+&lt;li>-t 表示 为容器分配一个伪tty的终端&lt;/li>
+&lt;li>&amp;ndash;name 唯一标识容器名字 只允许 : a-z A-Z 0-9 _ . -&lt;/li>
+&lt;li>&amp;ndash;restart 可以使用该命令自动重启容器当发生某种错误
+&lt;ul>
+&lt;li>&amp;ndash;restart=always，无论退出代码是什么都会重启&lt;/li>
+&lt;li>&amp;ndash;restart=on-failure，只有退出代码不为0才会重启&lt;/li>
+&lt;li>&amp;ndash;re start=on-failure:5，限制重启次数&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="查看容器">查看容器&lt;/h3>
+&lt;pre>&lt;code>docker ps -a
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>-a 表示查看所有容器，包括已经停止的 【 -all 】&lt;/li>
+&lt;li>-l 表示查看最后一次运行的容器 【 -laste 】&lt;/li>
+&lt;/ul>
+&lt;pre>&lt;code>docker start ubuntu
 docker stop ubuntu
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;启动已经停止的容器&lt;/li&gt;
-&lt;li&gt;停止一个容器&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;查看容器内部运行的进程&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;docker top ubuntu
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;strong&gt;查看容器内部日志&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;docker logs -f ubuntu_code_2
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;显示实时日志&lt;/li&gt;
-&lt;li&gt;-t 显示时间 【 time 】&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;查看容器详细信息&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;docker inspect ubuntu-system
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;附着容器&#34;&gt;附着容器&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;docker attach ubuntu
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;我们启动了之前停止的ubuntu容器后是不能直接进入/bin/bash的&lt;/li&gt;
-&lt;li&gt;使用 attach 可以附着到已经启动的容器上&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;守护式容器&#34;&gt;守护式容器&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;docker run --name ubuntu-code -d ubuntu /bin/sh -c &amp;quot;while true;do echo hello world;sleep 1;done&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;-d 分离的，在后台运行 【 detached 】&lt;/li&gt;
-&lt;li&gt;-c 运行的代码 【 code 】&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;在容器内部运行进程&#34;&gt;在容器内部运行进程&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;docker exec -d ubuntu-system touch /etc/new_config_file
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;创建一个文件&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;docker exec -t -i ubuntu-system /bin/bash
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;开启一个新终端&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;删除容器&#34;&gt;删除容器&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;docker rm ubuntu-system
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>启动已经停止的容器&lt;/li>
+&lt;li>停止一个容器&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>查看容器内部运行的进程&lt;/strong>&lt;/p>
+&lt;pre>&lt;code>docker top ubuntu
+&lt;/code>&lt;/pre>
+&lt;p>&lt;strong>查看容器内部日志&lt;/strong>&lt;/p>
+&lt;pre>&lt;code>docker logs -f ubuntu_code_2
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>显示实时日志&lt;/li>
+&lt;li>-t 显示时间 【 time 】&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>查看容器详细信息&lt;/strong>&lt;/p>
+&lt;pre>&lt;code>docker inspect ubuntu-system
+&lt;/code>&lt;/pre>
+&lt;h3 id="附着容器">附着容器&lt;/h3>
+&lt;pre>&lt;code>docker attach ubuntu
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>我们启动了之前停止的ubuntu容器后是不能直接进入/bin/bash的&lt;/li>
+&lt;li>使用 attach 可以附着到已经启动的容器上&lt;/li>
+&lt;/ul>
+&lt;h3 id="守护式容器">守护式容器&lt;/h3>
+&lt;pre>&lt;code>docker run --name ubuntu-code -d ubuntu /bin/sh -c &amp;quot;while true;do echo hello world;sleep 1;done&amp;quot;
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>-d 分离的，在后台运行 【 detached 】&lt;/li>
+&lt;li>-c 运行的代码 【 code 】&lt;/li>
+&lt;/ul>
+&lt;h3 id="在容器内部运行进程">在容器内部运行进程&lt;/h3>
+&lt;pre>&lt;code>docker exec -d ubuntu-system touch /etc/new_config_file
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>创建一个文件&lt;/li>
+&lt;/ul>
+&lt;pre>&lt;code>docker exec -t -i ubuntu-system /bin/bash
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>开启一个新终端&lt;/li>
+&lt;/ul>
+&lt;h3 id="删除容器">删除容器&lt;/h3>
+&lt;pre>&lt;code>docker rm ubuntu-system
 docker rm `docker ps -a -q`
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;-q 只显示容器的ID 【 -quiet 】&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;docker镜像&#34;&gt;Docker镜像&lt;/h2&gt;
-&lt;h3 id=&#34;查看镜像&#34;&gt;查看镜像&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;docker images
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>-q 只显示容器的ID 【 -quiet 】&lt;/li>
+&lt;/ul>
+&lt;h2 id="docker镜像">Docker镜像&lt;/h2>
+&lt;h3 id="查看镜像">查看镜像&lt;/h3>
+&lt;pre>&lt;code>docker images
 docker images ubuntu
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;只看指定的镜像&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;docker history image-name
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;查看镜像的构建过程&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;拉取镜像&#34;&gt;拉取镜像&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;docker pull ubuntu
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;指定镜像版本&#34;&gt;指定镜像版本&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;docker run -i -t  --name ubuntu-system ubuntu:12.04 /bin/bash
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;查找镜像&#34;&gt;查找镜像&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;docker search ubuntu
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;commit方式构建镜像&#34;&gt;Commit方式构建镜像&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;docker login
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;需要登陆docker hub&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;docker commit -m=&amp;quot;first-test-with-ubuntu&amp;quot; --author=&amp;quot;chaox&amp;quot; ubuntu-system wallace2504/ubuntu-test
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>只看指定的镜像&lt;/li>
+&lt;/ul>
+&lt;pre>&lt;code>docker history image-name
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>查看镜像的构建过程&lt;/li>
+&lt;/ul>
+&lt;h3 id="拉取镜像">拉取镜像&lt;/h3>
+&lt;pre>&lt;code>docker pull ubuntu
+&lt;/code>&lt;/pre>
+&lt;h3 id="指定镜像版本">指定镜像版本&lt;/h3>
+&lt;pre>&lt;code>docker run -i -t --name ubuntu-system ubuntu:12.04 /bin/bash
+&lt;/code>&lt;/pre>
+&lt;h3 id="查找镜像">查找镜像&lt;/h3>
+&lt;pre>&lt;code>docker search ubuntu
+&lt;/code>&lt;/pre>
+&lt;h3 id="commit方式构建镜像">Commit方式构建镜像&lt;/h3>
+&lt;pre>&lt;code>docker login
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>需要登陆docker hub&lt;/li>
+&lt;/ul>
+&lt;pre>&lt;code>docker commit -m=&amp;quot;first-test-with-ubuntu&amp;quot; --author=&amp;quot;chaox&amp;quot; ubuntu-system wallace2504/ubuntu-test
 docker commit -m=&amp;quot;first-test-with-ubuntu&amp;quot; --author=&amp;quot;chaox&amp;quot; ubuntu-system:system wallace2504/ubuntu-test
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;-m 备注&lt;/li&gt;
-&lt;li&gt;: 指定标签，后面的标签设置都类似此方式&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;dockerfile方式构建镜像&#34;&gt;Dockerfile方式构建镜像&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;# Version 0.0.v1
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>-m 备注&lt;/li>
+&lt;li>: 指定标签，后面的标签设置都类似此方式&lt;/li>
+&lt;/ul>
+&lt;h3 id="dockerfile方式构建镜像">Dockerfile方式构建镜像&lt;/h3>
+&lt;pre>&lt;code># Version 0.0.v1
 From ubuntu:14.04
-MAINTAINER Author Name &amp;quot;Author&#39;s Email&amp;quot;
+MAINTAINER Author Name &amp;quot;Author's Email&amp;quot;
 RUN apt-get update
 RUN apt-get install -y nginx
-Run echo &#39;Hi I am in your container&#39;\
-		&amp;gt; /usr/share/nginx/html/index.html
+Run echo 'Hi I am in your container'\
+&amp;gt; /usr/share/nginx/html/index.html
 EXPOSE 80
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;Docker会从基础镜像生成一个容器，执行一条执行后，对容器作出修改生成一个新的镜像层（类似commit操作），再基于刚刚的新镜像生成新容器，以此类推。&lt;/li&gt;
-&lt;li&gt;可以看出，当某条指令失效时，返回的镜像依旧是可用的镜像。&lt;/li&gt;
-&lt;li&gt;RUN [&amp;ldquo;apt-update&amp;rdquo;,&amp;ldquo;update&amp;rdquo;] ，不支持shell或不希望用shell，可以使用exec格式&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;docker build -t=&amp;quot;chaox/nginx-1&amp;quot; .
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;注意需要加路径【 . 】&lt;/li&gt;
-&lt;li&gt;&amp;ndash;no-cache 略过缓存&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;# Version 0.0.v1
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>Docker会从基础镜像生成一个容器，执行一条执行后，对容器作出修改生成一个新的镜像层（类似commit操作），再基于刚刚的新镜像生成新容器，以此类推。&lt;/li>
+&lt;li>可以看出，当某条指令失效时，返回的镜像依旧是可用的镜像。&lt;/li>
+&lt;li>RUN [&amp;ldquo;apt-update&amp;rdquo;,&amp;ldquo;update&amp;rdquo;] ，不支持shell或不希望用shell，可以使用exec格式&lt;/li>
+&lt;/ul>
+&lt;pre>&lt;code>docker build -t=&amp;quot;chaox/nginx-1&amp;quot; .
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>注意需要加路径【 . 】&lt;/li>
+&lt;li>&amp;ndash;no-cache 略过缓存&lt;/li>
+&lt;/ul>
+&lt;pre>&lt;code># Version 0.0.v1
 From ubuntu:14.04
-MAINTAINER Author Name &amp;quot;Author&#39;s Email&amp;quot;
+MAINTAINER Author Name &amp;quot;Author's Email&amp;quot;
 ENV REFRESHED_AT 2020-11-10
 RUN apt-get update
 EXPOSE 80
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;使用ENV设置环境变量，使用该模版时，仅需改变时间，后面的指令无须依赖缓存&lt;/li&gt;
-&lt;/ul&gt;
-&lt;pre&gt;&lt;code&gt;docker run -d -p 80 --name ubuntu-sysy chaox/nginx-1 nginx -g &amp;quot;daemon off;&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;需要安装nginx， -g &amp;ldquo;daemon off&amp;rdquo; 使得nginx前台运行&lt;/li&gt;
-&lt;li&gt;需要指定端口&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;前台运行和后台运行的差异（存疑）&lt;/p&gt;
-&lt;p&gt;1.前台是可见可交互的，后台是不可见不可交互&lt;/p&gt;
-&lt;p&gt;2.前台会占用大量的系统资源，后台适合占用资源小的&lt;/p&gt;
-&lt;p&gt;3.前台类似我们的网页，游戏。后台类似我们的网络进程&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&#34;docker-端口映射&#34;&gt;Docker 端口映射&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;docker ps -l
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>使用ENV设置环境变量，使用该模版时，仅需改变时间，后面的指令无须依赖缓存&lt;/li>
+&lt;/ul>
+&lt;pre>&lt;code>docker run -d -p 80 --name ubuntu-sysy chaox/nginx-1 nginx -g &amp;quot;daemon off;&amp;quot;
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>需要安装nginx， -g &amp;ldquo;daemon off&amp;rdquo; 使得nginx前台运行&lt;/li>
+&lt;li>需要指定端口&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>前台运行和后台运行的差异（存疑）&lt;/p>
+&lt;p>1.前台是可见可交互的，后台是不可见不可交互&lt;/p>
+&lt;p>2.前台会占用大量的系统资源，后台适合占用资源小的&lt;/p>
+&lt;p>3.前台类似我们的网页，游戏。后台类似我们的网络进程&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="docker-端口映射">Docker 端口映射&lt;/h3>
+&lt;pre>&lt;code>docker ps -l
 docker port ubuntu-sys 80
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;查看映射的端口信息&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;strong&gt;指定映射关系&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;docker run -d -p 127.0.0.1:8080:80 --name nginx-test chaox/nginx-1  nginx -g &amp;quot;daemon off;&amp;quot;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ul&gt;
-&lt;li&gt;宿主机8080端口映射到容器80端口&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;-P&lt;/strong&gt; 可以公开在Dockerfile中指定的端口&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;推送到dockerhub&#34;&gt;推送到DockerHub&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;docker push chaox/nginx-1
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&#34;删除镜像&#34;&gt;删除镜像&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;docker rmi chaox/nginx-1
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>查看映射的端口信息&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>指定映射关系&lt;/strong>&lt;/p>
+&lt;pre>&lt;code>docker run -d -p 127.0.0.1:8080:80 --name nginx-test chaox/nginx-1 nginx -g &amp;quot;daemon off;&amp;quot;
+&lt;/code>&lt;/pre>
+&lt;ul>
+&lt;li>宿主机8080端口映射到容器80端口&lt;/li>
+&lt;li>&lt;strong>-P&lt;/strong> 可以公开在Dockerfile中指定的端口&lt;/li>
+&lt;/ul>
+&lt;h3 id="推送到dockerhub">推送到DockerHub&lt;/h3>
+&lt;pre>&lt;code>docker push chaox/nginx-1
+&lt;/code>&lt;/pre>
+&lt;h3 id="删除镜像">删除镜像&lt;/h3>
+&lt;pre>&lt;code>docker rmi chaox/nginx-1
 docker rmi `docker images -q`
-&lt;/code&gt;&lt;/pre&gt;</description>
-    </item>
-    
-  </channel>
-</rss>
+&lt;/code>&lt;/pre></description></item></channel></rss>
