@@ -1,33 +1,930 @@
-<!doctype html><html lang=zh-hans><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=x-ua-compatible content="IE=edge"><meta name=generator content="Wowchemy 5.0.0-beta.0 for Hugo"><meta name=author content="WU CHAOXIN"><meta name=description content="Docker是一个能够把开发的应用程序自动部署到容器的开源引擎，
-提供了一个简单、轻量的建模方式。"><link rel=alternate hreflang=zh-hans href=https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/><link rel=preconnect href=https://fonts.gstatic.com crossorigin><meta name=theme-color content="#2962ff"><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin=anonymous><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css crossorigin=anonymous title=hl-light><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css crossorigin=anonymous title=hl-dark disabled><script src=https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin=anonymous async></script><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap"><link rel=stylesheet href=/css/wowchemy.css><link rel=manifest href=/index.webmanifest><link rel=icon type=image/png href=/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png><link rel=apple-touch-icon type=image/png href=/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png><link rel=canonical href=https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/><meta property="twitter:card" content="summary"><meta property="og:site_name" content="WUCHAOXIN'S BLOG"><meta property="og:url" content="https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/"><meta property="og:title" content="Docker入门 | WUCHAOXIN'S BLOG"><meta property="og:description" content="Docker是一个能够把开发的应用程序自动部署到容器的开源引擎，
-提供了一个简单、轻量的建模方式。"><meta property="og:image" content="https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="twitter:image" content="https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="zh-Hans"><meta property="article:published_time" content="2020-11-14T18:55:42+08:00"><meta property="article:modified_time" content="2020-11-14T18:55:42+08:00"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/"},"headline":"Docker入门","datePublished":"2020-11-14T18:55:42+08:00","dateModified":"2020-11-14T18:55:42+08:00","author":{"@type":"Person","name":"WU CHAOXIN"},"publisher":{"@type":"Organization","name":"WUCHAOXIN'S BLOG","logo":{"@type":"ImageObject","url":"https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"}},"description":"\u003chr\u003e\n\u003cp\u003eDocker是一个能够把开发的应用程序自动部署到容器的开源引擎，\u003c/p\u003e\n\u003cp\u003e提供了一个简单、轻量的建模方式。\u003c/p\u003e"}</script><title>Docker入门 | WUCHAOXIN'S BLOG</title></head><body id=top data-spy=scroll data-offset=70 data-target=#TableOfContents class=page-wrapper><script>window.wcDarkLightEnabled=true;</script><script>const isSiteThemeDark=false;</script><script src=/js/load-theme.js></script><aside class=search-results id=search><div class=container><section class=search-header><div class="row no-gutters justify-content-between mb-3"><div class=col-6><h1>搜索</h1></div><div class="col-6 col-search-close"><a class=js-search href=#><i class="fas fa-times-circle text-muted" aria-hidden=true></i></a></div></div><div id=search-box><input name=q id=search-query placeholder=搜索... autocapitalize=off autocomplete=off autocorrect=off spellcheck=false type=search class=form-control></div></section><section class=section-search-results><div id=search-hits></div></section></div></aside><div class=page-header><nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id=navbar-main><div class=container><div class="d-none d-lg-inline-flex"><a class=navbar-brand href=/>WUCHAOXIN'S BLOG</a></div><button type=button class=navbar-toggler data-toggle=collapse data-target=#navbar-content aria-controls=navbar aria-expanded=false aria-label=切换导航>
-<span><i class="fas fa-bars"></i></span></button><div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none"><a class=navbar-brand href=/>WUCHAOXIN'S BLOG</a></div><div class="navbar-collapse main-menu-item collapse justify-content-start" id=navbar-content><ul class="navbar-nav d-md-inline-flex"><li class=nav-item><a class=nav-link href=/#about><span>主页</span></a></li><li class=nav-item><a class=nav-link href=/#experience><span>我的经历</span></a></li><li class=nav-item><a class=nav-link href=/#contact><span>与我联系</span></a></li><li class=nav-item><a class="nav-link active" href=/post/><span>所有文章</span></a></li><li class=nav-item><a class=nav-link href=/categories/><span>分类</span></a></li><li class=nav-item><a class=nav-link href=/tags/><span>标签</span></a></li></ul></div><ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2"><li class=nav-item><a class="nav-link js-search" href=# aria-label=搜索><i class="fas fa-search" aria-hidden=true></i></a></li><li class="nav-item dropdown theme-dropdown"><a href=# class=nav-link data-toggle=dropdown aria-haspopup=true><i class="fas fa-moon" aria-hidden=true></i></a><div class=dropdown-menu><a href=# class="dropdown-item js-set-theme-light"><span>浅色</span></a>
-<a href=# class="dropdown-item js-set-theme-dark"><span>深色</span></a>
-<a href=# class="dropdown-item js-set-theme-auto"><span>自动</span></a></div></li></ul></div></nav></div><div class=page-body><article class=article><div class="article-container pt-3"><h1>Docker入门</h1><div class=article-metadata><span class=article-date>Nov 14, 2020</span>
-<span class=middot-divider></span><span class=article-reading-time>3 分钟阅读时长</span>
-<span class=middot-divider></span><span class=article-categories><i class="fas fa-folder mr-1"></i><a href=/category/%E5%B7%A5%E5%85%B7/>工具</a></span></div></div><div class=article-container><div class=article-style><hr><p>Docker是一个能够把开发的应用程序自动部署到容器的开源引擎，</p><p>提供了一个简单、轻量的建模方式。</p><h2>目录</h2><nav id=TableOfContents><ul><li><a href=#docker>Docker</a><ul><li><a href=#启动容器>启动容器</a></li><li><a href=#查看容器>查看容器</a></li><li><a href=#附着容器>附着容器</a></li><li><a href=#守护式容器>守护式容器</a></li><li><a href=#在容器内部运行进程>在容器内部运行进程</a></li><li><a href=#删除容器>删除容器</a></li></ul></li><li><a href=#docker镜像>Docker镜像</a><ul><li><a href=#查看镜像>查看镜像</a></li><li><a href=#拉取镜像>拉取镜像</a></li><li><a href=#指定镜像版本>指定镜像版本</a></li><li><a href=#查找镜像>查找镜像</a></li><li><a href=#commit方式构建镜像>Commit方式构建镜像</a></li><li><a href=#dockerfile方式构建镜像>Dockerfile方式构建镜像</a></li><li><a href=#docker-端口映射>Docker 端口映射</a></li><li><a href=#推送到dockerhub>推送到DockerHub</a></li><li><a href=#删除镜像>删除镜像</a></li></ul></li></ul></nav><h2 id=docker>Docker</h2><blockquote><p>Docker是采用写实复制的模式，如果想修改一个文件，会先从读写层下面的只读层复制到读写层，该文件的只读版本仍然存在，但是已经被读写层的文件副本所隐藏。</p></blockquote><h3 id=启动容器>启动容器</h3><pre><code>docker run -i -t --name &quot;ubuntu-system&quot; ubuntu /bin/bash
-</code></pre><ul><li>需要root权限时要加上sudo开头</li><li>-i 表示 容器中的STDIN是开启的</li><li>-t 表示 为容器分配一个伪tty的终端</li><li>&ndash;name 唯一标识容器名字 只允许 : a-z A-Z 0-9 _ . -</li><li>&ndash;restart 可以使用该命令自动重启容器当发生某种错误<ul><li>&ndash;restart=always，无论退出代码是什么都会重启</li><li>&ndash;restart=on-failure，只有退出代码不为0才会重启</li><li>&ndash;re start=on-failure:5，限制重启次数</li></ul></li></ul><h3 id=查看容器>查看容器</h3><pre><code>docker ps -a
-</code></pre><ul><li>-a 表示查看所有容器，包括已经停止的 【 -all 】</li><li>-l 表示查看最后一次运行的容器 【 -laste 】</li></ul><pre><code>docker start ubuntu
+<!DOCTYPE html><html lang="zh-Hans" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+  
+  <meta name="generator" content="Wowchemy 5.0.0-beta.0 for Hugo">
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="WU CHAOXIN">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="
+Docker是一个能够把开发的应用程序自动部署到容器的开源引擎，
+提供了一个简单、轻量的建模方式。">
+
+  
+  <link rel="alternate" hreflang="zh-Hans" href="https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.css">
+
+  
+
+
+
+
+  
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="WUCHAOXIN&#39;S BLOG">
+  <meta property="og:url" content="https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/">
+  <meta property="og:title" content="Docker入门 | WUCHAOXIN&#39;S BLOG">
+  <meta property="og:description" content="
+Docker是一个能够把开发的应用程序自动部署到容器的开源引擎，
+提供了一个简单、轻量的建模方式。"><meta property="og:image" content="https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="zh-Hans">
+  
+    
+      <meta property="article:published_time" content="2020-11-14T18:55:42&#43;08:00">
+    
+    <meta property="article:modified_time" content="2020-11-14T18:55:42&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/"
+  },
+  "headline": "Docker入门",
+  
+  "datePublished": "2020-11-14T18:55:42+08:00",
+  "dateModified": "2020-11-14T18:55:42+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "WU CHAOXIN"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "WUCHAOXIN'S BLOG",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "\u003chr\u003e\n\u003cp\u003eDocker是一个能够把开发的应用程序自动部署到容器的开源引擎，\u003c/p\u003e\n\u003cp\u003e提供了一个简单、轻量的建模方式。\u003c/p\u003e"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Docker入门 | WUCHAOXIN&#39;S BLOG</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+    <script>window.wcDarkLightEnabled = true;</script>
+  
+  
+    <script>const isSiteThemeDark = false;</script>
+  
+  
+  <script src="/js/load-theme.js"></script>
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">WUCHAOXIN&#39;S BLOG</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">WUCHAOXIN&#39;S BLOG</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>主页</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#experience"><span>我的经历</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>与我联系</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/post/"><span>所有文章</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/categories/"><span>分类</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/tags/"><span>标签</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="搜索"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>浅色</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>深色</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>自动</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Docker入门</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Nov 14, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    3 分钟阅读时长
+  </span>
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/%E5%B7%A5%E5%85%B7/">工具</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <hr>
+<p>Docker是一个能够把开发的应用程序自动部署到容器的开源引擎，</p>
+<p>提供了一个简单、轻量的建模方式。</p>
+<h2>目录</h2>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#docker">Docker</a>
+      <ul>
+        <li><a href="#启动容器">启动容器</a></li>
+        <li><a href="#查看容器">查看容器</a></li>
+        <li><a href="#附着容器">附着容器</a></li>
+        <li><a href="#守护式容器">守护式容器</a></li>
+        <li><a href="#在容器内部运行进程">在容器内部运行进程</a></li>
+        <li><a href="#删除容器">删除容器</a></li>
+      </ul>
+    </li>
+    <li><a href="#docker镜像">Docker镜像</a>
+      <ul>
+        <li><a href="#查看镜像">查看镜像</a></li>
+        <li><a href="#拉取镜像">拉取镜像</a></li>
+        <li><a href="#指定镜像版本">指定镜像版本</a></li>
+        <li><a href="#查找镜像">查找镜像</a></li>
+        <li><a href="#commit方式构建镜像">Commit方式构建镜像</a></li>
+        <li><a href="#dockerfile方式构建镜像">Dockerfile方式构建镜像</a></li>
+        <li><a href="#docker-端口映射">Docker 端口映射</a></li>
+        <li><a href="#推送到dockerhub">推送到DockerHub</a></li>
+        <li><a href="#删除镜像">删除镜像</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h2 id="docker">Docker</h2>
+<blockquote>
+<p>Docker是采用写实复制的模式，如果想修改一个文件，会先从读写层下面的只读层复制到读写层，该文件的只读版本仍然存在，但是已经被读写层的文件副本所隐藏。</p>
+</blockquote>
+<h3 id="启动容器">启动容器</h3>
+<pre><code>docker run -i -t --name &quot;ubuntu-system&quot; ubuntu /bin/bash
+</code></pre>
+<ul>
+<li>需要root权限时要加上sudo开头</li>
+<li>-i 表示 容器中的STDIN是开启的</li>
+<li>-t 表示 为容器分配一个伪tty的终端</li>
+<li>&ndash;name 唯一标识容器名字 只允许 : a-z A-Z 0-9 _ . -</li>
+<li>&ndash;restart 可以使用该命令自动重启容器当发生某种错误
+<ul>
+<li>&ndash;restart=always，无论退出代码是什么都会重启</li>
+<li>&ndash;restart=on-failure，只有退出代码不为0才会重启</li>
+<li>&ndash;re start=on-failure:5，限制重启次数</li>
+</ul>
+</li>
+</ul>
+<h3 id="查看容器">查看容器</h3>
+<pre><code>docker ps -a
+</code></pre>
+<ul>
+<li>-a 表示查看所有容器，包括已经停止的 【 -all 】</li>
+<li>-l 表示查看最后一次运行的容器 【 -laste 】</li>
+</ul>
+<pre><code>docker start ubuntu
 docker stop ubuntu
-</code></pre><ul><li>启动已经停止的容器</li><li>停止一个容器</li></ul><p><strong>查看容器内部运行的进程</strong></p><pre><code>docker top ubuntu
-</code></pre><p><strong>查看容器内部日志</strong></p><pre><code>docker logs -f ubuntu_code_2
-</code></pre><ul><li>显示实时日志</li><li>-t 显示时间 【 time 】</li></ul><p><strong>查看容器详细信息</strong></p><pre><code>docker inspect ubuntu-system
-</code></pre><h3 id=附着容器>附着容器</h3><pre><code>docker attach ubuntu
-</code></pre><ul><li>我们启动了之前停止的ubuntu容器后是不能直接进入/bin/bash的</li><li>使用 attach 可以附着到已经启动的容器上</li></ul><h3 id=守护式容器>守护式容器</h3><pre><code>docker run --name ubuntu-code -d ubuntu /bin/sh -c &quot;while true;do echo hello world;sleep 1;done&quot;
-</code></pre><ul><li>-d 分离的，在后台运行 【 detached 】</li><li>-c 运行的代码 【 code 】</li></ul><h3 id=在容器内部运行进程>在容器内部运行进程</h3><pre><code>docker exec -d ubuntu-system touch /etc/new_config_file
-</code></pre><ul><li>创建一个文件</li></ul><pre><code>docker exec -t -i ubuntu-system /bin/bash
-</code></pre><ul><li>开启一个新终端</li></ul><h3 id=删除容器>删除容器</h3><pre><code>docker rm ubuntu-system
+</code></pre>
+<ul>
+<li>启动已经停止的容器</li>
+<li>停止一个容器</li>
+</ul>
+<p><strong>查看容器内部运行的进程</strong></p>
+<pre><code>docker top ubuntu
+</code></pre>
+<p><strong>查看容器内部日志</strong></p>
+<pre><code>docker logs -f ubuntu_code_2
+</code></pre>
+<ul>
+<li>显示实时日志</li>
+<li>-t 显示时间 【 time 】</li>
+</ul>
+<p><strong>查看容器详细信息</strong></p>
+<pre><code>docker inspect ubuntu-system
+</code></pre>
+<h3 id="附着容器">附着容器</h3>
+<pre><code>docker attach ubuntu
+</code></pre>
+<ul>
+<li>我们启动了之前停止的ubuntu容器后是不能直接进入/bin/bash的</li>
+<li>使用 attach 可以附着到已经启动的容器上</li>
+</ul>
+<h3 id="守护式容器">守护式容器</h3>
+<pre><code>docker run --name ubuntu-code -d ubuntu /bin/sh -c &quot;while true;do echo hello world;sleep 1;done&quot;
+</code></pre>
+<ul>
+<li>-d 分离的，在后台运行 【 detached 】</li>
+<li>-c 运行的代码 【 code 】</li>
+</ul>
+<h3 id="在容器内部运行进程">在容器内部运行进程</h3>
+<pre><code>docker exec -d ubuntu-system touch /etc/new_config_file
+</code></pre>
+<ul>
+<li>创建一个文件</li>
+</ul>
+<pre><code>docker exec -t -i ubuntu-system /bin/bash
+</code></pre>
+<ul>
+<li>开启一个新终端</li>
+</ul>
+<h3 id="删除容器">删除容器</h3>
+<pre><code>docker rm ubuntu-system
 docker rm `docker ps -a -q`
-</code></pre><ul><li>-q 只显示容器的ID 【 -quiet 】</li></ul><h2 id=docker镜像>Docker镜像</h2><h3 id=查看镜像>查看镜像</h3><pre><code>docker images
+</code></pre>
+<ul>
+<li>-q 只显示容器的ID 【 -quiet 】</li>
+</ul>
+<h2 id="docker镜像">Docker镜像</h2>
+<h3 id="查看镜像">查看镜像</h3>
+<pre><code>docker images
 docker images ubuntu
-</code></pre><ul><li>只看指定的镜像</li></ul><pre><code>docker history image-name
-</code></pre><ul><li>查看镜像的构建过程</li></ul><h3 id=拉取镜像>拉取镜像</h3><pre><code>docker pull ubuntu
-</code></pre><h3 id=指定镜像版本>指定镜像版本</h3><pre><code>docker run -i -t  --name ubuntu-system ubuntu:12.04 /bin/bash
-</code></pre><h3 id=查找镜像>查找镜像</h3><pre><code>docker search ubuntu
-</code></pre><h3 id=commit方式构建镜像>Commit方式构建镜像</h3><pre><code>docker login
-</code></pre><ul><li>需要登陆docker hub</li></ul><pre><code>docker commit -m=&quot;first-test-with-ubuntu&quot; --author=&quot;chaox&quot; ubuntu-system wallace2504/ubuntu-test
+</code></pre>
+<ul>
+<li>只看指定的镜像</li>
+</ul>
+<pre><code>docker history image-name
+</code></pre>
+<ul>
+<li>查看镜像的构建过程</li>
+</ul>
+<h3 id="拉取镜像">拉取镜像</h3>
+<pre><code>docker pull ubuntu
+</code></pre>
+<h3 id="指定镜像版本">指定镜像版本</h3>
+<pre><code>docker run -i -t  --name ubuntu-system ubuntu:12.04 /bin/bash
+</code></pre>
+<h3 id="查找镜像">查找镜像</h3>
+<pre><code>docker search ubuntu
+</code></pre>
+<h3 id="commit方式构建镜像">Commit方式构建镜像</h3>
+<pre><code>docker login
+</code></pre>
+<ul>
+<li>需要登陆docker hub</li>
+</ul>
+<pre><code>docker commit -m=&quot;first-test-with-ubuntu&quot; --author=&quot;chaox&quot; ubuntu-system wallace2504/ubuntu-test
 docker commit -m=&quot;first-test-with-ubuntu&quot; --author=&quot;chaox&quot; ubuntu-system:system wallace2504/ubuntu-test
-</code></pre><ul><li>-m 备注</li><li>: 指定标签，后面的标签设置都类似此方式</li></ul><h3 id=dockerfile方式构建镜像>Dockerfile方式构建镜像</h3><pre><code># Version 0.0.v1
+</code></pre>
+<ul>
+<li>-m 备注</li>
+<li>: 指定标签，后面的标签设置都类似此方式</li>
+</ul>
+<h3 id="dockerfile方式构建镜像">Dockerfile方式构建镜像</h3>
+<pre><code># Version 0.0.v1
 From ubuntu:14.04
 MAINTAINER Author Name &quot;Author's Email&quot;
 RUN apt-get update
@@ -35,25 +932,436 @@ RUN apt-get install -y nginx
 Run echo 'Hi I am in your container'\
 		&gt; /usr/share/nginx/html/index.html
 EXPOSE 80
-</code></pre><ul><li>Docker会从基础镜像生成一个容器，执行一条执行后，对容器作出修改生成一个新的镜像层（类似commit操作），再基于刚刚的新镜像生成新容器，以此类推。</li><li>可以看出，当某条指令失效时，返回的镜像依旧是可用的镜像。</li><li>RUN [&ldquo;apt-update&rdquo;,&ldquo;update&rdquo;] ，不支持shell或不希望用shell，可以使用exec格式</li></ul><pre><code>docker build -t=&quot;chaox/nginx-1&quot; .
-</code></pre><ul><li>注意需要加路径【 . 】</li><li>&ndash;no-cache 略过缓存</li></ul><pre><code># Version 0.0.v1
+</code></pre>
+<ul>
+<li>Docker会从基础镜像生成一个容器，执行一条执行后，对容器作出修改生成一个新的镜像层（类似commit操作），再基于刚刚的新镜像生成新容器，以此类推。</li>
+<li>可以看出，当某条指令失效时，返回的镜像依旧是可用的镜像。</li>
+<li>RUN [&ldquo;apt-update&rdquo;,&ldquo;update&rdquo;] ，不支持shell或不希望用shell，可以使用exec格式</li>
+</ul>
+<pre><code>docker build -t=&quot;chaox/nginx-1&quot; .
+</code></pre>
+<ul>
+<li>注意需要加路径【 . 】</li>
+<li>&ndash;no-cache 略过缓存</li>
+</ul>
+<pre><code># Version 0.0.v1
 From ubuntu:14.04
 MAINTAINER Author Name &quot;Author's Email&quot;
 ENV REFRESHED_AT 2020-11-10
 RUN apt-get update
 EXPOSE 80
-</code></pre><ul><li>使用ENV设置环境变量，使用该模版时，仅需改变时间，后面的指令无须依赖缓存</li></ul><pre><code>docker run -d -p 80 --name ubuntu-sysy chaox/nginx-1 nginx -g &quot;daemon off;&quot;
-</code></pre><ul><li>需要安装nginx， -g &ldquo;daemon off&rdquo; 使得nginx前台运行</li><li>需要指定端口</li></ul><blockquote><p>前台运行和后台运行的差异（存疑）</p><p>1.前台是可见可交互的，后台是不可见不可交互</p><p>2.前台会占用大量的系统资源，后台适合占用资源小的</p><p>3.前台类似我们的网页，游戏。后台类似我们的网络进程</p></blockquote><h3 id=docker-端口映射>Docker 端口映射</h3><pre><code>docker ps -l
+</code></pre>
+<ul>
+<li>使用ENV设置环境变量，使用该模版时，仅需改变时间，后面的指令无须依赖缓存</li>
+</ul>
+<pre><code>docker run -d -p 80 --name ubuntu-sysy chaox/nginx-1 nginx -g &quot;daemon off;&quot;
+</code></pre>
+<ul>
+<li>需要安装nginx， -g &ldquo;daemon off&rdquo; 使得nginx前台运行</li>
+<li>需要指定端口</li>
+</ul>
+<blockquote>
+<p>前台运行和后台运行的差异（存疑）</p>
+<p>1.前台是可见可交互的，后台是不可见不可交互</p>
+<p>2.前台会占用大量的系统资源，后台适合占用资源小的</p>
+<p>3.前台类似我们的网页，游戏。后台类似我们的网络进程</p>
+</blockquote>
+<h3 id="docker-端口映射">Docker 端口映射</h3>
+<pre><code>docker ps -l
 docker port ubuntu-sys 80
-</code></pre><ul><li>查看映射的端口信息</li></ul><p><strong>指定映射关系</strong></p><pre><code>docker run -d -p 127.0.0.1:8080:80 --name nginx-test chaox/nginx-1  nginx -g &quot;daemon off;&quot;
-</code></pre><ul><li>宿主机8080端口映射到容器80端口</li><li><strong>-P</strong> 可以公开在Dockerfile中指定的端口</li></ul><h3 id=推送到dockerhub>推送到DockerHub</h3><pre><code>docker push chaox/nginx-1
-</code></pre><h3 id=删除镜像>删除镜像</h3><pre><code>docker rmi chaox/nginx-1
+</code></pre>
+<ul>
+<li>查看映射的端口信息</li>
+</ul>
+<p><strong>指定映射关系</strong></p>
+<pre><code>docker run -d -p 127.0.0.1:8080:80 --name nginx-test chaox/nginx-1  nginx -g &quot;daemon off;&quot;
+</code></pre>
+<ul>
+<li>宿主机8080端口映射到容器80端口</li>
+<li><strong>-P</strong> 可以公开在Dockerfile中指定的端口</li>
+</ul>
+<h3 id="推送到dockerhub">推送到DockerHub</h3>
+<pre><code>docker push chaox/nginx-1
+</code></pre>
+<h3 id="删除镜像">删除镜像</h3>
+<pre><code>docker rmi chaox/nginx-1
 docker rmi `docker images -q`
-</code></pre></div><div class=article-tags><a class="badge badge-light" href=/tag/docker/>Docker</a></div><div class=share-box aria-hidden=true><ul class=share><li><a href="https://twitter.com/intent/tweet?url=https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/&text=Docker%e5%85%a5%e9%97%a8" target=_blank rel=noopener class=share-btn-twitter><i class="fab fa-twitter"></i></a></li><li><a href="https://www.facebook.com/sharer.php?u=https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/&t=Docker%e5%85%a5%e9%97%a8" target=_blank rel=noopener class=share-btn-facebook><i class="fab fa-facebook"></i></a></li><li><a href="mailto:?subject=Docker%e5%85%a5%e9%97%a8&body=https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/" target=_blank rel=noopener class=share-btn-email><i class="fas fa-envelope"></i></a></li><li><a href="https://www.linkedin.com/shareArticle?url=https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/&title=Docker%e5%85%a5%e9%97%a8" target=_blank rel=noopener class=share-btn-linkedin><i class="fab fa-linkedin-in"></i></a></li><li><a href="whatsapp://send?text=Docker%e5%85%a5%e9%97%a8%20https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/" target=_blank rel=noopener class=share-btn-whatsapp><i class="fab fa-whatsapp"></i></a></li><li><a href="https://service.weibo.com/share/share.php?url=https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/&title=Docker%e5%85%a5%e9%97%a8" target=_blank rel=noopener class=share-btn-weibo><i class="fab fa-weibo"></i></a></li></ul></div><div class="media author-card content-widget-hr"><a href=https://chao-x.github.io/><img class="avatar mr-3 avatar-circle" src=/author/wu-chaoxin/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg alt="WU CHAOXIN"></a><div class=media-body><h5 class=card-title><a href=https://chao-x.github.io/>WU CHAOXIN</a></h5><h6 class=card-subtitle>计算机科学与技术</h6><ul class=network-icon aria-hidden=true><li><a href=/#contact><i class="fas fa-envelope"></i></a></li><li><a href=/#><i class="fab fa-twitter"></i></a></li><li><a href=http://www.bjfu.edu.cn/ target=_blank rel=noopener><i class="fas fa-graduation-cap"></i></a></li><li><a href=https://github.com/chao-x target=_blank rel=noopener><i class="fab fa-github"></i></a></li><li><a href=https://space.bilibili.com/64901721 target=_blank rel=noopener><i class="fab fa-linkedin"></i></a></li></ul></div></div></div></article></div><div class=page-footer><div class=container><footer class=site-footer><p class=powered-by></p><p class=powered-by>Published with
-<a href=https://wowchemy.com target=_blank rel=noopener>Wowchemy</a> —
-the free, <a href=https://github.com/wowchemy/wowchemy-hugo-modules target=_blank rel=noopener>open source</a> website builder that empowers creators.</p></footer></div></div><div id=modal class="modal fade" role=dialog><div class=modal-dialog><div class=modal-content><div class=modal-header><h5 class=modal-title>引用</h5><button type=button class=close data-dismiss=modal aria-label=Close>
-<span aria-hidden=true>&#215;</span></button></div><div class=modal-body><pre><code class="tex hljs"></code></pre></div><div class=modal-footer><a class="btn btn-outline-primary my-1 js-copy-cite" href=# target=_blank><i class="fas fa-copy"></i>复制</a>
-<a class="btn btn-outline-primary my-1 js-download-cite" href=# target=_blank><i class="fas fa-download"></i>下载</a><div id=modal-error></div></div></div></div></div><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js></script><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js></script><script>const code_highlighting=true;</script><script>const search_config={"indexURI":"/index.json","minLength":1,"threshold":0.3};const i18n={"no_results":"没有找到结果","placeholder":"搜索...","results":"搜索结果"};const content_type={'post':"文章",'project':"项目",'publication':"出版物",'talk':"演讲",'slides':"Slides"};</script><script id=search-hit-fuse-template type=text/x-template>
+</code></pre>
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/docker/">Docker</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/&amp;text=Docker%e5%85%a5%e9%97%a8" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/&amp;t=Docker%e5%85%a5%e9%97%a8" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Docker%e5%85%a5%e9%97%a8&amp;body=https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/&amp;title=Docker%e5%85%a5%e9%97%a8" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Docker%e5%85%a5%e9%97%a8%20https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/&amp;title=Docker%e5%85%a5%e9%97%a8" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://chao-x.github.io/"><img class="avatar mr-3 avatar-circle" src="/author/wu-chaoxin/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg" alt="WU CHAOXIN"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://chao-x.github.io/">WU CHAOXIN</a></h5>
+      <h6 class="card-subtitle">计算机科学与技术</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#" >
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="http://www.bjfu.edu.cn/" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/chao-x" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://space.bilibili.com/64901721" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+    Published with
+    <a href="https://wowchemy.com" target="_blank" rel="noopener">Wowchemy</a>  —
+    the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">
+    open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"没有找到结果","placeholder":"搜索...","results":"搜索结果"};
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
       <div class="search-hit" id="summary-{{key}}">
       <div class="search-hit-content">
         <div class="search-hit-name">
@@ -63,4 +1371,50 @@ the free, <a href=https://github.com/wowchemy/wowchemy-hugo-modules target=_blan
         </div>
       </div>
       </div>
-    </script><script src=https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin=anonymous></script><script src=https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin=anonymous></script><script src=/js/wowchemy.min.d9d80f811e95b4b4f6df1eaaf297b05f.js></script></body></html>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/wowchemy.min.d9d80f811e95b4b4f6df1eaaf297b05f.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>
