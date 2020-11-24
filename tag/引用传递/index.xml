@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>引用传递 | WUCHAOXIN&#39;S BLOG</title>
+    <link>https://chao-x.github.io/tag/%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/</link>
+      <atom:link href="https://chao-x.github.io/tag/%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/index.xml" rel="self" type="application/rss+xml" />
+    <description>引用传递</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Tue, 24 Nov 2020 16:00:41 +0800</lastBuildDate>
+    <image>
+      <url>https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>引用传递</title>
+      <link>https://chao-x.github.io/tag/%E5%BC%95%E7%94%A8%E4%BC%A0%E9%80%92/</link>
+    </image>
+    
+    <item>
+      <title>Golang 值传递和引用传递</title>
+      <link>https://chao-x.github.io/post/go-point-appoint/</link>
+      <pubDate>Tue, 24 Nov 2020 16:00:41 +0800</pubDate>
+      <guid>https://chao-x.github.io/post/go-point-appoint/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;为了更好的理解函数的参数传递，函数的内存分配，对值传递和引用传递做一个总结。&lt;/p&gt;
+&lt;h2&gt;目录&lt;/h2&gt;
+&lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#值传递&#34;&gt;值传递&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#指针传递&#34;&gt;指针传递&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#引用传递&#34;&gt;引用传递&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;p&gt;在&lt;em&gt;golang&lt;/em&gt;中，切片，管道和哈希表都为引用类型。那当我们用这些类型做函数参数时，传递方式为引用传递吗？答案是否定的，&lt;em&gt;golang&lt;/em&gt;中只存在值传递，不存在引用传递。&lt;/p&gt;
+&lt;p&gt;首先我们需要知道值传递，引用传递和指针传递的概念和区别。&lt;/p&gt;
+&lt;h3 id=&#34;值传递&#34;&gt;值传递&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func main() {
+	a := 10
+	fmt.Printf(&amp;quot;%#v\n&amp;quot;, &amp;amp;a) // (*int)(0xc420018080)
+	vFoo(a)
+}
+
+func vFoo(b int) {
+	fmt.Printf(&amp;quot;%#v\n&amp;quot;, &amp;amp;b) // (*int)(0xc420018090)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们可以看到，我们传入的参数在函数中是有不同的地址的，函数处理的仅仅是参数的一个copy，该copy会被分配在该函数的栈帧中，对该copy的修改并不会影响原参数的值。&lt;/p&gt;
+&lt;h3 id=&#34;指针传递&#34;&gt;指针传递&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我们需要知道的是指针变量也是需要地址取存指针的，也就是指针的指针&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func main() {
+	a := 10
+	pa := &amp;amp;a
+	fmt.Printf(&amp;quot;value: %#v\n&amp;quot;, pa) // value: (*int)(0xc420080008)
+	fmt.Printf(&amp;quot;addr: %#v\n&amp;quot;, &amp;amp;pa) // addr: (**int)(0xc420088018)
+	pFoo(pa)
+}
+
+func pFoo(p * int) {
+	fmt.Printf(&amp;quot;value: %#v\n&amp;quot;, p) // value: (*int)(0xc420080008)
+	fmt.Printf(&amp;quot;addr: %#v\n&amp;quot;, &amp;amp;p) // addr: (**int)(0xc420088028)
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们传递的指针，修改指针对应类型的变量，能够影响源变量。但是我们可以看到，虽然传递的是指针变量，但是存指针的地址发生了变化，也就是说函数里也同值传递那样做了一次copy，这次copy的是指针。这次copy的是指针的值，所以能够通过指针影响源变量。所以指针传递也是值传递的一种，都是做了copy。我们可以得出结论，&lt;em&gt;golang&lt;/em&gt;中，只有值传递。&lt;/p&gt;
+&lt;h3 id=&#34;引用传递&#34;&gt;引用传递&lt;/h3&gt;
+&lt;p&gt;由于&lt;em&gt;golang&lt;/em&gt;中没有引用，我们先看*C++*的代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-c++&#34;&gt;void rFoo(int &amp;amp; ref) {
+    printf(&amp;quot;%p\n&amp;quot;, &amp;amp;ref);// 0x7ffee5aef768
+}
+
+int main() {
+    int a = 10;
+	  printf(&amp;quot;%p\n&amp;quot;, &amp;amp;a);// 0x7ffee7307768
+    int &amp;amp; b = a;
+    printf(&amp;quot;%p\n&amp;quot;, &amp;amp;b);// 0x7ffee5aef768
+    rFoo(b);
+    return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;我们可以看到，不同于指针传递，存指针的地址在函数内外都是一样的。既然&lt;em&gt;golang&lt;/em&gt;不存在引用传递，但是&lt;em&gt;golang&lt;/em&gt;的引用类型是怎么回事呢？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;C++中的引用和指针：&lt;/p&gt;
+&lt;p&gt;引用很容易与指针混淆，它们之间有三个主要的不同：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不存在空引用。引用必须连接到一块合法的内存。&lt;/li&gt;
+&lt;li&gt;一旦引用被初始化为一个对象，就不能被指向到另一个对象。指针可以在任何时候指向到另一个对象。&lt;/li&gt;
+&lt;li&gt;引用必须在创建时被初始化。指针可以在任何时间被初始化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;引用类型在官方的说法：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;There&amp;rsquo;s a lot of history on that topic. Early on, maps and channels were syntactically pointers and it was impossible to declare or use a non-pointer instance. Also, we struggled with how arrays should work. Eventually we decided that the strict separation of pointers and values made the language harder to use.  &lt;strong&gt;Changing these types to act as references to the associated, shared data structures resolved these issues&lt;/strong&gt;. This change added some regrettable complexity to the language but had a large effect on usability: Go became a more productive, comfortable language when it was introduced.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;大概意思是说：最开始用的是指针语法，由于种种原因改成了引用，但是这个引用与C++的引用是不同的，它是共享关联数据的结构。也就是类似切片的共享底层数据，切片的底层其实为数组。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文参考 &lt;a href=&#34;https://juejin.cn/post/6844903618890432520&#34;&gt;https://juejin.cn/post/6844903618890432520&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

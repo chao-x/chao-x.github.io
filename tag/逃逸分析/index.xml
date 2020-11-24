@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>逃逸分析 | WUCHAOXIN&#39;S BLOG</title>
+    <link>https://chao-x.github.io/tag/%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90/</link>
+      <atom:link href="https://chao-x.github.io/tag/%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" />
+    <description>逃逸分析</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Mon, 23 Nov 2020 17:44:13 +0800</lastBuildDate>
+    <image>
+      <url>https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>逃逸分析</title>
+      <link>https://chao-x.github.io/tag/%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90/</link>
+    </image>
+    
+    <item>
+      <title>Golang 逃逸分析</title>
+      <link>https://chao-x.github.io/post/go-escape-analysis/</link>
+      <pubDate>Mon, 23 Nov 2020 17:44:13 +0800</pubDate>
+      <guid>https://chao-x.github.io/post/go-escape-analysis/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;为了更好的理解垃圾回收以及golang里的内存分配策略，需要理解逃逸分析的原理以及相关实例。&lt;/p&gt;
+&lt;h2&gt;目录&lt;/h2&gt;
+&lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;h4 id=&#34;什么是逃逸分析&#34;&gt;什么是逃逸分析？&lt;/h4&gt;
+&lt;p&gt;逃逸分析是指内存的分配位置由编译器来决定，不需要程序员指定。&lt;/p&gt;
+&lt;h4 id=&#34;为什么需要了解逃逸分析&#34;&gt;为什么需要了解逃逸分析？&lt;/h4&gt;
+&lt;p&gt;在&lt;em&gt;C/C++&lt;em&gt;中，声明的局部变量会分配在栈中，函数结束后会自动回收对应内存。而由&lt;/em&gt;new&lt;/em&gt;和&lt;em&gt;malloc&lt;/em&gt;函数申请的内存会被分配在堆中，在该内存使用完后，需要程序员手动去释放对应内存，否则会造成&lt;em&gt;&lt;strong&gt;内存泄露&lt;/strong&gt;&lt;/em&gt;。&lt;/p&gt;
+&lt;p&gt;在&lt;em&gt;golang&lt;/em&gt;中，内存分配在堆或者栈上并不是由&lt;em&gt;new&lt;/em&gt;或者&lt;em&gt;make&lt;/em&gt;决定的，需要进行逃逸分析。分配在栈上的内存和&lt;em&gt;C/C++&lt;em&gt;一样，函数结束后会自动回收，而分配在堆上的内存则由&lt;/em&gt;GC&lt;/em&gt;垃圾回收机制回收，但是垃圾回收是会占用一定的内存的，频繁的垃圾回收会脱缓程序运行速度，降低程序的执行效率。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;golang&lt;/em&gt;的逃逸分析是在编译阶段决定的&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;如何确定是否逃逸&#34;&gt;如何确定是否逃逸&lt;/h4&gt;
+&lt;p&gt;在&lt;em&gt;golang&lt;/em&gt;中通过逃逸分析日志来确定变量是否逃逸，开启逃逸分析日志：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;go run -gcflags &#39;-m -l&#39; main.go
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;-m&lt;/code&gt; 会打印出逃逸分析的优化策略，实际上最多总共可以用 4 个 &lt;code&gt;-m&lt;/code&gt;，但是信息量较大，一般用 1 个就可以了。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;-l&lt;/code&gt; 会禁用函数内联，在这里禁用掉&lt;code&gt;内联&lt;/code&gt;能更好的观察逃逸情况，减少干扰。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;内联，就是将一个函数调用原地展开，替换成这个函数的实现。尽管这样做会增加编译后二进制文件的大小，但是它可以提高程序的性能&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;逃逸场景&#34;&gt;逃逸场景&lt;/h4&gt;
+&lt;h5 id=&#34;1函数返回指针&#34;&gt;1.函数返回指针&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+type Student struct {
+    Name string
+    Age  int
+}
+
+func StudentRegister(name string, age int) *Student {
+    s := new(Student) //局部变量s逃逸到堆
+
+    s.Name = name
+    s.Age = age
+
+    return s
+}
+
+func main() {
+    StudentRegister(&amp;quot;Jim&amp;quot;, 18)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在上述函数中，&lt;em&gt;s&lt;/em&gt;是函数内申请的内存，本应分配在栈上，在函数结束后自动回收。但是该函数返回了&lt;em&gt;s&lt;/em&gt;的指针，可以在函数外部使用该指针，我们可以说该内存（指针）从函数中逃逸了，它将会被分配在堆上。&lt;/p&gt;
+&lt;h5 id=&#34;2栈空间不足&#34;&gt;2.栈空间不足&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+func Slice() {
+    s := make([]int, 100000, 100000)
+
+    for index, _ := range s {
+        s[index] = index
+    }
+}
+
+func main() {
+    Slice()
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;当分配的内存过大，即使该内存不会在函数外部使用，也会在堆上开辟内存。&lt;/p&gt;
+&lt;h5 id=&#34;3动态类型&#34;&gt;3.动态类型&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main
+
+import &amp;quot;fmt&amp;quot;
+
+func main() {
+    s := &amp;quot;Escape&amp;quot;
+    fmt.Println(s)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上面的函数也会造成内存逃逸，&lt;em&gt;main&lt;/em&gt;函数也是有自己的栈的，但是这里为什么会被分配的堆上呢，原因是fmt.Println()函数接收的是&lt;em&gt;interface&lt;/em&gt;类型的变量，在函数内部会由于无法确定该变量的类型和值，会被分配在堆上。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;为什么无法确定该变量的类型和值，会被分配在堆上？&lt;/p&gt;
+&lt;p&gt;因为要获得类型和值，需要使用反射的特效。在函数内部的调用中，新建一个指针变量（结构体），通过反射获取值和类型，并返回该指针，这个行为和情况1是一样的，造成了内存逃逸。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h5 id=&#34;4不定长类型&#34;&gt;4.不定长类型&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;	l := 20
+	c := make([]int, 0, l)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;会被分配在堆上，具体原因未知。&lt;/p&gt;
+&lt;h5 id=&#34;5闭包&#34;&gt;5.闭包&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func Fibonacci() func() int {
+    a, b := 0, 1
+    return func() int {
+        a, b = b, a+b
+        return a
+    }
+}
+
+func main() {
+    f := Fibonacci()
+
+    for i := 0; i &amp;lt; 10; i++ {
+        fmt.Printf(&amp;quot;Fibonacci: %d\n&amp;quot;, f())
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;变量&lt;em&gt;a&lt;/em&gt;和&lt;em&gt;b&lt;/em&gt;会发生逃逸，分配在堆上，以供闭包使用。&lt;/p&gt;
+&lt;h5 id=&#34;6某些引用类型&#34;&gt;6.某些引用类型&lt;/h5&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func main() {
+	a := make([]*int,1)
+	b := 12
+	a[0] = &amp;amp;b
+
+	c := make(map[string]*int)
+	d := 14
+	c[&amp;quot;aaa&amp;quot;]=&amp;amp;d
+
+	e := make(chan *int,1)
+	f := 15
+	e &amp;lt;- &amp;amp;f
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里&lt;em&gt;b、d、f&lt;/em&gt;都会逃逸&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;被指针类型的slice、map和chan引用的指针一定发生逃逸&lt;/strong&gt;
+&lt;em&gt;stack overflow&lt;/em&gt;上有人提问为什么使用指针的&lt;em&gt;chan&lt;/em&gt;比使用值的&lt;em&gt;chan&lt;/em&gt;慢30%，答案就在这里：使用指针的&lt;em&gt;chan&lt;/em&gt;发生逃逸，&lt;em&gt;gc&lt;/em&gt;拖慢了速度。问题链接&lt;a href=&#34;https://link.zhihu.com/?target=https%3A//stackoverflow.com/questions/41178729/why-passing-pointers-to-channel-is-slower&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;stakcoverflow&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;逃逸对比&#34;&gt;逃逸对比&lt;/h4&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type S struct { 
+    M *int
+}
+
+func main() { 
+    var i int 
+    refStruct(&amp;amp;i)
+}
+
+func refStruct(y *int) (z S) {
+    z.M = y
+    return z 
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此时&lt;em&gt;y&lt;/em&gt;并不会逃逸。即使这样：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func main() { 
+    var i int 
+    refStruct(&amp;amp;i)
+}
+
+func refStruct(y *int) (* int) {
+    return y
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;此时&lt;em&gt;y&lt;/em&gt;也不会逃逸。但是，如果这样：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func main() { 
+    var i int 
+    refStruct(i)
+}
+
+func refStruct(y int) (* int) {
+    return &amp;amp;y
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;则&lt;em&gt;i&lt;/em&gt;会发生逃逸，因为这里&lt;em&gt;copy&lt;/em&gt;了i，相当于在函数内部重新声明。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;本文参考：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://driverzhang.github.io/post/golang%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E9%80%83%E9%80%B8%E5%88%86%E6%9E%90/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Gopherzhang&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://zhuanlan.zhihu.com/p/91559562&#34;&gt;https://zhuanlan.zhihu.com/p/91559562&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://studygolang.com/articles/29126&#34;&gt;https://studygolang.com/articles/29126&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
