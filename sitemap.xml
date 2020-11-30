@@ -19,7 +19,11 @@
   
   <url>
     <loc>https://chao-x.github.io/categories/</loc>
+<<<<<<< HEAD
     <lastmod>2020-11-30T22:10:05+08:00</lastmod>
+=======
+    <lastmod>2020-11-24T16:00:41+08:00</lastmod>
+>>>>>>> 9f259636633c5fe77b7f79b9f35a75798304f3e6
   </url>
   
   <url>
@@ -39,12 +43,20 @@
   
   <url>
     <loc>https://chao-x.github.io/post/</loc>
+<<<<<<< HEAD
     <lastmod>2020-11-30T22:10:05+08:00</lastmod>
+=======
+    <lastmod>2020-11-24T16:00:41+08:00</lastmod>
+>>>>>>> 9f259636633c5fe77b7f79b9f35a75798304f3e6
   </url>
   
   <url>
     <loc>https://chao-x.github.io/tags/</loc>
+<<<<<<< HEAD
     <lastmod>2020-11-30T22:10:05+08:00</lastmod>
+=======
+    <lastmod>2020-11-24T16:00:41+08:00</lastmod>
+>>>>>>> 9f259636633c5fe77b7f79b9f35a75798304f3e6
   </url>
   
   <url>
@@ -115,6 +127,19 @@
   <url>
     <loc>https://chao-x.github.io/category/linux/</loc>
     <lastmod>2020-11-14T19:00:13+08:00</lastmod>
+<<<<<<< HEAD
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/post/linux%E5%91%BD%E4%BB%A4/</loc>
+    <lastmod>2020-11-14T19:00:13+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://chao-x.github.io/tag/shell/</loc>
+    <lastmod>2020-11-14T19:00:13+08:00</lastmod>
+=======
+>>>>>>> 9f259636633c5fe77b7f79b9f35a75798304f3e6
   </url>
   
   <url>
@@ -133,12 +158,11 @@
   </url>
   
   <url>
-    <loc>https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/</loc>
-    <lastmod>2020-11-14T18:55:42+08:00</lastmod>
-  </url>
-  
-  <url>
+<<<<<<< HEAD
     <loc>https://chao-x.github.io/category/%E5%B7%A5%E5%85%B7/</loc>
+=======
+    <loc>https://chao-x.github.io/post/docker%E5%85%A5%E9%97%A8/</loc>
+>>>>>>> 9f259636633c5fe77b7f79b9f35a75798304f3e6
     <lastmod>2020-11-14T18:55:42+08:00</lastmod>
   </url>
   
