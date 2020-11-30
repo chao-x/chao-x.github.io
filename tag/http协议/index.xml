@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HTTP协议 | WUCHAOXIN&#39;S BLOG</title>
+    <link>https://chao-x.github.io/tag/http%E5%8D%8F%E8%AE%AE/</link>
+      <atom:link href="https://chao-x.github.io/tag/http%E5%8D%8F%E8%AE%AE/index.xml" rel="self" type="application/rss+xml" />
+    <description>HTTP协议</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Fri, 25 Sep 2020 22:10:05 +0800</lastBuildDate>
+    <image>
+      <url>https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>HTTP协议</title>
+      <link>https://chao-x.github.io/tag/http%E5%8D%8F%E8%AE%AE/</link>
+    </image>
+    
+    <item>
+      <title>HTTP协议</title>
+      <link>https://chao-x.github.io/post/http/</link>
+      <pubDate>Fri, 25 Sep 2020 22:10:05 +0800</pubDate>
+      <guid>https://chao-x.github.io/post/http/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;HTTP协议是我们日常生活中接触的最多的协议之一，使我们直接使用的协议。开发中，必须要深入理解HTTP协议。&lt;/p&gt;
+&lt;h2&gt;目录&lt;/h2&gt;
+&lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#1概述&#34;&gt;1.概述&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#2报文&#34;&gt;2.报文&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#3http各版本&#34;&gt;3.HTTP各版本&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#4get和posthead的区别&#34;&gt;4.GET和POST，HEAD的区别&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#5http状态码&#34;&gt;5.HTTP状态码&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#6https协议&#34;&gt;6.HTTPS协议&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#7输入一个url发生了什么&#34;&gt;7.输入一个URL发生了什么&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;h2 id=&#34;1概述&#34;&gt;1.概述&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP，超文本传输协议，是一种应用层协议&lt;/li&gt;
+&lt;li&gt;Web -  www 三个要素
+&lt;ul&gt;
+&lt;li&gt;html：页面展示所使用的语言&lt;/li&gt;
+&lt;li&gt;URL 页面位置&lt;/li&gt;
+&lt;li&gt;HTTP/HTTPS 使用的传输协议&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;URL统一资源定位符，URI统一资源标识符&lt;/p&gt;
+&lt;p&gt;URL是URI的子集，URL是URI的一种方法&lt;/p&gt;
+&lt;p&gt;举例：一个人的URI就是能唯一可以标识该人的身份，可以是身份证号，可以是他的住址加上他的姓名&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP是基于IP协议和TCP协议的&lt;/li&gt;
+&lt;li&gt;在使用域名的情况下还要先使用DNS协议（应用层协议）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;2报文&#34;&gt;2.报文&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;报文的纯文本的，会被转换成以ASCII码格式传输&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;请求报文由四部分组成&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;请求行&lt;/li&gt;
+&lt;li&gt;请求头&lt;/li&gt;
+&lt;li&gt;换行（CRLF）&lt;/li&gt;
+&lt;li&gt;消息体&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;响应报文也由四部分组成&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;状态行&lt;/li&gt;
+&lt;li&gt;响应头&lt;/li&gt;
+&lt;li&gt;换行（CRLF）&lt;/li&gt;
+&lt;li&gt;消息体&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;请求报文&#34;&gt;请求报文&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;请求行
+&lt;ul&gt;
+&lt;li&gt;请求方法
+&lt;ul&gt;
+&lt;li&gt;GET / POST / PUT /DELETE / HEAD&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;URL
+&lt;ul&gt;
+&lt;li&gt;结合请求头Host属性可以使用相对路径&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;HTTP版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;请求头
+&lt;ul&gt;
+&lt;li&gt;Accept：告诉服务端，客户端浏览器可以处理（接收）什么类型的响应
+&lt;ul&gt;
+&lt;li&gt;text/html&lt;/li&gt;
+&lt;li&gt;img/png&lt;/li&gt;
+&lt;li&gt;img/*（一种类别所有类型）&lt;/li&gt;
+&lt;li&gt;*/ *（所有类别所有类型）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Accept-Encoding：能接收的编码&lt;/li&gt;
+&lt;li&gt;Connection：连接状态&lt;/li&gt;
+&lt;li&gt;User-Agent 作用：指明客户端使用的操作系统、浏览器版本和名称&lt;/li&gt;
+&lt;li&gt;Content-Type：消息体的类型&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;3http各版本&#34;&gt;3.HTTP各版本&lt;/h2&gt;
+&lt;p&gt;一共有四个版本&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HTTP 0.9&lt;/li&gt;
+&lt;li&gt;HTTP 1.0&lt;/li&gt;
+&lt;li&gt;HTTP1.1&lt;/li&gt;
+&lt;li&gt;HTTP2&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;HTTP3即将到来，放弃了TCP协议，而是用UDP协议的某种实现，这里不再多述&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;http-09&#34;&gt;HTTP 0.9&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;只支持GET方法&lt;/li&gt;
+&lt;li&gt;没有请求头概念&lt;/li&gt;
+&lt;li&gt;服务端响应后立即关闭TCP连接&lt;/li&gt;
+&lt;li&gt;传输内容只支持html文本传输&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;​    GET /index.html&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;http-10&#34;&gt;HTTP 1.0&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;增加了POST /  PUT / DELETE / HEAD 方法，状态码等&lt;/li&gt;
+&lt;li&gt;可以指定HTTP版本号&lt;/li&gt;
+&lt;li&gt;增加了请求头和响应头的概念&lt;/li&gt;
+&lt;li&gt;传输内容增加了图片，音频等&lt;/li&gt;
+&lt;li&gt;服务端响应后也是立即关闭TCP连接，如果要长连接则需要设置Connection属性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;http-11&#34;&gt;HTTP 1.1&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;长连接，新增请求头的Connection属性，属性值为keep-alive表示为长连接（HTTP 1.1默认），close表示断开（HTTP 1.0默认）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;长连接可以通过设置Keep-Alive属性来设置超时时间以及最大请求数量。&lt;/p&gt;
+&lt;p&gt;这里的时间如果超过了TCP的KeepAlive时间（如果已经开启）会以TCP为准&lt;/p&gt;
+&lt;p&gt;大部分应用都会实现心跳包功能，客户端向服务端发送心跳&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;管道化：可以不等待前一个请求返回，发送下一个请求。但是响应顺序还是和请求顺序一致&lt;/li&gt;
+&lt;li&gt;缓存处理：新增字段cache-control&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;当浏览器请求资源时，先看是否有缓存的资源，如果有缓存，直接取，不会再发请求，如果没有缓存，则发送请求。 通过设置字段cache-control来控制缓存。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;断点传输&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;在上传/下载资源时，如果资源过大，将其分割为多个部分，分别上传/下载，如果遇到网络故障，可以从已经上传/下载好的地方继续请求，不用从头开始，提高效率&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;http-2&#34;&gt;HTTP 2&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;二进制分帧&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Http 2以前采用文本协议&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;多路复用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;所有请求都是通过一个TCP连接完成，与管道不同，响应的顺序不必按照请求顺序返回&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;头部压缩&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;一般而言消息体都会经过压缩（gzip或者本身就是二进制），而头部是不压缩的，是文本文件类型。而随着头部的内容越来越多，为了加快传输效率，HTTP 2把头部也进行了压缩&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;4get和posthead的区别&#34;&gt;4.GET和POST，HEAD的区别&lt;/h2&gt;
+&lt;p&gt;POST&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;最简单的区别：GET把请求参数url中而POST放在消息体重&lt;/li&gt;
+&lt;li&gt;GET请求结果会被浏览器主动缓存，而POST不会除非主动设置&lt;/li&gt;
+&lt;li&gt;然后GET在浏览器回退时会从之前的缓存拿到结果，POST会再次提交请求&lt;/li&gt;
+&lt;li&gt;GET请求的URL可以作为书签而POST不行&lt;/li&gt;
+&lt;li&gt;GET只支持URL编码而POST可支持多种编码方式&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;HEAD&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不会返回消息体，只返回头部&lt;/li&gt;
+&lt;li&gt;一般用于
+&lt;ul&gt;
+&lt;li&gt;只请求资源首部&lt;/li&gt;
+&lt;li&gt;检测超链接的有效性&lt;/li&gt;
+&lt;li&gt;检查网页是否被修改&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;5http状态码&#34;&gt;5.HTTP状态码&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;1开头表示请求已经接受需要进一步处理（临时响应）
+&lt;ul&gt;
+&lt;li&gt;100：已经收到一部分请求，正在等待其他部分。请求者应该继续执行操作&lt;/li&gt;
+&lt;li&gt;101：需要更换协议，服务器已经确认并准备切换&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;2开头表示成功接收了请求的状态码
+&lt;ul&gt;
+&lt;li&gt;200：服务器已经处理了请求&lt;/li&gt;
+&lt;li&gt;201：已创建&lt;/li&gt;
+&lt;li&gt;202：已接收（可能尚未处理）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;3开头表示要完成请求需要进一步操作（重定向）
+&lt;ul&gt;
+&lt;li&gt;301：永久移动，URL已经移动到新的位置，会自动将请求者转到新的位置&lt;/li&gt;
+&lt;li&gt;302：临时移动&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;4开头表示客户端可能发生了错误，妨碍了服务端的处理
+&lt;ul&gt;
+&lt;li&gt;400：URL请求语义有误，不能被服务器理解&lt;/li&gt;
+&lt;li&gt;401：没有身份认证或者身份认证有误，无权访问&lt;/li&gt;
+&lt;li&gt;402：保留暂未使用，本意是留给数字支付&lt;/li&gt;
+&lt;li&gt;403：表示客户端完成了身份认证，但是并没有响应的权限访问该资源&lt;/li&gt;
+&lt;li&gt;404：路劲不对，服务端找不到对应的资源&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;以5开头表示服务端可能内部出现了错误，无法处理请求
+&lt;ul&gt;
+&lt;li&gt;500：服务端内部错误&lt;/li&gt;
+&lt;li&gt;501：没有能力处理请求，可能是没有能力识别该请求方法&lt;/li&gt;
+&lt;li&gt;502：错误网关。可能没有启动tomcat（没有启动服务器）&lt;/li&gt;
+&lt;li&gt;503：目前服务器无法使用（可能是维护或者过载）可以返回延迟时间&lt;/li&gt;
+&lt;li&gt;504：网关超时，服务器作为网关未能从上游服务器获得消息（可能是配置错误）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;6https协议&#34;&gt;6.HTTPS协议&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;在HTTP的基础上加SSL层加密&lt;/li&gt;
+&lt;li&gt;SSL版本
+&lt;ul&gt;
+&lt;li&gt;TLS协议是SSL3.1版本&lt;/li&gt;
+&lt;li&gt;SSL1.0到3.0版本都是不安全的&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;加密过程&#34;&gt;加密过程&lt;/h4&gt;
+&lt;p&gt;&lt;img src=&#34;https://chao-x.github.io/img/16796915-df1c6921f2c14805.png&#34; alt=&#34;https.png&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;加密过程使用了对称加密以及非对称加密两种加密方式
+&lt;ul&gt;
+&lt;li&gt;加密内容使用对称加密&lt;/li&gt;
+&lt;li&gt;证书验证阶段用的是非对称加密&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;对称加密：加密解密用的同一个钥匙，钥匙的传输的安全性存在隐患&lt;/p&gt;
+&lt;p&gt;非对称加密：公钥加密的信息只要私钥才能解开，反之亦然。（RSA算法）&lt;/p&gt;
+&lt;p&gt;服务端有私钥，将公钥发给浏览器就是非对称加密，但是公钥可能被截取，服务端向浏览器发的消息并不安全，浏览器发给服务端的会安全些（其实也不安全因为公钥不一定是服务器的，可能被替换）。&lt;/p&gt;
+&lt;p&gt;同理使用（两组公钥和私钥）或者（公钥私钥以及公钥加密过的对称秘钥）都是不安全的，因为都无法确保公钥是否被替换&lt;/p&gt;
+&lt;p&gt;公钥被替换这种攻击叫做中间人攻击&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;只要确保了公钥是属于服务器的就能保住安全型&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这里我们需要一个第三方机构（CA）来保证公钥的真实性&lt;/li&gt;
+&lt;li&gt;操作系统浏览器里面是有权威机构（CA）的根证书（CA公钥信息）的，逐层嵌套，相互保证可靠性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;数字证书&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;加密过程：首先服务端（网站）需要向CA机构申请证书，CA机构拥有这些权威的公钥以及自己的私钥。CA用私钥对网站的公钥 、域名等信息的哈希值进行加密（数字签名）然后和明文信息（网站的公钥 、域名等信息）共同组成了数字证书。&lt;/li&gt;
+&lt;li&gt;解密过程：首先有一个根证书，根证书里面的公钥可以解开下一个层证书的信息得到下一层的公钥，以此类推。然后得到了CA的公钥对证书的加密部分解密得到哈希值，对明文信息的使用哈希算法（哈希不可逆）得到哈希值与之对比，可以发现证书是否是服务器的，从而可以使用明文里的公钥了。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;浏览器的私钥并没有参与数字签名的加密和解密过程&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;7输入一个url发生了什么&#34;&gt;7.输入一个URL发生了什么&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;DNS解析&lt;/li&gt;
+&lt;li&gt;客户端和服务端的TCP连接&lt;/li&gt;
+&lt;li&gt;客户端发送HTTP请求&lt;/li&gt;
+&lt;li&gt;服务端响应请求返回报文&lt;/li&gt;
+&lt;li&gt;浏览器解析渲染页面&lt;/li&gt;
+&lt;li&gt;连接结束&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;https://chao-x.github.io/img/1660543eb1adb41a&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

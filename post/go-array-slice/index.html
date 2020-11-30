@@ -1,0 +1,1384 @@
+<!DOCTYPE html><html lang="zh-Hans" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+  
+  <meta name="generator" content="Wowchemy 5.0.0-beta.0 for Hugo">
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="WU CHAOXIN">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="
+Golang中的数组和切片是日常中最常用到的两个数组结构，为了更好的使用他们，对他们做一个更加深入的理解。">
+
+  
+  <link rel="alternate" hreflang="zh-Hans" href="https://chao-x.github.io/post/go-array-slice/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.css">
+
+  
+
+
+
+
+  
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://chao-x.github.io/post/go-array-slice/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="WUCHAOXIN&#39;S BLOG">
+  <meta property="og:url" content="https://chao-x.github.io/post/go-array-slice/">
+  <meta property="og:title" content="Golang 数组和切片 | WUCHAOXIN&#39;S BLOG">
+  <meta property="og:description" content="
+Golang中的数组和切片是日常中最常用到的两个数组结构，为了更好的使用他们，对他们做一个更加深入的理解。"><meta property="og:image" content="https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="zh-Hans">
+  
+    
+      <meta property="article:published_time" content="2020-11-24T15:59:54&#43;08:00">
+    
+    <meta property="article:modified_time" content="2020-11-24T15:59:54&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://chao-x.github.io/post/go-array-slice/"
+  },
+  "headline": "Golang 数组和切片",
+  
+  "datePublished": "2020-11-24T15:59:54+08:00",
+  "dateModified": "2020-11-24T15:59:54+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "WU CHAOXIN"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "WUCHAOXIN'S BLOG",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "\u003chr\u003e\n\u003cp\u003eGolang中的数组和切片是日常中最常用到的两个数组结构，为了更好的使用他们，对他们做一个更加深入的理解。\u003c/p\u003e"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Golang 数组和切片 | WUCHAOXIN&#39;S BLOG</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+    <script>window.wcDarkLightEnabled = true;</script>
+  
+  
+    <script>const isSiteThemeDark = false;</script>
+  
+  
+  <script src="/js/load-theme.js"></script>
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">WUCHAOXIN&#39;S BLOG</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">WUCHAOXIN&#39;S BLOG</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>主页</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#experience"><span>我的经历</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>与我联系</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/post/"><span>所有文章</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/categories/"><span>分类</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/tags/"><span>标签</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="搜索"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>浅色</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>深色</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>自动</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Golang 数组和切片</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Nov 24, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    4 分钟阅读时长
+  </span>
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/golang/">golang</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <hr>
+<p>Golang中的数组和切片是日常中最常用到的两个数组结构，为了更好的使用他们，对他们做一个更加深入的理解。</p>
+<h2>目录</h2>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#数组">数组</a></li>
+    <li><a href="#切片">切片</a>
+      <ul>
+        <li><a href="#地址">地址</a></li>
+        <li><a href="#引用类型">引用类型</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h2 id="数组">数组</h2>
+<pre><code class="language-go">type Currency int
+const (
+USD Currency = iota // 美元
+EUR // 欧元
+GBP // 英镑
+RMB // 人民币
+)
+symbol := [...]string{ EUR: &quot;€&quot;, GBP: &quot;￡&quot;, RMB: &quot;￥&quot;, USD: &quot;$&quot;}
+fmt.Println(RMB, symbol[RMB]) // &quot;3 ￥&quot;
+</code></pre>
+<p>在这种形式的数组字面值形式中，初始化索引的顺序是无关紧要的，而且没用到的索引可以省略，未指定初始值的元素将用零值初始化。例如，</p>
+<pre><code class="language-go">r := [...]int{99: -1}
+</code></pre>
+<p>如果一个数组的元素类型是可以相互比较的，那么数组类型也是可以相互比较的，这时候我们可以直接通过 <code>==</code> 比较运算符来比较两个数组，只有当两个数组的所有元素都是相等的时候数组才是相等的。不相等比较运算符<code>!=</code>遵循同样的规则。</p>
+<pre><code class="language-go">a := [2]int{1, 2}
+
+b := [...]int{1, 2}
+
+c := [2]int{1, 3}
+
+fmt.Println(a == b, a == c, b == c) // &quot;true false false&quot;
+
+d := [3]int{1, 2}
+
+fmt.Println(a == d) // compile error: cannot compare [2]int == [3]int
+</code></pre>
+<p>当调用一个函数的时候，函数的每个调用参数将会被赋值给函数内部的参数变量，所以函数参数变量接收的是一个复制的副本，并不是原始调用的变量。因为函数参数传递的机制导致传递大的数组类型将是低效的，并且对数组参数的任何的修改都是发生在复制的数组上，并不能直接修改调用时原始的数组变量。</p>
+<blockquote>
+<p>所以给函数传数组并进行改变其内部值，改变的只是数组的copy不会改变原数组</p>
+</blockquote>
+<p>在这个方面，<em>Go</em>语言对待数组的方式和其它很多编程语言不同，其它编程语言可能会隐式地将数组作为引用或指针对象传入被调用的函数。当然，我们可以显式地传入一个数组指针，那样的话函数通过指针对数组的任何修改都可以直接反馈到调用者。下面的函数用于给*[32]byte*类型的数组清零：</p>
+<pre><code class="language-go">func zero(ptr *[32]byte) {
+	for i := range ptr {
+			ptr[i] = 0
+	}
+}
+</code></pre>
+<p>优化：</p>
+<pre><code class="language-go">func zero(ptr *[32]byte) {
+	*ptr = [32]byte{}
+}
+
+
+func main() {
+	ptr := [32]byte{}
+	ptr[1]='a'
+	fmt.Printf(&quot;%p,\n&quot;,&amp;ptr)    
+	zero(&amp;ptr)
+	fmt.Printf(&quot;%p,\n&quot;,&amp;ptr)  //和上面打印的地址是相同的，且都被初始化为0
+	fmt.Println(ptr[1])
+}
+
+</code></pre>
+<blockquote>
+<p><em>byte</em>和<em>rune</em>的零值都为0，因为他们底层为int8和<em>int32</em></p>
+</blockquote>
+<h2 id="切片">切片</h2>
+<pre><code class="language-go">months := [...]string{1: &quot;January&quot;, /* ... */, 12: &quot;December&quot;}
+Q2 := months[4:7]
+summer := months[6:9]
+fmt.Println(Q2) // [&quot;April&quot; &quot;May&quot; &quot;June&quot;]
+fmt.Println(summer) // [&quot;June&quot; &quot;July&quot; &quot;August&quot;]
+</code></pre>
+<p><img src="/test1.png" alt="sdada"></p>
+<blockquote>
+<p>从上面的图可以看到切片的容量取决于底层数组的容量，从取切片的初始值开始到底层数组的尾部，这一部分的长度为切片的容量</p>
+</blockquote>
+<h3 id="地址">地址</h3>
+<pre><code class="language-go">func main() {
+	months := []string{1: &quot;January&quot;}
+	fmt.Printf(&quot;%p,\n&quot;,&amp;months)				//0xc0000ae040,
+  fmt.Printf(&quot;%p,\n&quot;,months)				//0xc0000ae060,
+	fmt.Printf(&quot;%p,\n&quot;,&amp;months[0])		//0xc0000ae060,
+}
+</code></pre>
+<blockquote>
+<p>扩展：结构体的地址</p>
+<pre><code class="language-go">type stu struct{
+	name string
+}
+
+func main() {
+	var s stu
+	fmt.Printf(&quot;%p,\n&quot;,&amp;s)
+	fmt.Printf(&quot;%p,\n&quot;,&amp;s.name) //打印的地址是相同的
+}
+</code></pre>
+<p>那么这里第一个打印函数打印的是什么地址呢？如果指向的是切片的结构体<code>SliceHeader</code>，但是</p>
+<pre><code class="language-go">type SliceHeader struct {
+	Data uintptr
+	Len  int
+	Cap  int
+}
+</code></pre>
+<p>结构体的地址是与第一个成员变量的地址相同的，而这个<code>Data</code>就是底层数组且是第一个成员变量，那为什么会与二三个打印函数结果不同呢？</p>
+<blockquote>
+<p>针对这个问题我在V2ex发了个帖子 <a href="https://www.v2ex.com/t/728365#reply7" target="_blank" rel="noopener">golang 切片地址问题</a></p>
+</blockquote>
+<p>我们需要知道的是指针变量也是需要一个地址来存储的。</p>
+<pre><code class="language-go">//months 是一个指针变量，存一个地址，指向这个切片。
+
+//这个指针变量同样需要一个内存地址来存储。
+
+int *p;
+
+int a = 5;
+
+p = &amp;a;
+
+//p 存了 a 的地址，但 p 本身也需要一个内存地址来存储。
+
+//把 p 理解成一个 cpu 字长大小的整形变量，他存了一个整形地址。所以它也需要一个内存地址。
+
+</code></pre>
+<p>上面三个打印函数等价于</p>
+<pre><code class="language-go">	header := (*reflect.SliceHeader)(unsafe.Pointer(&amp;months))
+	fmt.Printf(&quot;%p, \n&quot;,header)
+	fmt.Printf(&quot;0x%x,\n&quot;, header.Data)
+	fmt.Printf(&quot;0x%x,\n&quot;, header.Data+0)
+</code></pre>
+<p>另外由于第一个成员变量为指针，所以结构体的地址为存储第一个成员变量（指针）的地址，而不是成员变量这个指针。</p>
+<pre><code>	fmt.Printf(&quot;%x, \n&quot;,*header)
+</code></pre>
+</blockquote>
+<h3 id="引用类型">引用类型</h3>
+<p>切片，管道和哈希表都为引用类型</p>
+<blockquote>
+<p>C++中的引用和指针：</p>
+<p>引用很容易与指针混淆，它们之间有三个主要的不同：</p>
+<ul>
+<li>不存在空引用。引用必须连接到一块合法的内存。</li>
+<li>一旦引用被初始化为一个对象，就不能被指向到另一个对象。指针可以在任何时候指向到另一个对象。</li>
+<li>引用必须在创建时被初始化。指针可以在任何时间被初始化。</li>
+</ul>
+</blockquote>
+<p>我们需要知道的是<em>golang</em>虽然有引用类型但是没有引用传递，只有值传递。</p>
+<p>来看看官方的说法：</p>
+<blockquote>
+<p>There&rsquo;s a lot of history on that topic. Early on, maps and channels were syntactically pointers and it was impossible to declare or use a non-pointer instance. Also, we struggled with how arrays should work. Eventually we decided that the strict separation of pointers and values made the language harder to use.  <strong>Changing these types to act as references to the associated, shared data structures resolved these issues</strong>. This change added some regrettable complexity to the language but had a large effect on usability: Go became a more productive, comfortable language when it was introduced.</p>
+</blockquote>
+<p>大概意思是说：最开始用的是指针语法，由于种种原因改成了引用，但是这个引用与C++的引用是不同的，它是共享关联数据的结构。也就是我们之前说的共享底层数据，切片的底层为其实为数组。</p>
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/golang/">golang</a>
+  
+  <a class="badge badge-light" href="/tag/golang-%E6%95%B0%E7%BB%84/">golang 数组</a>
+  
+  <a class="badge badge-light" href="/tag/golang-%E5%88%87%E7%89%87/">golang 切片</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://chao-x.github.io/post/go-array-slice/&amp;text=Golang%20%e6%95%b0%e7%bb%84%e5%92%8c%e5%88%87%e7%89%87" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://chao-x.github.io/post/go-array-slice/&amp;t=Golang%20%e6%95%b0%e7%bb%84%e5%92%8c%e5%88%87%e7%89%87" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Golang%20%e6%95%b0%e7%bb%84%e5%92%8c%e5%88%87%e7%89%87&amp;body=https://chao-x.github.io/post/go-array-slice/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://chao-x.github.io/post/go-array-slice/&amp;title=Golang%20%e6%95%b0%e7%bb%84%e5%92%8c%e5%88%87%e7%89%87" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Golang%20%e6%95%b0%e7%bb%84%e5%92%8c%e5%88%87%e7%89%87%20https://chao-x.github.io/post/go-array-slice/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://chao-x.github.io/post/go-array-slice/&amp;title=Golang%20%e6%95%b0%e7%bb%84%e5%92%8c%e5%88%87%e7%89%87" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://chao-x.github.io/"><img class="avatar mr-3 avatar-circle" src="/author/wu-chaoxin/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg" alt="WU CHAOXIN"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://chao-x.github.io/">WU CHAOXIN</a></h5>
+      <h6 class="card-subtitle">计算机科学与技术</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#" >
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="http://www.bjfu.edu.cn/" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/chao-x" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://space.bilibili.com/64901721" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>相关</h3>
+    <ul>
+      
+      <li><a href="/post/go-point-appoint/">Golang 值传递和引用传递</a></li>
+      
+      <li><a href="/post/go-escape-analysis/">Golang 逃逸分析</a></li>
+      
+      <li><a href="/post/go-nil-err/">Golang 进一步理解nil和err</a></li>
+      
+      <li><a href="/post/go-base-1/">Golang 基础数据类型</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+    Published with
+    <a href="https://wowchemy.com" target="_blank" rel="noopener">Wowchemy</a>  —
+    the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">
+    open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"没有找到结果","placeholder":"搜索...","results":"搜索结果"};
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/wowchemy.min.d9d80f811e95b4b4f6df1eaaf297b05f.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

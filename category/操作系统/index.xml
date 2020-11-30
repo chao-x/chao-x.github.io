@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>操作系统 | WUCHAOXIN&#39;S BLOG</title>
+    <link>https://chao-x.github.io/category/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+      <atom:link href="https://chao-x.github.io/category/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml" />
+    <description>操作系统</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Wed, 30 Sep 2020 22:09:43 +0800</lastBuildDate>
+    <image>
+      <url>https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>操作系统</title>
+      <link>https://chao-x.github.io/category/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link>
+    </image>
+    
+    <item>
+      <title>操作系统基础</title>
+      <link>https://chao-x.github.io/post/cs-system/</link>
+      <pubDate>Wed, 30 Sep 2020 22:09:43 +0800</pubDate>
+      <guid>https://chao-x.github.io/post/cs-system/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;本文对操作系统的基础知识，也是较为关键的几个知识点做一个总结。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://chao-x.github.io/img/image-20200930230018183.png&#34; alt=&#34;image-20200930230018183&#34;&gt;&lt;/p&gt;
+&lt;h2&gt;目录&lt;/h2&gt;
+&lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#1基本数据类型所占字节数&#34;&gt;1.基本数据类型所占字节数&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#2进程和多进程&#34;&gt;&lt;strong&gt;2.进程和多进程&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#3线程和多线程&#34;&gt;&lt;strong&gt;3.线程和多线程&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#4用户级线程协程&#34;&gt;4.用户级线程，协程&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#5进程间通信和线程间通信&#34;&gt;5.进程间通信和线程间通信&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#6分区内存管理&#34;&gt;6.分区内存管理&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#7页式内存管理&#34;&gt;7.页式内存管理&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#8段式内存管理&#34;&gt;8.段式内存管理&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#9段页式内存管理&#34;&gt;9.段页式内存管理&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#10虚拟内存&#34;&gt;10.虚拟内存&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#11生产者消费者与银行家算法&#34;&gt;&lt;strong&gt;11.生产者消费者与银行家算法&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#12dma&#34;&gt;12.DMA&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;h2 id=&#34;1基本数据类型所占字节数&#34;&gt;1.基本数据类型所占字节数&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;在C语言中：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;基本数据类型&lt;/th&gt;
+&lt;th&gt;32位操作系统&lt;/th&gt;
+&lt;th&gt;64位操作系统内&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;char&lt;/td&gt;
+&lt;td&gt;8位1字节&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int&lt;/td&gt;
+&lt;td&gt;32&lt;/td&gt;
+&lt;td&gt;32&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;short int&lt;/td&gt;
+&lt;td&gt;16&lt;/td&gt;
+&lt;td&gt;16&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;long int&lt;/td&gt;
+&lt;td&gt;32&lt;/td&gt;
+&lt;td&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;long long int&lt;/td&gt;
+&lt;td&gt;64&lt;/td&gt;
+&lt;td&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;char *&lt;/td&gt;
+&lt;td&gt;32&lt;/td&gt;
+&lt;td&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;float&lt;/td&gt;
+&lt;td&gt;32&lt;/td&gt;
+&lt;td&gt;32&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;double&lt;/td&gt;
+&lt;td&gt;64&lt;/td&gt;
+&lt;td&gt;64&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;C中并没有严格规定short，int，long的长度&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;在Go语言中，&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;数据类型&lt;/th&gt;
+&lt;th&gt;位数以及表示范围&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;uint8&lt;/td&gt;
+&lt;td&gt;无符号 8位整型 (0 到 255)                                                    2的8次方=256&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;uint16&lt;/td&gt;
+&lt;td&gt;无符号 16位整型 (0 到 65535)                                             2的16次方=65536&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;uint32&lt;/td&gt;
+&lt;td&gt;无符号 32位整型 (0 到 4294967295)                                  2的32次方=4294967296&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;uint64&lt;/td&gt;
+&lt;td&gt;无符号 64位整型 (0 到 18446744073709551615)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int8&lt;/td&gt;
+&lt;td&gt;有符号 8位整型 (-128 到 127)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int16&lt;/td&gt;
+&lt;td&gt;有符号 16位整型 (-32768 到 32767)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int32&lt;/td&gt;
+&lt;td&gt;有符号 32位整型 (-2147483648 到 2147483647)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int64&lt;/td&gt;
+&lt;td&gt;有符号 64位整型 (-9223372036854775808 到 9223372036854775807)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;特殊不定长&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;数据类型&lt;/th&gt;
+&lt;th&gt;位数以及表示范围&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;uint&lt;/td&gt;
+&lt;td&gt;32位操作系统上就是&lt;code&gt;uint32&lt;/code&gt;，64位操作系统上就是&lt;code&gt;uint64&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;int&lt;/td&gt;
+&lt;td&gt;32位操作系统上就是&lt;code&gt;int32&lt;/code&gt;，64位操作系统上就是&lt;code&gt;int64&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;uintptr&lt;/td&gt;
+&lt;td&gt;无符号整型，用于存放一个指针&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;uintptr&lt;/em&gt; 一般用于底层&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;char&lt;/em&gt;是有符号char和无符号char主要由编译器决定&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;float&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;double&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;2进程和多进程&#34;&gt;&lt;strong&gt;2.进程和多进程&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;​	进程是资源调度和分配的基本单位。在Linux中，创建一个进程对应一个task_struct结构体，在windows中，对应PCB控制块。进程拥有自己独立的地址空间，一个进程死掉不会对其他进程造成影响。进程具有封闭性和可再现性。&lt;/p&gt;
+&lt;p&gt;​	在多进程下，子进程崩溃不会影响父进程。在Linux中，通过fork()函数创建一个子进程，在父进程中返回子进程的PID，在子进程中返回0，错误返回负数。子进程和父进程共享代码段。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;​	僵尸进程：在子进程结束exit后，会释放资源，但是会保留pid，需要父进程去回收pid，如果父进程没有调用wait或者waitpid会导致该pid一直被占用，变导致了僵尸进程。而pid是有限的，如果没有pid，即使有再多的资源也无法分配。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;​	孤儿进程：父进程死掉后，其子进程变为孤儿进程。孤儿进程其实是没有什么危害的，他会被init进程，进程号为0收管，负责回收其pid。所以解决僵尸进程也可以直接结束掉其父进程，让其变为孤儿进程，由init进程来回收它的pid。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;​	在Linux中采用的是多进程模式，虽然Linux也有多线程的概念，实际上操作系统是把他看作进程的。只不过这些进程可以共享一些内存，他们对应的还是task_struct结构体。&lt;/p&gt;
+&lt;p&gt;​	在windows中，进程是资源的占有者，不是执行者，他的执行需要线程作为载体，一个进程必须有一个线程。&lt;/p&gt;
+&lt;p&gt;​	不管在linux还是windows，进程都有自己的进程上下文，即进程的状态，寄存器中的值以及堆栈。在内核态下，运行着进程上下文。进程切换时，需要从用户态切换到内核态，对进程的上下文进行切换。此外要需要刷洗TLB。这也是进程切换的高代价之一。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;用户态：只能访问受限内存。&lt;/p&gt;
+&lt;p&gt;内核态：在该状态下可以CPU可以访问内存所有数据，包括外围设备：硬盘网卡之类&lt;/p&gt;
+&lt;p&gt;特权级：对于一个操作系统来说，创建一个进程是核心功能，其会消耗很多资源，这些工作必须有特定的进程去做，于是就有特权级概念。最关键的工作必须交给特权级最高的进程去做，减少资源管理的冲突。x86架构中，一共有四个级别，分别是0-3级，其中0级权限最高，3级权限最低。内核态为0级，用户态为3级。&lt;/p&gt;
+&lt;p&gt;在内核态下，还运行着中断上下文，用于处理中断。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;用户态和内核态之间的转换：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;三种方式&lt;/p&gt;
+&lt;p&gt;1.系统调用&lt;/p&gt;
+&lt;p&gt;2.异常&lt;/p&gt;
+&lt;p&gt;3.外围设备中断&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;3线程和多线程&#34;&gt;&lt;strong&gt;3.线程和多线程&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;​	线程是CPU调度的基本单位。线程是进程的执行体，线程不拥有独立的地址空间，他必须依附于了进程，一个线程死掉，整个进程就死掉。但是线程拥有自己的栈空间和一些必要的寄存器。线程切换的代价比进程切换的要小。&lt;/p&gt;
+&lt;p&gt;​	在多线程中，我们通过说的多线程采用的是内核级线程模型，内核级线程模型的调度是完全由内核决定的，与之相比较的是用户级线程（协程），协程的调度由用户程序自己决定。在内核级线程中，内核会维护一个线程表，内核的切换需要由用户态进入内核态。并且一个线程表的大小也是有限的。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这里对切换的理解为什么要进入内核态，是因为内核保存着线程的信息，当信息进行切换时，内核需要对当前线程的信息进行保存，并将新的线程写入上下文，完成切换。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;​	什么是线程安全？上面说到栈是线程安全的，是因为栈是线程独有的，其他线程不能修改。我们通常说的线程安全值得是在堆中的全局变量的安全，因为堆中的内存是线程共享的，当在多线程环境下，如果一个线程访问了堆中的变量，并想要做修改，此时另外一个线程也访问了堆中的变量，也想要做修改。他们获取的都是初始的值，都做了不同的修改，数据被污染，最后得到是不正确的结果，这是线程不安全。线程安全就是多个线程之间的切换不会导致执行结果存在二义性。&lt;/p&gt;
+&lt;h2 id=&#34;4用户级线程协程&#34;&gt;4.用户级线程，协程&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;协程&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​	是一种用户态轻量级线程(用户级线程)，协程的调度完全由用户程序控制。协程拥有自己的寄存器上下文和栈。我们都知道一个进程分为用户空间和内核空间，协程的切换不是由内核来管理的，所以不会引起用户态到内核态的转变。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;寄存器上下文:&lt;/p&gt;
+&lt;p&gt;通用寄存器-8个寄存器，主要用于数据的传输和暂存，可以参与计算以及保存结果&lt;/p&gt;
+&lt;p&gt;程序寄存器IP-下一条指令的地址&lt;/p&gt;
+&lt;p&gt;状态寄存器EFLAGS-进位，溢出，正负，奇偶，0&lt;/p&gt;
+&lt;p&gt;栈指针ESP-栈顶地址&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;​	协程的概念是比进程更先提出的。但是线程却更广为人知，原因是协程是非抢占式的，协程的切换由用户程序决定，当一个协程占用CPU时，他就一直占用，除非它需主动让出CPU占有权。这就有一个问题就是当协程发生阻塞或者异常，就一直占用CPU.&lt;/p&gt;
+&lt;p&gt;​	在协程概念下，一个进程创建多个协程，但是虽然调度由应用程序决定但是只能利用一个核心，并不能达到真正的并行。为了能够利用多个核心，又不让内核来管理线程，使得线程的切换代价太高，又有了M:N混合级线程模型。M个用户级线程自己调度对应N个内核级线程。&lt;/p&gt;
+&lt;h2 id=&#34;5进程间通信和线程间通信&#34;&gt;5.进程间通信和线程间通信&lt;/h2&gt;
+&lt;p&gt;​	&lt;strong&gt;进程间通信&lt;/strong&gt;的主要方式有五种：信号量（P/V操作），信号（注销），共享内存，管道，消息队列。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;信号量可以用于同步和互斥，如生产者消费者问题和银行家算法。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;信号像是一种通知操作，无需知道目的进程的状态。比如注销产生的sighup信号，CTRL+C产生的程序中止信号&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;共享内存需要对内存区域做同步机制处理&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;管道分为匿名和有名，半双工方式，即同一时刻只能向一个方向流动。匿名管道只能用于有亲缘关系的进程，比如父子，兄弟进程，他是放在内存的文件。而有名管道是放在磁盘的，可以允许任意两个进程。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;消息队列区别于管道：消息队列是全双工的。虽然都是FIFO，但是也可以随机读取。且可以不用指定目的进程，直接写入消息队列。并且消息队列的大小是大于管道的&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	&lt;strong&gt;线程间通信&lt;/strong&gt;可以使用锁，全局变量+共享内存，消息队列，管道&amp;hellip;&lt;/p&gt;
+&lt;h2 id=&#34;6分区内存管理&#34;&gt;6.分区内存管理&lt;/h2&gt;
+&lt;p&gt;分区内存管理又分为固定式和可变式。都是为程序分配连续的内存空间&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;固定式内存管理：并不是说每个分配的内存都是一样大的，而是操作系统在程序装入内存前，将所占据的内存可以划分为大小不一，可处理不同规模的内存块。但是分配完后大小便不能再进行改变。&lt;/p&gt;
+&lt;p&gt;这样做有很明显的缺点就是很容易产生零碎的小内存块并且难以利用，并且程序收到内存块大小的制约。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;可变式内存管理：操作系统在程序装入内存后，在进行大小相同的内存块划分。&lt;/p&gt;
+&lt;p&gt;可变式相比固定式虽然内存利用率相对高一些，但是在用户程序释放内存后，也很容易产生难以利用的小内存块。&lt;/p&gt;
+&lt;p&gt;内存利用率和内存的分配算法有关：1.最佳适应2.最差适应（产生较大的内存块）3.最先适应4.下次适应（从上次分配的地方开始找）&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;此外为了解决零碎问题以及内存块大小不足（因为是连续内存）可以使用移动技术，但是会增大系统开销&lt;/p&gt;
+&lt;h2 id=&#34;7页式内存管理&#34;&gt;7.页式内存管理&lt;/h2&gt;
+&lt;p&gt;​	相比较分区内存管理，页式内存管理可以为程序分配不连续的内存空间。把逻辑上连续的内存空间映射到不连续的物理内存空间。可以减小分区的零碎内存问题。&lt;/p&gt;
+&lt;p&gt;​	页式管理的思想是把用户程序和物理内存都分为大小的页。每个用户程序的页映射物理内存的页。通过页表来管理映射管理，使得连续的用户程序页映射到不连续的物理内存页。通过设置页的大小，可以提高内存的利用率。&lt;/p&gt;
+&lt;p&gt;具体是如何映射的呢？&lt;/p&gt;
+&lt;p&gt;​	操作系统将逻辑地址分为页号和页内偏移地址，通过页表始址寄存器存储页表的开始位置，页表长度寄存器存储页表的长度。通过和寄存器的长度以及和0对比，先判断逻辑地址的页号是否越界。如果不越界，加上页表始址寄存器的值就得到对应的页号，在页表中，通过页号得到物理地址的块号即物理地址的值。&lt;/p&gt;
+&lt;p&gt;​	在二级页表的结构中，新增页目录。将逻辑地址分为三部分，页目录，页表和偏移地址。寄存器的始址加上页目录的偏移地址，得到对应的页表的基址，再用此基址加上页目录的偏移地址得到对应的块号。此方法用于虚拟内存中，32位下一般采用10位页目录地址，10位页表地址，12位偏移地址。即1024*1024*4KB=4GB。&lt;/p&gt;
+&lt;p&gt;​	使用逻辑地址的好处可以避免用户程序直接修改物理内存。相同的逻辑地址可以映射到不同的物理地址，因为始址寄存器的值不一样的。&lt;/p&gt;
+&lt;p&gt;​	使用页式内存管理也是有缺点的，有时候会将某一个需要保护/共享的内存和不需要保护/不能共享的内存放在同一个页中，在读取该页的地址，容易非法访问某些内存。&lt;/p&gt;
+&lt;p&gt;​	此外为了减小对页表的读取，采用了快表（TLB转换检测缓存区）的基址，在读页表前先读快表，如果有对应的页号则直接加载，减少了读取页表的压力。在进程切换中，快表也是要进行切换，这也是进程切换的一个很大的代价。&lt;/p&gt;
+&lt;h2 id=&#34;8段式内存管理&#34;&gt;8.段式内存管理&lt;/h2&gt;
+&lt;p&gt;​	段式管理将程序分为许多个程序段，实现了内存的隔离。比如代码分段，数据分段，栈段等等。他将逻辑地址分为段号和段内的偏移地址。通过段表基址寄存器加上段号得到段在物理内存的起址，加上段内的偏移地址即得到真正的物理地址。&lt;/p&gt;
+&lt;p&gt;​	段式管理和分区管理的区别在于段式中的不同分段可以是不连续的。&lt;/p&gt;
+&lt;p&gt;段式内存管理可以解决内存中的共享和保护问题，很容易区分那一块内存是要共享或者保护的，但是段式管理的问题是一个段必须完整的加载到内存中，如果内存大小不够，则程序段就不能被运行，并且段式也容易产生零碎内存区域。&lt;/p&gt;
+&lt;h2 id=&#34;9段页式内存管理&#34;&gt;9.段页式内存管理&lt;/h2&gt;
+&lt;p&gt;​	页式可以很好的减少零碎内存而段式可以很好的对程序的内存进行划分，段页式中和了上面的两种优点。他将逻辑地址分为三部分，段号，页号和页内偏移地址。段表的始址寄存器加上段号得到对应的页表始址，页表始址加上页号得到对应的页块。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://chao-x.github.io/img/20130519103848752.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h2 id=&#34;10虚拟内存&#34;&gt;10.虚拟内存&lt;/h2&gt;
+&lt;p&gt;​	当一个程序需要的内存大于最大内存时，需要有相关的技术来堆内存扩容。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;覆盖：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​	覆盖技术将程序分为若干段，他们不会同时执行，未执行的段存在外存中，当前面一个段在内存中执行完后用后面的段进行覆盖。&lt;/p&gt;
+&lt;p&gt;​	覆盖技术虽然能够使内存扩容，但是加大了技术难度，要求用户对程序划分出覆盖的结构，增大用户的负担。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;交换：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​	交换技术允许一个作业放入内存又放入外存，即在内存和外存间交换，此技术需要保存作业的状态，会增大CPU的运算时间。&lt;/p&gt;
+&lt;p&gt;​	这两种技术虽然都对内存扩容，但是他们都必须放在连续的内存中&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;虚拟内存：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;​	采用二级页表的方式。&lt;/p&gt;
+&lt;p&gt;​	在开始前装入一个或零个页面，根据程序需要动态的装入页面，向os申请物理内存，在进程控制信息写入VMA（虚拟内存区域），配置页表信息，在配置页表和物理地址的映射后并不真正的加载到内存中。在我们读取一个页，发现没有真正的放到内存中时，会发生（Page Fault）缺页错误，会去进程控制信息查询是否申请了该内存，如果申请，操作系统会将磁盘中的虚拟内存放入真正的内存（这是正常的）。如果没有会发生内存访问异常（这是异常的），终止程序。&lt;/p&gt;
+&lt;p&gt;​	CPU将虚拟地址通过MMU（分页内存管理单元）找到相应物理地址。并通过TLB(翻译后备缓冲器，快表)存储映射信息。&lt;/p&gt;
+&lt;p&gt;​	在页表映射的物理地址基址中，由于是4k的整数倍，后12位一定为0，可以用于判断是否可读可写可执行。&lt;/p&gt;
+&lt;p&gt;​	在虚拟地址的4G内存空间中，高地址的1GB为内核空间，低地址的3G为用户空间。&lt;/p&gt;
+&lt;h2 id=&#34;11生产者消费者与银行家算法&#34;&gt;&lt;strong&gt;11.生产者消费者与银行家算法&lt;/strong&gt;&lt;/h2&gt;
+&lt;p&gt;生产者消费者&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func main(){
+	ch:=make(chan int,5)
+	go func(ch &amp;lt;-chan int){
+		for j := range ch {
+			fmt.Println(&amp;quot;consumer&amp;quot;+strconv.Itoa(j))
+		}
+	}(ch)
+	go func(ch chan&amp;lt;- int){
+		for i:=0;i&amp;lt;3;i++{
+			ch&amp;lt;-i
+			fmt.Println(&amp;quot;producer:&amp;quot;+strconv.Itoa(i))
+		}
+	}(ch)
+
+
+	time.Sleep(time.Second)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;银行家算法主要是用来解决死锁的，主要有三个矩阵&lt;/p&gt;
+&lt;p&gt;MAX进程需要的最大资源矩阵如&lt;/p&gt;
+&lt;p&gt;{1，2，3}&lt;/p&gt;
+&lt;p&gt;{2，3，4}&lt;/p&gt;
+&lt;p&gt;{2，0，3}&lt;/p&gt;
+&lt;p&gt;Already已经分配的资源&lt;/p&gt;
+&lt;p&gt;{1，1，1}&lt;/p&gt;
+&lt;p&gt;{1，2，3}&lt;/p&gt;
+&lt;p&gt;{1，0，0}&lt;/p&gt;
+&lt;p&gt;Need还需要的资源&lt;/p&gt;
+&lt;p&gt;{0，1，2}&lt;/p&gt;
+&lt;p&gt;{1，1，1}&lt;/p&gt;
+&lt;p&gt;{1，0，3}&lt;/p&gt;
+&lt;p&gt;还有系统现有的资源比如{3，2，1}&lt;/p&gt;
+&lt;p&gt;MAX=Alreay+Need&lt;/p&gt;
+&lt;h2 id=&#34;12dma&#34;&gt;12.DMA&lt;/h2&gt;
+&lt;p&gt;​	DMA允许在没有CPU的干涉下，外部设备直接和存储器之间读写数据。为什么要有DMA呢？因为CPU在处理进程需要的I/O设备时会中断，让I/O设备处理请求，此时进程属于阻塞态，当I/O设备完成请求后，CPU又要去处理I/O设备的数据，这样降低了CPU的效率。如果有一个设备能够直接处理把I/O设备的数据直接与内存交换，而不经过CPU，会提高CPU的效率。&lt;/p&gt;
+&lt;p&gt;​	DMA在CPU中。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

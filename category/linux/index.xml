@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux | WUCHAOXIN&#39;S BLOG</title>
+    <link>https://chao-x.github.io/category/linux/</link>
+      <atom:link href="https://chao-x.github.io/category/linux/index.xml" rel="self" type="application/rss+xml" />
+    <description>Linux</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Sat, 14 Nov 2020 19:00:13 +0800</lastBuildDate>
+    <image>
+      <url>https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Linux</title>
+      <link>https://chao-x.github.io/category/linux/</link>
+    </image>
+    
+    <item>
+      <title>Linux命令</title>
+      <link>https://chao-x.github.io/post/linux%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Sat, 14 Nov 2020 19:00:13 +0800</pubDate>
+      <guid>https://chao-x.github.io/post/linux%E5%91%BD%E4%BB%A4/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;Linux系统是后发开发必须要掌握的，而命令是其核心知识。&lt;/p&gt;
+&lt;p&gt;本文主要记录了Linux常用的命令，加以整理以防不时之需。&lt;/p&gt;
+&lt;h2&gt;目录&lt;/h2&gt;
+&lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#apt&#34;&gt;apt&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;h3 id=&#34;apt&#34;&gt;apt&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考：https://man.linuxde.net/apt-get-2&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;apt-get update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;获取包的最新版本，更新数据库信息&lt;/li&gt;
+&lt;li&gt;HIT 包版本没有变化&lt;/li&gt;
+&lt;li&gt;IGN 包别忽略。可能是因为包版本新，懒得去查，也可能是获取信息错误&lt;/li&gt;
+&lt;li&gt;GET 包版本可以升级&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;apt-get upgrade
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;升级包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;apt-cache search [package name]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;查找包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;apt-cache pkgnames [package name]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;只查找特定包名&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;apt-get update &amp;amp;&amp;amp; apt-get dist-upgrade
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;快速升级到最新版本&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;apt-get showpkg [detail package name] 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;查看该包的详情&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;apt-get install [detail package name] &amp;lt;...&amp;gt;  &amp;lt;...&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;安装包&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;apt-get remove [detail package name]
+apt-get purge  [detail package name]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;删除包&lt;/li&gt;
+&lt;li&gt;remove 只删除二进制文件，不删除配置文件&lt;/li&gt;
+&lt;li&gt;purge 删除全部包&lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

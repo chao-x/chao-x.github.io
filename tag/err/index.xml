@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>err | WUCHAOXIN&#39;S BLOG</title>
+    <link>https://chao-x.github.io/tag/err/</link>
+      <atom:link href="https://chao-x.github.io/tag/err/index.xml" rel="self" type="application/rss+xml" />
+    <description>err</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Mon, 23 Nov 2020 17:40:41 +0800</lastBuildDate>
+    <image>
+      <url>https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>err</title>
+      <link>https://chao-x.github.io/tag/err/</link>
+    </image>
+    
+    <item>
+      <title>Golang 进一步理解nil和err</title>
+      <link>https://chao-x.github.io/post/go-nil-err/</link>
+      <pubDate>Mon, 23 Nov 2020 17:40:41 +0800</pubDate>
+      <guid>https://chao-x.github.io/post/go-nil-err/</guid>
+      <description>&lt;hr&gt;
+&lt;h2&gt;目录&lt;/h2&gt;
+&lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#示例1&#34;&gt;示例1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#官方实现&#34;&gt;官方实现&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#修改示例1&#34;&gt;修改示例1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#示例2&#34;&gt;示例2&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;h3 id=&#34;示例1&#34;&gt;示例1&lt;/h3&gt;
+&lt;p&gt;我们先来看下面的代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func (e *Error) Error() string {
+	switch e.errCode {
+	case 1:
+		return &amp;quot;file not found&amp;quot;
+	case 2:
+		return &amp;quot;time out&amp;quot;
+	case 3:
+		return &amp;quot;permission denied&amp;quot;
+	default:
+		return &amp;quot;unknown error&amp;quot;
+	}
+}
+
+func checkError(err error) {
+	if err != nil {
+		panic(err)			//这里会panic
+	}
+}
+
+
+func main(){
+	var err *Error
+	checkError(err)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在我们一般的理解中，我们声明里err变量指针，并没有为他初始化申请内存，此时它为nil。在checkError函数中，if语句应该不成立，不会触发panic函数，但实际中，并不是如此。&lt;/p&gt;
+&lt;h3 id=&#34;官方实现&#34;&gt;官方实现&lt;/h3&gt;
+&lt;p&gt;我们可以看源码，在golang官方的实现中，&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;// nil is a predeclared identifier representing the zero value for a
+// pointer, channel, func, interface, map, or slice type.
+var nil Type // Type must be a pointer, channel, func, interface, map, or slice type
+
+// Type is here for the purposes of documentation only. It is a stand-in
+// for any Go type, but represents the same type for any given function
+// invocation.
+type Type int
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里说明了必须是nil是预先声明的标识符，他表示了指针，管道，函数，接口，哈希，接口类型的零值。&lt;/p&gt;
+&lt;p&gt;这里的Type仅用于文档目的，他可以表示任何go的类型，但是如果给定了功能调用，他就表示该类型。&lt;/p&gt;
+&lt;p&gt;并且nil必须是指针，管道，函数，接口，哈希，接口类型之一，他们都是引用类型，底层都为指针。&lt;/p&gt;
+&lt;p&gt;我们可以简单的理解nil为是空指针。&lt;/p&gt;
+&lt;h3 id=&#34;修改示例1&#34;&gt;修改示例1&lt;/h3&gt;
+&lt;p&gt;为了达到我们最初的目的，我们修改了程序&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func (e *Error) Error() string {
+	switch e.errCode {
+	case 1:
+		return &amp;quot;file not found&amp;quot;
+	case 2:
+		return &amp;quot;time out&amp;quot;
+	case 3:
+		return &amp;quot;permission denied&amp;quot;
+	default:
+		return &amp;quot;unknown error&amp;quot;
+	}
+}
+
+func checkError(err error) {
+	if err != (*Error) (nil) {
+		panic(err)			//此时不会触发panic
+	}
+}
+
+
+func main(){
+	var err *Error
+	checkError(err)
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;不会触发的原因是因为当err与nil做比较时，err为接口类型(error接口)，如果err要与nil相等，则其Type和Value都得相等。&lt;/p&gt;
+&lt;p&gt;在之前的程序中，err的Type和Value为（Error，nil），而nil的Type和Value为（nil，nil），自然是不相等的。当我们为nil强制类型转换后，其就与err相等。&lt;/p&gt;
+&lt;h3 id=&#34;示例2&#34;&gt;示例2&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type Plane struct {
+        Num int
+}
+
+func (this *Plane) Fly1(){
+        fmt.Println(&amp;quot;Fly1......&amp;quot;)
+}
+
+func main(){
+
+        test(nil)		//不会panic
+}
+
+func test(pl *Plane) {
+        pl.Fly1()
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;这里我们传入了nil，但是却可以成功调用test函数，因为调用方法并不需要申请内存。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;这里有待进一步深入&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;但我们调用其成员变量时，明显就不可以了。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func (this *Plane) Fly2(){        
+  fmt.Println(&amp;quot;Fly2......Num:&amp;quot;, this.Num) 	//panic
+} 
+
+func test(pl *Plane) {       
+  pl.Fly2() 
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&#34;https://blog.csdn.net/lanyang123456/article/details/102616712&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;本示例参考&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

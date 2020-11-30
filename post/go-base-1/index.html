@@ -1,0 +1,1648 @@
+<!DOCTYPE html><html lang="zh-Hans" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+  
+  <meta name="generator" content="Wowchemy 5.0.0-beta.0 for Hugo">
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="WU CHAOXIN">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="
+本文对golang基础类型包括关键字，变量，声明等做了一个详细的总结以及对相关内容进行简要的扩展">
+
+  
+  <link rel="alternate" hreflang="zh-Hans" href="https://chao-x.github.io/post/go-base-1/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/dracula.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+        
+      
+    
+
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+        
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.css">
+
+  
+
+
+
+
+  
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://chao-x.github.io/post/go-base-1/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+  
+  
+  <meta property="twitter:card" content="summary">
+  
+  <meta property="og:site_name" content="WUCHAOXIN&#39;S BLOG">
+  <meta property="og:url" content="https://chao-x.github.io/post/go-base-1/">
+  <meta property="og:title" content="Golang 基础数据类型 | WUCHAOXIN&#39;S BLOG">
+  <meta property="og:description" content="
+本文对golang基础类型包括关键字，变量，声明等做了一个详细的总结以及对相关内容进行简要的扩展"><meta property="og:image" content="https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png">
+  <meta property="twitter:image" content="https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png"><meta property="og:locale" content="zh-Hans">
+  
+    
+      <meta property="article:published_time" content="2020-11-23T16:57:05&#43;08:00">
+    
+    <meta property="article:modified_time" content="2020-11-23T16:57:05&#43;08:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://chao-x.github.io/post/go-base-1/"
+  },
+  "headline": "Golang 基础数据类型",
+  
+  "datePublished": "2020-11-23T16:57:05+08:00",
+  "dateModified": "2020-11-23T16:57:05+08:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "WU CHAOXIN"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "WUCHAOXIN'S BLOG",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "\u003chr\u003e\n\u003cp\u003e本文对golang基础类型包括关键字，变量，声明等做了一个详细的总结以及对相关内容进行简要的扩展\u003c/p\u003e"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>Golang 基础数据类型 | WUCHAOXIN&#39;S BLOG</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+    <script>window.wcDarkLightEnabled = true;</script>
+  
+  
+    <script>const isSiteThemeDark = false;</script>
+  
+  
+  <script src="/js/load-theme.js"></script>
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>搜索</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="搜索..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">WUCHAOXIN&#39;S BLOG</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="切换导航">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">WUCHAOXIN&#39;S BLOG</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>主页</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#experience"><span>我的经历</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>与我联系</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link  active" href="/post/"><span>所有文章</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/categories/"><span>分类</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/tags/"><span>标签</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="搜索"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>浅色</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>深色</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>自动</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>Golang 基础数据类型</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Nov 23, 2020
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    12 分钟阅读时长
+  </span>
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/golang/">golang</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <hr>
+<p>本文对golang基础类型包括关键字，变量，声明等做了一个详细的总结以及对相关内容进行简要的扩展</p>
+<h2>目录</h2>
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#关键字">关键字</a></li>
+        <li><a href="#预定义名">预定义名</a></li>
+        <li><a href="#命名">命名</a></li>
+        <li><a href="#声明">声明</a></li>
+        <li><a href="#变量">变量</a></li>
+        <li><a href="#指针">指针</a></li>
+        <li><a href="#别名">别名</a></li>
+        <li><a href="#垃圾回收">垃圾回收</a></li>
+        <li><a href="#内存分配">内存分配</a></li>
+        <li><a href="#赋值">赋值</a></li>
+        <li><a href="#类型">类型</a></li>
+        <li><a href="#包">包</a></li>
+        <li><a href="#作用域">作用域</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<h3 id="关键字">关键字</h3>
+<pre><code class="language-go">break default func interface select
+
+case defer go map struct
+
+chan else goto package switch
+
+const fallthrough if range type
+
+continue for import return var
+</code></pre>
+<p><strong>default与fallthrough</strong></p>
+<pre><code class="language-go">switch {
+    case false:
+        fmt.Println(&quot;The integer was &lt;= 4&quot;)
+        fallthrough
+    case true:
+        fmt.Println(&quot;The integer was &lt;= 5&quot;)
+        fallthrough
+    case false:
+        fmt.Println(&quot;The integer was &lt;= 6&quot;)
+        fallthrough
+    case true:
+        fmt.Println(&quot;The integer was &lt;= 7&quot;)
+        fallthrough
+    case false:
+        fmt.Println(&quot;The integer was &lt;= 8&quot;)
+				fallthrough
+    default:
+        fmt.Println(&quot;default case&quot;)
+    }
+}
+
+//输出：
+//The integer was &lt;= 5
+//The integer was &lt;= 6
+//The integer was &lt;= 7
+//The integer was &lt;= 8
+//default case
+</code></pre>
+<p>在<em>switch</em>中，<em>case</em>了一个情况一般会停止这个<em>switch</em>。使用<em>fallthrouth</em>会强制执行下一个<em>case</em>， 无论判断条件是否为true</p>
+<p><strong>goto</strong></p>
+<pre><code class="language-go">func main() {
+	var i int
+TEST:
+	i++
+	if i == 1{
+		goto TEST
+	}
+	fmt.Println(i)
+}
+//输出：
+//2
+</code></pre>
+<p><strong>select</strong></p>
+<pre><code class="language-go">select {
+  case msg1 := &lt;-c1:
+     fmt.Println(&quot;received&quot;, msg1)
+  case msg2 := &lt;-c2:
+     fmt.Println(&quot;received&quot;, msg2)
+}
+</code></pre>
+<p>如果<em>select</em>的多个分支都满足条件，则会随机选取其中一个满足条件的分支。</p>
+<h3 id="预定义名">预定义名</h3>
+<pre><code class="language-go">内建常量: true false iota nil
+内建类型: int int8 int16 int32 int64
+uint uint8 uint16 uint32 uint64 uintptr
+float32 float64 complex128 complex64
+bool byte rune string error
+内建函数: make len cap new append copy close delete
+complex real imag
+panic recover
+</code></pre>
+<blockquote>
+<p>这些内部预先定义的名字并不是关键字，你可以在定义中重新使用它们。</p>
+<p>在一些特殊的场景中重新定义它们也是有意义的，但是也要注意避免过度而引起语义混乱。</p>
+</blockquote>
+<p><strong>rune</strong></p>
+<p><em>int32</em>的别名，占4字节，而<em>byte</em>是<em>int8</em>的别名，占一字节。</p>
+<blockquote>
+<p>在<em>string</em>中，其底层是用<em>byte类型</em>实现的（当用索引去读时取到的值为<em>byte</em>类型）。但是当我们用<em>for range</em>遍历时，得到的是单个值为<em>rune</em>类型。原因是<em>go</em>采用<em>utf-8</em>编码格式，而<em>utf-8</em>是不定长的，最多可以占4字节。为了遍历时能够读到完整的数据（比如完整的中文，而不是乱码），所以遍历得到的是<em>rune</em>类型。</p>
+</blockquote>
+<p><strong>copy</strong></p>
+<p>切片复制。<em>go</em>语言的内置函数 <em>copy()</em> 可以将一个数组切片复制到另一个数组切片中，如果加入的两个数组切片不一样大，就会按照其中较小的那个数组切片的元素个数进行复制。其返回值为成功复制元素的个数。</p>
+<pre><code class="language-go">slice1 := []int{1, 2, 3, 4, 5}
+slice2 := []int{5, 4, 3}
+copy(slice2, slice1) // 只会复制slice1的前3个元素到slice2中
+copy(slice1, slice2) // 只会复制slice2的3个元素到slice1的前3个位置
+</code></pre>
+<blockquote>
+<p><em>copy</em>后的切片并不与原切片共享底层数据，而是新开内存存放数据。所以修改源切片的值并不会改变<em>copy</em>后的切片的值。</p>
+</blockquote>
+<p><strong>complex / real / imag</strong></p>
+<pre><code class="language-go">var x complex128 = complex(1, 2) // 1+2i
+var y complex128 = complex(3, 4) // 3+4i
+fmt.Println(x*y)                 // &quot;(-5+10i)&quot;
+fmt.Println(real(x*y))           // &quot;-5&quot;
+fmt.Println(imag(x*y))           // &quot;10&quot;
+</code></pre>
+<p><strong>new</strong></p>
+<pre><code class="language-go">p := new(int)  	// p, *int 类型, 指向匿名的 int 变量
+
+fmt.Println(*p) // &quot;0&quot;
+
+*p = 2 					// 设置 int 匿名变量的值为 2
+
+fmt.Println(*p) // &quot;2&quot;
+</code></pre>
+<p>可以不需要声明一个临时变量的名字，在表达式中使用<em>new(T)</em></p>
+<pre><code class="language-go">func newInt() *int {
+
+return new(int)
+
+}
+
+func newInt() *int {
+
+var dummy int
+
+return &amp;dummy
+
+}
+</code></pre>
+<h3 id="命名">命名</h3>
+<p><em>go</em>语言的风格是尽量使用短小的名字，对于局部变量尤其是这样。</p>
+<p>你会经常看到i之类的短名字，而不是冗长的theLoopIndex命名</p>
+<p>Go语言程序员推荐使用 <em>驼峰式</em> 命名</p>
+<h3 id="声明">声明</h3>
+<p><em>var、const、type、func</em></p>
+<p>分别对应变量、常量、类型和函数实体对象的声明</p>
+<h3 id="变量">变量</h3>
+<p>var 变量名字 类型 = 表达式</p>
+<p>其中“类型”或“= 表达式”两个部分可以省略其中的一个</p>
+<pre><code class="language-go">var i, j, k int 								// int, int, int
+
+var b, f, s = true, 2.3, &quot;four&quot; // bool, float64, string
+</code></pre>
+<p>在函数内部，有一种称为简短变量声明语句的形式可用于声明和初始化局部变量。它以“名字:= 表达式”形式声明变量。</p>
+<p>var形式的声明语句往往是用于需要显式指定变量类型地方，或者因为变量稍后会被重新赋值而<em>初始值无关紧要</em>的地方。</p>
+<blockquote>
+<p>这里有一个比较微妙的地方：简短变量声明左边的变量可能并不是全部都是刚刚声明的。如</p>
+<p>果有一些已经在相同的词法域声明过了，那么简短变量声明语句对这些已经声明过的变量就只有赋值行为了。</p>
+</blockquote>
+<p>简短变量声明语句中必须<strong>至少要声明一个新的变量</strong></p>
+<p>如果两个类型都是空的，也就是说类型的大小是0，</p>
+<p>例如 struct{} 和 [0]int , 有可能有<strong>相同的地址</strong>（依赖具体的语言实现）</p>
+<blockquote>
+<p>请谨慎使用大小为0的类型，因为如果类型的大小为0的话，可能导致Go语言的自动垃圾回收器有不同的行为，具体请查看 runtime.SetFinalizer 函数相关文档</p>
+</blockquote>
+<p>由于new只是一个预定义的函数，它并不是一个关键字，因此我们可以将new名字重新定义为别的类型。</p>
+<p>例如下面的例子：</p>
+<pre><code class="language-go">func delta(old, new int) int { return new - old }
+</code></pre>
+<p>由于new被定义为int类型的变量名，因此在delta函数内部是无法使用内置的new函数的</p>
+<h4 id="生命周期">生命周期</h4>
+<p>变量的生命周期指的是在程序运行期间变量有效存在的时间间隔。对于在包一级声明的变量来说，它们的生命周期和整个程序的运行周期是一致的。</p>
+<p>而相比之下，局部变量的生命周期则是动态的：每次从创建一个新变量的声明语句开始，<strong>直到该变量不再被引用为止</strong>，然后变量的存储空间可能被回收。</p>
+<p>函数的参数变量和返回值变量都是局部变量。它们在函数每次被调用的时候创建。</p>
+<h4 id="零值">零值</h4>
+<p>数值类型变量对应的零值是<em>0</em>，布尔类型变量对应的零值是<em>false</em>，字符串类型对应的零值是空字符串，接口或引用类型（包括<em>slice</em>、指针、<em>map</em>、<em>chan</em>和函数）变量对应的零值是<em>nil</em>。</p>
+<p>零值初始化机制可以确保每个声明的变量总是有一个良好定义的值，因此在Go语言中不存在未初始化的变量</p>
+<h3 id="指针">指针</h3>
+<p>并不是每一个值都会有一个内存地址，但是对于每一个变量必然有对应的内存地址。</p>
+<p>通过指针，我们可以直接读或更新对应变量的值，而不需要知道该变量的名字（如果变量有名字的话）。</p>
+<p>一般 *p 表达式读取指针指向的变量的值，同时因为 *p 对应一个变量 所以该表达式也可以出现在赋值语句的左边，表</p>
+<p>示更新指针所指向的变量的值。</p>
+<p>在Go语言中，返回函数中局部变量的地址也是安全的。</p>
+<p>例如下面的代码，调用f函数时创建局部变量v，在局部变量地址被返回之后依然有效，因为指针p依然引用这个变量。</p>
+<pre><code class="language-go">var p = f()
+
+func f() *int {
+
+v := 1
+
+return &amp;v
+
+}
+</code></pre>
+<p>每次调用f函数都将返回不同的结果：</p>
+<pre><code class="language-go">fmt.Println(f() == f()) 	// &quot;false&quot;
+</code></pre>
+<pre><code class="language-go">func incr(p *int) int {
+
+*p++ // 非常重要：只是增加p指向的变量的值，并不改变p指针！！！
+
+return *p
+
+}
+
+v := 1
+
+incr(&amp;v) // side effect: v is now 2
+
+fmt.Println(incr(&amp;v)) // &quot;3&quot; (and v is 3)
+</code></pre>
+<h3 id="别名">别名</h3>
+<p>每次我们对一个变量取地址，或者复制指针，我们都是为原变量创建了新的别名。</p>
+<p>例如， *<em>p</em> 就是是变量v的别名。指针特别有价值的地方在于我们可以不用名字而访问一个变量，但是这是一把双刃剑：要找到一个变量的所有访问者并不容易，我们必须知道变量全部变量的别名（译注：这是<em>go</em>语言的垃圾回收器所做的工作）。</p>
+<p>不仅仅是指针会创建别名，很多其他引用类型也会创建别名，例如<em>slice</em>、<em>map</em>和<em>chan</em>，甚至结构体、数组和接口都会创建所引</p>
+<p>用变量的别名。</p>
+<h3 id="垃圾回收">垃圾回收</h3>
+<p>Go语言的自动垃圾收集器是如何知道一个变量是何时可以被回收的呢？</p>
+<p>这里我们可以避开完整的技术细节，基本的实现思路是，从每个包级的变量和每个当前运行函数的每一个局部变量开始，通过指针或引用的访问路径遍历，是否可以找到该变量。如果不存在这样的访问路径，那么说明该变量是不可达的，也就是说它是否存在并不会影响程序后续的计算结果。</p>
+<p>因为一个变量的有效周期只取决于是否可达，因此一个循环迭代内部的局部变量的生命周期可能超出其局部作用域。同时，局部变量可能在函数返回之后依然存在。编译器会自动选择在栈上还是在堆上分配局部变量的存储空间，但可能令人惊讶的是，这个</p>
+<p>选择并不是由用var还是new声明变量的方式决定的。</p>
+<h3 id="内存分配">内存分配</h3>
+<p>因为一个变量的有效周期只取决于是否可达，因此一个循环迭代内部的局部变量的生命周期可能超出其局部作用域。同时，局部变量可能在函数返回之后依然存在。</p>
+<p>编译器会自动选择在栈上还是在堆上分配局部变量的存储空间，但可能令人惊讶的是，这个选择并不是由用var还是new声明变量的方式决定的。</p>
+<pre><code class="language-go">var global *int
+
+func f() {
+	var x int
+	x = 1
+	global = &amp;x
+}
+
+func g() {
+	y := new(int)
+	*y = 1
+}
+</code></pre>
+<p><em>f</em>函数里的x变量必须在堆上分配，因为它在函数退出后依然可以通过包一级的<em>global</em>变量找到，虽然它是在函数内部定义的；用<em>go</em>语言的术语说，这个<em>x</em>局部变量从函数f中逃逸了。</p>
+<p>相反，当g函数返回时，变量 <em>*y</em> 将是不可达的，也就是说可以马上被回收的。因此， <em>*y</em> 并没有从函数g中逃逸，编译器可以选择在栈上分配 <em>*y</em> 的存储空间（译注：也可以选择在堆上分配，然后由<em>go</em>语言的GC回收这个变量的内存空间），虽然这里用的是<em>new</em>方式。其实在任何时候，你并不需为了编写正确的代码而要考虑变量的逃逸行为，要记住的是，逃逸的变量需要额外分配内存，同时对性能的优化可能会产生细微的影响。</p>
+<p>Go语言的自动垃圾收集器对编写正确的代码是一个巨大的帮助，但也并不是说你完全不用考虑内存了。你虽然不需要显式地分配和释放内存，但是要编写高效的程序你依然需要了解变量的生命周期。例如，如果将指向短生命周期对象的指针保存到具有长生命周期的对象中，特别是保存到全局变量时，会阻止对短生命周期对象的垃圾回收（从而可能影响程序的性能）。</p>
+<h3 id="赋值">赋值</h3>
+<p>元组赋值</p>
+<pre><code class="language-go">i, j = j, i // 交换 i 和 j 的值
+
+a[i], a[j] = a[j], a[i]
+</code></pre>
+<blockquote>
+<p>自增和自减是语句，而不是表达式，因此 <em>x = i++</em> 之类的表达式是错误的</p>
+</blockquote>
+<pre><code class="language-go">//最大公约数
+func gcd(x, y int) int {
+
+			for y != 0 {
+
+						x, y = y, x%y
+
+			}
+
+			return x
+
+}
+
+//计算斐波纳契数列（Fibonacci）的第N个数：
+
+func fib(n int) int {
+
+			x, y := 0, 1
+
+			for i := 0; i &lt; n; i++ {
+
+						x, y = y, x+y
+
+			}
+
+			return x
+
+}
+</code></pre>
+<p>有些表达式会产生多个值，比如调用一个有多个返回值的函数。当这样一个函数调用出现在元组赋值右边的表达式中时</p>
+<p>（译注：右边不能再有其它表达式），左边变量的数目必须和右边一致。</p>
+<pre><code class="language-go">func test1()(int,int,int){
+	return 1,2,3
+}
+func test2()(int,int,int){
+	return 1,2,3
+}
+
+func main(){
+	a,b,c:=test1()+test2() //error!
+	fmt.Println(a,b,c)
+}
+</code></pre>
+<p>类型必须完全匹配，nil可以赋值给任何</p>
+<p>指针或引用类型的变量。常量则有更灵活的赋值规则，因为这样可以避免不必要的显式的类型转换。</p>
+<p>对于两个值是否可以用 == 或 != 进行相等比较的能力也和可赋值能力有关系：对于任何类型的值的相等比较，第二个值必须是对第一个值类型对应的变量是可赋值的，反之亦然。和前面一样，我们会对每个新类型比较特殊的地方做专门的解释。</p>
+<h3 id="类型">类型</h3>
+<p><em>type 类型名字 底层类型</em></p>
+<p>类型声明语句一般出现在包一级，因此如果新创建的类型名字的首字符大写，则在外部包也可以使用</p>
+<blockquote>
+<p>对于中文汉字，Unicode标志都作为小写字母处理，因此中文的命名默认不能导出</p>
+</blockquote>
+<pre><code class="language-go">package tempconv
+
+import &quot;fmt&quot;
+
+type Celsius float64 // 摄氏温度
+
+type Fahrenheit float64 // 华氏温度
+
+const (
+
+			AbsoluteZeroC Celsius = -273.15 // 绝对零度
+
+			FreezingC Celsius = 0 // 结冰点温度
+	
+			BoilingC Celsius = 100 // 沸水温度
+
+)
+
+func CToF(c Celsius) Fahrenheit { return Fahrenheit(c*9/5 + 32) }
+
+func FToC(f Fahrenheit) Celsius { return Celsius((f - 32) * 5 / 9) }
+</code></pre>
+<p>我们在这个包声明了两种类型：<em>Celsius</em>和<em>Fahrenheit</em>分别对应不同的温度单位。它们虽然有着相同的底层类型<em>float64</em>，但是它们是不同的数据类型，因此它们不可以被相互比较或混在一个表达式运算。</p>
+<p>*Celsius(t)<em>和</em>Fahrenheit(t)*是类型转换操作，它们并不是函数调用。类型转换不会改变值本身，但是会使它们的语义发生变化。</p>
+<p>对于每一个类型T，都有一个对应的类型转换操作T(x)，用于将x转为T类型</p>
+<blockquote>
+<p>如果T是指针类型，可能会需要用小括弧包装T，比如 <em>(int)(0)</em></p>
+</blockquote>
+<p>只有当两个类型的底层基础类型相同时，才允许这种转型操作，或者是两者都是指向相同底层结构的指针类型，这些转换只改变类型而不会影响值本身。</p>
+<ul>
+<li>
+<p>如果x是可以赋值给T类型的值，那么x必然也可以被转为T类型。</p>
+</li>
+<li>
+<p>数值类型之间的转型也是允许的，并且在字符串和一些特定类型的slice之间也是可以转换的。这类转换可能改变值的表现。</p>
+<ul>
+<li>例如，将一个浮点数转为整数将丢弃小数部分，将一个字符串转为 []byte 类型的slice将拷贝一个字符串数据的副本。</li>
+</ul>
+</li>
+</ul>
+<p>比较运算符 == 和 &lt; 也可以用来比较一个命名类型的变量和另一个有相同类型的变量，或有着相同底层类型的未命名类型的值之间做比较。但是如果两个值有着不同的类型，则不能直接进行比较：</p>
+<pre><code class="language-go">var c Celsius
+
+var f Fahrenheit
+
+fmt.Println(c == 0) // &quot;true&quot;
+
+fmt.Println(f &gt;= 0) // &quot;true&quot;
+
+fmt.Println(c == f) // compile error: type mismatch
+
+fmt.Println(c == Celsius(f)) // &quot;true&quot;!
+</code></pre>
+<h3 id="包">包</h3>
+<p>每个包都对应一个独立的名字空间。例如，在<em>image</em>包中的<em>Decode</em>函数和在<em>unicode/utf16</em>包中的 <em>Decode</em>函数是不同的。要在外部引用该函数，必须显式使用<em>image.Decode</em>或<em>utf16.Decode</em>形式访问。</p>
+<p>包的初始化首先是解决包级变量的依赖顺序，然后按照包级变量声明出现的顺序依次初始化：</p>
+<pre><code class="language-go">var a = b + c // a 第三个初始化, 为 3
+
+var b = f() // b 第二个初始化, 为 2, 通过调用 f (依赖c)
+
+var c = 1 // c 第一个初始化, 为 1
+
+func f() int { return c + 1 }
+</code></pre>
+<p>对于在包级别声明的变量，如果有初始化表达式则用表达式初始化，还有一些没有初始化表达式的，例如某些表格数据初始化并不是一个简单的赋值过程。在这种情况下，我们可以用一个特殊的init初始化函数来简化初始化工作。每个文件都可以包含多个init初始化函数</p>
+<pre><code class="language-go">func init() { /* ... */ }
+
+func init() { /* ... */ }   	//this is right!
+</code></pre>
+<p>这样的init初始化函数除了不能被调用或引用外，其他行为和普通函数类似。在每个文件中的init初始化函数，在程序开始执行时按照它们声明的顺序被自动调用。</p>
+<h3 id="作用域">作用域</h3>
+<p>对于导入的包，例如<em>tempconv</em>导入的<em>fmt</em>包，则是对应源文件级的作用域，因此只能在当前的文件中访问导入的<em>fmt</em>包，当前包的其它源文件无法访问在当前源文件导入的包。</p>
+<p>一个程序可能包含多个同名的声明，只要它们在不同的词法域就没有关系。例如，你可以声明一个局部变量，和包级的变量同名。或者你可以将一个函数参数的名字声明为new，虽然内置的new是全局作用域的。但是物极必反，如果滥用不同词法域可重名的特性的话，可能导致程序很难阅读。</p>
+<p>当编译器遇到一个名字引用时，如果它看起来像一个声明，它首先从<strong>最内层的词法域</strong>向全局的作用域查找。如果查找失败，则报告“未声明的名字”这样的错误。如果该名字在内部和外部的块分别声明过，则内部块的声明首先被找到。在这种情况下，内部声明屏蔽了外部同名的声明，让外部的声明的名字无法被访问：</p>
+<pre><code class="language-go">func main() {
+
+			x := &quot;hello!&quot;
+
+			for i := 0; i &lt; len(x); i++ {
+
+					x := x[i]
+
+					if x != '!' {
+
+								x := x + 'A' - 'a'
+
+								fmt.Printf(&quot;%c&quot;, x) // &quot;HELLO&quot; (one letter per iteration)
+
+					}
+
+			}
+
+}
+</code></pre>
+<pre><code class="language-go">var cwd string
+
+func init() {
+
+			cwd, err := os.Getwd() // compile error: unused: cwd
+
+			if err != nil {
+
+					log.Fatalf(&quot;os.Getwd failed: %v&quot;, err)
+	
+			}
+
+}
+
+
+</code></pre>
+<p>由于当前的编译器会检测到局部声明的<em>cwd</em>并没有本使用，然后报告这可能是一个错误，但是这种检测并不可靠。因为一些小的代码变更，例如增加一个局部cwd的打印语句，就可能导致这种检测失效。</p>
+<p>虽然<em>cwd</em>在外部已经声明过，但是 <em>:=</em> 语句还是将<em>cwd</em>和<em>err</em>重新声明为新的局部变量。因为内部声明的<em>cwd</em>将屏蔽外部的声明，因此上面的代码并不会正确更新包级声明的cwd变量。</p>
+<blockquote>
+<p>本文参考《The Go Programming Language》</p>
+</blockquote>
+    </div>
+
+    
+
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/golang%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">golang基础数据类型</a>
+  
+</div>
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://chao-x.github.io/post/go-base-1/&amp;text=Golang%20%e5%9f%ba%e7%a1%80%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://chao-x.github.io/post/go-base-1/&amp;t=Golang%20%e5%9f%ba%e7%a1%80%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=Golang%20%e5%9f%ba%e7%a1%80%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b&amp;body=https://chao-x.github.io/post/go-base-1/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://chao-x.github.io/post/go-base-1/&amp;title=Golang%20%e5%9f%ba%e7%a1%80%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=Golang%20%e5%9f%ba%e7%a1%80%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b%20https://chao-x.github.io/post/go-base-1/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://chao-x.github.io/post/go-base-1/&amp;title=Golang%20%e5%9f%ba%e7%a1%80%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://chao-x.github.io/"><img class="avatar mr-3 avatar-circle" src="/author/wu-chaoxin/avatar_hu52a603635ecebd45650b162dadabb4e5_12861_270x270_fill_q90_lanczos_center.jpg" alt="WU CHAOXIN"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://chao-x.github.io/">WU CHAOXIN</a></h5>
+      <h6 class="card-subtitle">计算机科学与技术</h6>
+      
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#" >
+        <i class="fab fa-twitter"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="http://www.bjfu.edu.cn/" target="_blank" rel="noopener">
+        <i class="fas fa-graduation-cap"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/chao-x" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://space.bilibili.com/64901721" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <div class="article-widget content-widget-hr">
+    <h3>相关</h3>
+    <ul>
+      
+      <li><a href="/post/go-point-appoint/">Golang 值传递和引用传递</a></li>
+      
+      <li><a href="/post/go-array-slice/">Golang 数组和切片</a></li>
+      
+      <li><a href="/post/go-escape-analysis/">Golang 逃逸分析</a></li>
+      
+      <li><a href="/post/go-nil-err/">Golang 进一步理解nil和err</a></li>
+      
+    </ul>
+  </div>
+  
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+    Published with
+    <a href="https://wowchemy.com" target="_blank" rel="noopener">Wowchemy</a>  —
+    the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">
+    open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">引用</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> 复制
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> 下载
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/latex.min.js"></script>
+        
+      
+
+    
+
+    
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"没有找到结果","placeholder":"搜索...","results":"搜索结果"};
+      const content_type = {
+        'post': "文章",
+        'project': "项目",
+        'publication' : "出版物",
+        'talk' : "演讲",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/wowchemy.min.d9d80f811e95b4b4f6df1eaaf297b05f.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

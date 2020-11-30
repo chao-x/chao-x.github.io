@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang 切片 | WUCHAOXIN&#39;S BLOG</title>
+    <link>https://chao-x.github.io/tag/golang-%E5%88%87%E7%89%87/</link>
+      <atom:link href="https://chao-x.github.io/tag/golang-%E5%88%87%E7%89%87/index.xml" rel="self" type="application/rss+xml" />
+    <description>golang 切片</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>zh-Hans</language><lastBuildDate>Tue, 24 Nov 2020 15:59:54 +0800</lastBuildDate>
+    <image>
+      <url>https://chao-x.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>golang 切片</title>
+      <link>https://chao-x.github.io/tag/golang-%E5%88%87%E7%89%87/</link>
+    </image>
+    
+    <item>
+      <title>Golang 数组和切片</title>
+      <link>https://chao-x.github.io/post/go-array-slice/</link>
+      <pubDate>Tue, 24 Nov 2020 15:59:54 +0800</pubDate>
+      <guid>https://chao-x.github.io/post/go-array-slice/</guid>
+      <description>&lt;hr&gt;
+&lt;p&gt;Golang中的数组和切片是日常中最常用到的两个数组结构，为了更好的使用他们，对他们做一个更加深入的理解。&lt;/p&gt;
+&lt;h2&gt;目录&lt;/h2&gt;
+&lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&#34;#数组&#34;&gt;数组&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&#34;#切片&#34;&gt;切片&lt;/a&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#地址&#34;&gt;地址&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#引用类型&#34;&gt;引用类型&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;h2 id=&#34;数组&#34;&gt;数组&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type Currency int
+const (
+USD Currency = iota // 美元
+EUR // 欧元
+GBP // 英镑
+RMB // 人民币
+)
+symbol := [...]string{ EUR: &amp;quot;€&amp;quot;, GBP: &amp;quot;￡&amp;quot;, RMB: &amp;quot;￥&amp;quot;, USD: &amp;quot;$&amp;quot;}
+fmt.Println(RMB, symbol[RMB]) // &amp;quot;3 ￥&amp;quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;在这种形式的数组字面值形式中，初始化索引的顺序是无关紧要的，而且没用到的索引可以省略，未指定初始值的元素将用零值初始化。例如，&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;r := [...]int{99: -1}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;如果一个数组的元素类型是可以相互比较的，那么数组类型也是可以相互比较的，这时候我们可以直接通过 &lt;code&gt;==&lt;/code&gt; 比较运算符来比较两个数组，只有当两个数组的所有元素都是相等的时候数组才是相等的。不相等比较运算符&lt;code&gt;!=&lt;/code&gt;遵循同样的规则。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;a := [2]int{1, 2}
+
+b := [...]int{1, 2}
+
+c := [2]int{1, 3}
+
+fmt.Println(a == b, a == c, b == c) // &amp;quot;true false false&amp;quot;
+
+d := [3]int{1, 2}
+
+fmt.Println(a == d) // compile error: cannot compare [2]int == [3]int
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;当调用一个函数的时候，函数的每个调用参数将会被赋值给函数内部的参数变量，所以函数参数变量接收的是一个复制的副本，并不是原始调用的变量。因为函数参数传递的机制导致传递大的数组类型将是低效的，并且对数组参数的任何的修改都是发生在复制的数组上，并不能直接修改调用时原始的数组变量。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;所以给函数传数组并进行改变其内部值，改变的只是数组的copy不会改变原数组&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;在这个方面，&lt;em&gt;Go&lt;/em&gt;语言对待数组的方式和其它很多编程语言不同，其它编程语言可能会隐式地将数组作为引用或指针对象传入被调用的函数。当然，我们可以显式地传入一个数组指针，那样的话函数通过指针对数组的任何修改都可以直接反馈到调用者。下面的函数用于给*[32]byte*类型的数组清零：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func zero(ptr *[32]byte) {
+	for i := range ptr {
+			ptr[i] = 0
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;优化：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func zero(ptr *[32]byte) {
+	*ptr = [32]byte{}
+}
+
+
+func main() {
+	ptr := [32]byte{}
+	ptr[1]=&#39;a&#39;
+	fmt.Printf(&amp;quot;%p,\n&amp;quot;,&amp;amp;ptr)    
+	zero(&amp;amp;ptr)
+	fmt.Printf(&amp;quot;%p,\n&amp;quot;,&amp;amp;ptr)  //和上面打印的地址是相同的，且都被初始化为0
+	fmt.Println(ptr[1])
+}
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;byte&lt;/em&gt;和&lt;em&gt;rune&lt;/em&gt;的零值都为0，因为他们底层为int8和&lt;em&gt;int32&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;切片&#34;&gt;切片&lt;/h2&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;months := [...]string{1: &amp;quot;January&amp;quot;, /* ... */, 12: &amp;quot;December&amp;quot;}
+Q2 := months[4:7]
+summer := months[6:9]
+fmt.Println(Q2) // [&amp;quot;April&amp;quot; &amp;quot;May&amp;quot; &amp;quot;June&amp;quot;]
+fmt.Println(summer) // [&amp;quot;June&amp;quot; &amp;quot;July&amp;quot; &amp;quot;August&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;https://chao-x.github.io/test1.png&#34; alt=&#34;sdada&#34;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;从上面的图可以看到切片的容量取决于底层数组的容量，从取切片的初始值开始到底层数组的尾部，这一部分的长度为切片的容量&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;地址&#34;&gt;地址&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;func main() {
+	months := []string{1: &amp;quot;January&amp;quot;}
+	fmt.Printf(&amp;quot;%p,\n&amp;quot;,&amp;amp;months)				//0xc0000ae040,
+  fmt.Printf(&amp;quot;%p,\n&amp;quot;,months)				//0xc0000ae060,
+	fmt.Printf(&amp;quot;%p,\n&amp;quot;,&amp;amp;months[0])		//0xc0000ae060,
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;扩展：结构体的地址&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type stu struct{
+	name string
+}
+
+func main() {
+	var s stu
+	fmt.Printf(&amp;quot;%p,\n&amp;quot;,&amp;amp;s)
+	fmt.Printf(&amp;quot;%p,\n&amp;quot;,&amp;amp;s.name) //打印的地址是相同的
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;那么这里第一个打印函数打印的是什么地址呢？如果指向的是切片的结构体&lt;code&gt;SliceHeader&lt;/code&gt;，但是&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;type SliceHeader struct {
+	Data uintptr
+	Len  int
+	Cap  int
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;结构体的地址是与第一个成员变量的地址相同的，而这个&lt;code&gt;Data&lt;/code&gt;就是底层数组且是第一个成员变量，那为什么会与二三个打印函数结果不同呢？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;针对这个问题我在V2ex发了个帖子 &lt;a href=&#34;https://www.v2ex.com/t/728365#reply7&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;golang 切片地址问题&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们需要知道的是指针变量也是需要一个地址来存储的。&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;//months 是一个指针变量，存一个地址，指向这个切片。
+
+//这个指针变量同样需要一个内存地址来存储。
+
+int *p;
+
+int a = 5;
+
+p = &amp;amp;a;
+
+//p 存了 a 的地址，但 p 本身也需要一个内存地址来存储。
+
+//把 p 理解成一个 cpu 字长大小的整形变量，他存了一个整形地址。所以它也需要一个内存地址。
+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上面三个打印函数等价于&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;	header := (*reflect.SliceHeader)(unsafe.Pointer(&amp;amp;months))
+	fmt.Printf(&amp;quot;%p, \n&amp;quot;,header)
+	fmt.Printf(&amp;quot;0x%x,\n&amp;quot;, header.Data)
+	fmt.Printf(&amp;quot;0x%x,\n&amp;quot;, header.Data+0)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;另外由于第一个成员变量为指针，所以结构体的地址为存储第一个成员变量（指针）的地址，而不是成员变量这个指针。&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;	fmt.Printf(&amp;quot;%x, \n&amp;quot;,*header)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;引用类型&#34;&gt;引用类型&lt;/h3&gt;
+&lt;p&gt;切片，管道和哈希表都为引用类型&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;C++中的引用和指针：&lt;/p&gt;
+&lt;p&gt;引用很容易与指针混淆，它们之间有三个主要的不同：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;不存在空引用。引用必须连接到一块合法的内存。&lt;/li&gt;
+&lt;li&gt;一旦引用被初始化为一个对象，就不能被指向到另一个对象。指针可以在任何时候指向到另一个对象。&lt;/li&gt;
+&lt;li&gt;引用必须在创建时被初始化。指针可以在任何时间被初始化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;我们需要知道的是&lt;em&gt;golang&lt;/em&gt;虽然有引用类型但是没有引用传递，只有值传递。&lt;/p&gt;
+&lt;p&gt;来看看官方的说法：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;There&amp;rsquo;s a lot of history on that topic. Early on, maps and channels were syntactically pointers and it was impossible to declare or use a non-pointer instance. Also, we struggled with how arrays should work. Eventually we decided that the strict separation of pointers and values made the language harder to use.  &lt;strong&gt;Changing these types to act as references to the associated, shared data structures resolved these issues&lt;/strong&gt;. This change added some regrettable complexity to the language but had a large effect on usability: Go became a more productive, comfortable language when it was introduced.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;大概意思是说：最开始用的是指针语法，由于种种原因改成了引用，但是这个引用与C++的引用是不同的，它是共享关联数据的结构。也就是我们之前说的共享底层数据，切片的底层为其实为数组。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
