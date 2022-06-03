@@ -3,7 +3,7 @@
 #title = 'My New Hugo Site'
 
 
-baseURL = "https://chao-x.github.io"
+baseURL = "http://chaoxin.site"
 title = "_Chaox"
 theme = "hugo-notepadium"
 copyright = "©2022 Notepadium."
