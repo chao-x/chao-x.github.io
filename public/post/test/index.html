@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"><meta charset="utf-8"><meta name="generator" content="Hugo 0.100.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>Test&nbsp;&ndash;&nbsp;Notepadium</title><link rel="stylesheet" href="/css/core.min.1134c8fffbacd72534d4ffcf7a36cf21dc3d5a4e14cc049900cdf1f2e4d0761d248e0b06ed9ba827a714307b9f07afc3.css" integrity="sha384-ETTI//us1yU01P/PejbPIdw9Wk4UzASZAM3x8uTQdh0kjgsG7ZuoJ6cUMHufB6/D"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Test" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">Notepadium</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">Categories</a><a class="nav item" href="/tags/">Tags</a><a class="nav item" href="/about">About</a><a class="nav item" href="https://gohugo%2eio/"target="_blank" rel="noopener noreferrer">Hugo</a></nav></div></span></div><div class="site slogan"><span class="title">100% JavaScript-free</span></div></section><section id="content"><div class="article-container">
+
+    
+    <div class="tocify">
+        🗂目录
+
+<ul class="toc-h2"><li><a href="/post/test/#%e5%bc%95%e8%a8%80">引言</a></li>
+    <li><a href="/post/test/#%e5%bc%95%e5%85%a5">引入</a></li>
+    <li><a href="/post/test/#assert">assert</a></li>
+    </div>
+    <section class="article header">
+    <h1 class="article title">Test</h1><p class="article date">Thursday, June 2, 2022</p></section><article class="article markdown-body"><p><code>[toc]</code></p>
+<h2 id="引言">引言</h2>
+<p><a href="https://link.segmentfault.com/?enc=xtHQ4mgsuyRCjK%2FpPWyNRA%3D%3D.LO5M8ag51CJ5ibQMWbnYZ556X7UY4AsHxYMxb3KFE9lJKV93bDojIFXyjpnk%2F%2Fkl"target="_blank" rel="noopener noreferrer"><code>testify</code></a>
+可以说是最流行的Go 语言测试库了。提供了很多方便的函数帮助我们做 <code>assert</code>和错误信息输出。使用标准库 <code>testing</code>，我们需要自己编写各种条件判断，根据判断结果决定输出对应的信息。</p>
+<p><code>testify</code>核心有三部分内容：</p>
+<ul>
+<li><code>assert</code>：断言；</li>
+<li><code>mock</code>：测试替身；</li>
+<li><code>suite</code>：测试套件。</li>
+</ul>
+<h2 id="引入">引入</h2>
+<p><strong>安装</strong> <code>testify</code>库：</p>
+<pre tabindex="0"><code>$ go get -u github.com/stretchr/testify
+</code></pre><h2 id="assert">assert</h2>
+<p><code>ssert</code>子库提供了便捷的<strong>断言</strong>函数，可以大大简化测试代码的编写。总的来说，它将之前需要 <code>判断 + 信息输出的模式</code>：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="k">if</span> <span class="nx">got</span> <span class="o">!=</span> <span class="nx">expected</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">t</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;Xxx failed expect:%d got:%d&#34;</span><span class="p">,</span> <span class="nx">got</span><span class="p">,</span> <span class="nx">expected</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p><strong>简化为一行****断言</strong>代码：</p>
+<pre tabindex="0"><code>assert.Equal(t, got, expected, &#34;they should be equal&#34;)
+</code></pre><p><strong>结构更清晰，更可读。熟悉其他语言测试框架的开发者对</strong> <code>assert</code>的相关用法应该不会陌生。此外，<code>assert</code>中的函数会自动生成比较清晰的错误描述信息：</p>
+<pre tabindex="0"><code>func TestEqual(t *testing.T) {
+  var a = 100
+  var b = 200
+  assert.Equal(t, a, b, &#34;this is test&#34;)
+}
+</code></pre><p><strong>使用</strong> <code>testify</code>编写测试代码与 <code>testing</code>一样，测试文件为 <code>_test.go</code>，测试函数为 <code>TestXxx</code>。使用 <code>go test</code>命令运行测试：</p>
+<pre tabindex="0"><code>$ go test
+--- FAIL: TestEqual (0.00s)
+    assert_test.go:12:
+                Error Trace:
+                Error:          Not equal:
+                                expected: 100
+                                actual  : 200
+                Test:           TestEqual
+   Messages:      this is test
+FAIL
+exit status 1
+FAIL    github.com/darjun/go-daily-lib/testify/assert   0.107s
+</code></pre></article>
+</div>
+<div class="article bottom"></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">©2022 Notepadium.</p>
+    <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
+        target="_blank" rel="noopener noreferrer">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank" rel="noopener noreferrer">Notepadium</a>
+<a href='https://ipv6-test.com/validate.php?url=referer'
+  ><img src='https://ipv6-test.com/button-ipv6-80x15.png' 
+        alt='ipv6 ready' title='ipv6 ready' border='0' 
+/></a>
+</p></div>
+</section><script src="/js/core.min.1b162a2efa69aaa8ab9e243c9c51e4f37adf5b900d59c9ee68135b93f8d0693fe23e728e01c77eb7134989b857547f0d.js" integrity="sha384-GxYqLvppqqirniQ8nFHk83rfW5ANWcnuaBNbk/jQaT/iPnKOAcd&#43;txNJibhXVH8N"></script></body>
+
+</html>

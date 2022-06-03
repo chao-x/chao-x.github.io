@@ -1,0 +1,44 @@
+/* tocify */
+.tocify {
+    width: 20%;
+    max-height: 90%;
+    overflow: auto;
+    margin-left: 2%;
+    position: fixed;
+    right: 2%;
+    border-radius: 6px;
+}
+
+.tocify ul,
+.tocify li {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    line-height: 30px;
+}
+
+.tocify ul {
+    padding: 10px;
+}
+
+.tocify li a {
+    display: inline-block;
+    text-indent: 10px;
+    font-size: 14px;
+    text-decoration: none;
+}
+.tocify ul ul li a:before {
+    content: "- ";
+    margin-left: 2rem;
+}
+
+.tocify li a:hover {
+    color: white;
+}
+
+@media only screen and (max-width: 1080px) {
+    .tocify {
+        display: none;
+    }
+}

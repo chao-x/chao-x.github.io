@@ -1,0 +1,1 @@
+jQuery(document).ready(function(t){var n,s,e=t(".tocify");e.length>0&&(e.removeClass("hide"),n=t(".post-content").offset().top,s=t(window).width()/2+400,e.css("left",s),e.css("top",n),t(window).scroll(function(){var s=t(this).scrollTop();s>n?e.css({top:0,position:"fixed"}):e.css({top:n,position:"absolute"})}))})

@@ -1,0 +1,63 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Notepadium</title>
+    <link>https://example.com/</link>
+    <description>Recent content on Notepadium</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <copyright>©2022 Notepadium.</copyright>
+    <lastBuildDate>Thu, 02 Jun 2022 16:18:11 +0800</lastBuildDate>
+    
+        <atom:link href="https://example.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Test</title>
+      <link>https://example.com/post/test/</link>
+      <pubDate>Thu, 02 Jun 2022 16:18:11 +0800</pubDate>
+      
+      <guid>https://example.com/post/test/</guid>
+      <description>&lt;p&gt;&lt;code&gt;[toc]&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&#34;引言&#34;&gt;引言&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;https://link.segmentfault.com/?enc=xtHQ4mgsuyRCjK%2FpPWyNRA%3D%3D.LO5M8ag51CJ5ibQMWbnYZ556X7UY4AsHxYMxb3KFE9lJKV93bDojIFXyjpnk%2F%2Fkl&#34;target=&#34;_blank&#34; rel=&#34;noopener noreferrer&#34;&gt;&lt;code&gt;testify&lt;/code&gt;&lt;/a&gt;
+可以说是最流行的Go 语言测试库了。提供了很多方便的函数帮助我们做 &lt;code&gt;assert&lt;/code&gt;和错误信息输出。使用标准库 &lt;code&gt;testing&lt;/code&gt;，我们需要自己编写各种条件判断，根据判断结果决定输出对应的信息。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;testify&lt;/code&gt;核心有三部分内容：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;assert&lt;/code&gt;：断言；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;mock&lt;/code&gt;：测试替身；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;suite&lt;/code&gt;：测试套件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;引入&#34;&gt;引入&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;安装&lt;/strong&gt; &lt;code&gt;testify&lt;/code&gt;库：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ go get -u github.com/stretchr/testify
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&#34;assert&#34;&gt;assert&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;ssert&lt;/code&gt;子库提供了便捷的&lt;strong&gt;断言&lt;/strong&gt;函数，可以大大简化测试代码的编写。总的来说，它将之前需要 &lt;code&gt;判断 + 信息输出的模式&lt;/code&gt;：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;got&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;expected&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;  &lt;span class=&#34;nx&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;Errorf&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Xxx failed expect:%d got:%d&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;got&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;expected&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;strong&gt;简化为一行****断言&lt;/strong&gt;代码：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;assert.Equal(t, got, expected, &amp;#34;they should be equal&amp;#34;)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;结构更清晰，更可读。熟悉其他语言测试框架的开发者对&lt;/strong&gt; &lt;code&gt;assert&lt;/code&gt;的相关用法应该不会陌生。此外，&lt;code&gt;assert&lt;/code&gt;中的函数会自动生成比较清晰的错误描述信息：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;func TestEqual(t *testing.T) {
+  var a = 100
+  var b = 200
+  assert.Equal(t, a, b, &amp;#34;this is test&amp;#34;)
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;使用&lt;/strong&gt; &lt;code&gt;testify&lt;/code&gt;编写测试代码与 &lt;code&gt;testing&lt;/code&gt;一样，测试文件为 &lt;code&gt;_test.go&lt;/code&gt;，测试函数为 &lt;code&gt;TestXxx&lt;/code&gt;。使用 &lt;code&gt;go test&lt;/code&gt;命令运行测试：&lt;/p&gt;
+&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;$ go test
+--- FAIL: TestEqual (0.00s)
+    assert_test.go:12:
+                Error Trace:
+                Error:          Not equal:
+                                expected: 100
+                                actual  : 200
+                Test:           TestEqual
+   Messages:      this is test
+FAIL
+exit status 1
+FAIL    github.com/darjun/go-daily-lib/testify/assert   0.107s
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
