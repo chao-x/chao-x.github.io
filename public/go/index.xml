@@ -1,0 +1,15 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>golang on Chaoxin</title>
+    <link>http://chaoxin.site/go/</link>
+    <description>Recent content in golang on Chaoxin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-ch</language>
+    <copyright>©2022 Chaoxin.</copyright>
+    <lastBuildDate>Sat, 04 Jun 2022 13:58:49 +0800</lastBuildDate>
+    
+        <atom:link href="http://chaoxin.site/go/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+  </channel>
+</rss>

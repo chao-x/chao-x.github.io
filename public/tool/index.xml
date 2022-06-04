@@ -1,0 +1,39 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tools on Chaoxin</title>
+    <link>http://chaoxin.site/tool/</link>
+    <description>Recent content in Tools on Chaoxin</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-ch</language>
+    <copyright>©2022 Chaoxin.</copyright>
+    <lastBuildDate>Sat, 04 Jun 2022 14:28:33 +0800</lastBuildDate>
+    
+        <atom:link href="http://chaoxin.site/tool/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Test</title>
+      <link>http://chaoxin.site/post/test/</link>
+      <pubDate>Sat, 04 Jun 2022 14:37:39 +0800</pubDate>
+      
+      <guid>http://chaoxin.site/post/test/</guid>
+      <description>&lt;p&gt;[toc]&lt;/p&gt;
+&lt;h1 id=&#34;1-测试&#34;&gt;1. 测试&lt;/h1&gt;
+&lt;h2 id=&#34;2测试&#34;&gt;2.测试&lt;/h2&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>做笔记的心得体会</title>
+      <link>http://chaoxin.site/tool/writing_skill/</link>
+      <pubDate>Sat, 04 Jun 2022 14:28:33 +0800</pubDate>
+      
+      <guid>http://chaoxin.site/tool/writing_skill/</guid>
+      <description>&lt;h1 id=&#34;1做笔记的形式&#34;&gt;1.做笔记的形式&lt;/h1&gt;
+&lt;p&gt;前前后后试过多种笔记的记录方式，包括博客形式、单纯的markdown形式、有道云笔记的形式等等，最后还是回归博客的形式。&lt;/p&gt;
+&lt;p&gt;主要理由是笔记其实大部分情况下是写给自己看的，如果笔记的形式自己都不想去看第二遍的话，那写笔记就显得没有意义。博客的好处是比较定制化、美观，自己更有意愿去看。&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

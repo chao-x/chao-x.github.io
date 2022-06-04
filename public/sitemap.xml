@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
-    <loc>https://example.com/</loc><lastmod>2022-06-02T16:18:11+08:00</lastmod></url><url>
-    <loc>https://example.com/post/</loc><lastmod>2022-06-02T16:18:11+08:00</lastmod></url><url>
-    <loc>https://example.com/post/test/</loc><lastmod>2022-06-02T16:18:11+08:00</lastmod></url><url>
-    <loc>https://example.com/categories/</loc></url><url>
-    <loc>https://example.com/tags/</loc></url></urlset>
+    <loc>http://chaoxin.site/categories/</loc><lastmod>2022-06-04T14:28:33+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/</loc><lastmod>2022-06-04T14:28:33+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/post/</loc><lastmod>2022-06-04T14:28:33+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/tags/</loc><lastmod>2022-06-04T14:28:33+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/tags/%E7%AC%94%E8%AE%B0/</loc><lastmod>2022-06-04T14:28:33+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/tags/%E5%BF%83%E5%BE%97/</loc><lastmod>2022-06-04T14:28:33+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/categories/%E5%BF%83%E5%BE%97/</loc><lastmod>2022-06-04T14:28:33+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/post/writing_skill/</loc><lastmod>2022-06-04T14:28:33+08:00</lastmod></url></urlset>

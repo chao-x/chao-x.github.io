@@ -4,12 +4,14 @@
 
 
 baseURL = "http://chaoxin.site"
-title = "_Chaox"
+title = "Chaoxin"
 theme = "hugo-notepadium"
-copyright = "©2022 Notepadium."
+copyright = "©2022 Chaoxin."
 
-languageCode = "zh-cn"
+
+languageCode = "zh-ch"
 hasCJKLanguage = true
+defaultContentLanguage = "zh"
 
 enableRobotsTXT = true
 
@@ -29,7 +31,7 @@ unsafe = true  # enable raw HTML in Markdown
 [params]
 style = "dark"  # default: auto. light: light theme, dark: dark theme, auto: based on system.
 dateFormat = "Monday, January 2, 2006"  # if unset, default is "2006-01-02"
-logo = ""  # if you have a logo png
+# logo = ""  # if you have a logo png
 # slogan = "100% JavaScript-free"
 license = ""  # CC License
 fullRss = false # Puts entire HTML post into rss 'description' tag. If unset, default is false.
@@ -64,12 +66,17 @@ showTags = true             # /tags/
 # custom navigation items
 
 [[params.nav.custom]]
-title = "About"
-url = "/about"
+title = "全部文章"
+url = "/"
+
+
+#[[params.nav.custom]]
+#title = "About"
+#url = "/about"
 
 [[params.nav.custom]]
-title = "Hugo"
-url = "https://gohugo.io/"
+title = "Github"
+url = "http://github.com/chao-x"
 
 # for chinese
 [params.beian]
@@ -78,7 +85,7 @@ url = "https://gohugo.io/"
   code = ""    # example: 44030502005645
 
 [params.assets]
-  css = ["css//modify.css","css/font.css","css/toc.css"]
+  css = ["css/modify.css","css/font.css","css/toc.css"]
   js = ["js/toc.js"]
 
 
