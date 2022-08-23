@@ -51,7 +51,7 @@ pprof是 Go 语言中分析程序运行性能的工具，它能提供各种性�
 问题代码：
 
 ```go
-ret := C.get_shmdict_value(C.CString(file), C.CString(key), &content[0], 40960, &errmsg[0], 1024)
+ret := C.get_value(C.CString(file), C.CString(key), &content[0], 40960, &errmsg[0], 1024)
 ```
 
 修复后：
@@ -59,7 +59,7 @@ ret := C.get_shmdict_value(C.CString(file), C.CString(key), &content[0], 40960, 
 ```go
 cfile := C.CString(file)
 ckey := C.CString(key)
-ret := C.get_shmdict_value(cfile, ckey, &content[0], 40960, &errmsg[0], 1024)
+ret := C.get_value(cfile, ckey, &content[0], 40960, &errmsg[0], 1024)
 C.free(unsafe.Pointer(cfile))
 C.free(unsafe.Pointer(ckey))
 ```
