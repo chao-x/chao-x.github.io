@@ -1,14 +1,14 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on Chaoxin</title>
-    <link>http://chaoxin.site/post/</link>
-    <description>Recent content in Posts on Chaoxin</description>
+    <title>内存泄露 on Chaoxin</title>
+    <link>http://chaoxin.site/tags/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/</link>
+    <description>Recent content in 内存泄露 on Chaoxin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-ch</language>
     <copyright>©2022 Chaoxin.</copyright>
     <lastBuildDate>Tue, 23 Aug 2022 12:07:24 +0800</lastBuildDate>
     
-        <atom:link href="http://chaoxin.site/post/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="http://chaoxin.site/tags/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>

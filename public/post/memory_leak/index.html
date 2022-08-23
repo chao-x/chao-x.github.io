@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh"><meta charset="utf-8"><meta name="generator" content="Hugo 0.88.1" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark"><title>初探内存泄露&nbsp;&ndash;&nbsp;Chaoxin</title><link rel="stylesheet" href="/css/core.min.84c5e2b8068cddc84c7534071c5f6d5d6060d0d3c1ef7f7ffec918ab1a10597bd2a2f7017175bcb065819c8a953962e4.css" integrity="sha384-hMXiuAaM3chMdTQHHF9tXWBg0NPB739//skYqxoQWXvSovcBcXW8sGWBnIqVOWLk"><meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="初探内存泄露" /><body><section id="header">
+    <div class="header wrap"><span class="header left-side"><a class="site home" href="/"><span class="site name">Chaoxin</span></a></span>
+        <span class="header right-side"><div class="nav wrap"><nav class="nav"><a class="nav item" href="/categories/">分类</a><a class="nav item" href="/tags/">标签</a><a class="nav item" href="/">全部文章</a><a class="nav item" href="http://github%2ecom/chao-x"target="_blank" rel="noopener noreferrer">Github</a></nav></div></span></div></section><section id="content"><div class="article-container">
+    <div class="tocify">
+        🗂目录
+
+<ul class="toc-h2"><li><a href="/post/memory_leak/#1%e5%ae%9a%e4%b9%89">1.定义</a></li>
+    <li><a href="/post/memory_leak/#2%e5%86%85%e5%ad%98%e6%b3%84%e9%9c%b2%e7%9a%84%e5%b8%b8%e8%a7%81%e5%8e%9f%e5%9b%a0">2.内存泄露的常见原因</a></li>
+    <li><a href="/post/memory_leak/#3%e4%bd%bf%e7%94%a8pprof">3.使用pprof</a></li>
+    
+    <ul class="toc-h3"><li><a href="/post/memory_leak/#pprof%e4%bb%8b%e7%bb%8d">pprof介绍</a></li>
+    <li><a href="/post/memory_leak/#%e5%bb%ba%e8%ae%ae%e6%8e%92%e6%9f%a5%e6%ad%a5%e9%aa%a4">建议排查步骤</a></li>
+    
+    <ul class="toc-h4"><li><a href="/post/memory_leak/#%e4%b8%80%e6%a3%80%e6%9f%a5%e4%bb%a3%e7%a0%81">一.检查代码</a></li>
+    <li><a href="/post/memory_leak/#%e4%ba%8c%e6%9f%a5%e7%9c%8bgoroutine%e6%98%af%e5%90%a6%e6%b3%84%e9%9c%b2">二.查看goroutine是否泄露</a></li>
+    <li><a href="/post/memory_leak/#%e4%b8%89%e6%9f%a5%e7%9c%8b%e5%ae%9e%e6%97%b6%e5%86%85%e5%ad%98">三.查看实时内存</a></li>
+    <li><a href="/post/memory_leak/#%e5%9b%9b%e6%9f%a5%e7%9c%8b%e7%b4%af%e7%a7%af%e5%86%85%e5%ad%98">四.查看累积内存</a></li>
+    
+    </ul>
+    </ul><li><a href="/post/memory_leak/#4%e5%86%85%e5%ad%98%e7%9b%91%e6%8e%a7">4.内存监控</a></li>
+    <li><a href="/post/memory_leak/#5%e6%9f%a5%e7%9c%8bgc">5.查看GC</a></li>
+    </div><section class="article header">
+    <h1 class="article title">初探内存泄露</h1><p class="article date">Tuesday, August 23, 2022<span class="reading-time"> • 预计阅读时间 2 分钟</span></p></section><article class="article markdown-body"><h2 id="1定义">1.定义</h2>
+<p><strong>内存泄露 memory leak</strong> ，是指程序在申请内存后，无法释放已申请的内存空间，一次内存泄露危害可以忽略，但持续累积，内存打满以后，服务将会崩溃。</p>
+<p><em>监控实例：</em></p>
+<p><img  src="http://rte.weiyun.baidu.com/api/imageDownloadAddress?attachId=60810991bd67426faadc33c895f6c62d"
+        alt/></p>
+<p>正常的内存监控曲线应该稳定在一个区间内起伏。而内存泄露后，可以看到，内存一直都在上涨，在打满后，实例直接崩溃重启，然后又重新打满，又重启，如此循环。</p>
+<h2 id="2内存泄露的常见原因">2.内存泄露的常见原因</h2>
+<ol>
+<li>全局变量应该释放的内存没有被释放，全局变量的内存一直增长(正常应该有释放有增长)，如map的kv一直在增加、切片的长度一直在增长</li>
+<li>需要close的变量没有被关闭，如http 链接、mysql链接</li>
+<li>goroutine 泄露，原本应该结束的goroutine没有结束，导致对应的内存无法被释放</li>
+<li>Cgo 相关的内存泄露，在Go里使用Cgo，C代码分配的内存是无法被Go的GC管理的，也无法被pprof追踪</li>
+</ol>
+<h2 id="3使用pprof">3.使用pprof</h2>
+<h3 id="pprof介绍">pprof介绍</h3>
+<p>pprof是 Go 语言中分析程序运行性能的工具，它能提供各种性能数据：</p>
+<p><img  src="http://rte.weiyun.baidu.com/api/imageDownloadAddress?attachId=65677d01b08641699f15b6e9022416a5"
+        alt/></p>
+<h3 id="建议排查步骤">建议排查步骤</h3>
+<h4 id="一检查代码">一.检查代码</h4>
+<p>查看全局变量是否有可疑逻辑，导致全局变量内存不断增长</p>
+<p>查看是否有没有关闭的<em><strong>close</strong></em></p>
+<p>查看<strong>Cgo</strong> <strong>相关代码</strong>，如CString的内存有没有被释放</p>
+<hr>
+<p><strong>实例：</strong> 函数使用CString匿名参数，也会导致内存泄露</p>
+<p>问题代码：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">ret</span> <span class="o">:=</span> <span class="nx">C</span><span class="p">.</span><span class="nf">get_shmdict_value</span><span class="p">(</span><span class="nx">C</span><span class="p">.</span><span class="nf">CString</span><span class="p">(</span><span class="nx">file</span><span class="p">),</span> <span class="nx">C</span><span class="p">.</span><span class="nf">CString</span><span class="p">(</span><span class="nx">key</span><span class="p">),</span> <span class="o">&amp;</span><span class="nx">content</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">40960</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">errmsg</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1024</span><span class="p">)</span>
+</code></pre></div><p>修复后：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">cfile</span> <span class="o">:=</span> <span class="nx">C</span><span class="p">.</span><span class="nf">CString</span><span class="p">(</span><span class="nx">file</span><span class="p">)</span>
+<span class="nx">ckey</span> <span class="o">:=</span> <span class="nx">C</span><span class="p">.</span><span class="nf">CString</span><span class="p">(</span><span class="nx">key</span><span class="p">)</span>
+<span class="nx">ret</span> <span class="o">:=</span> <span class="nx">C</span><span class="p">.</span><span class="nf">get_shmdict_value</span><span class="p">(</span><span class="nx">cfile</span><span class="p">,</span> <span class="nx">ckey</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">content</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">40960</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">errmsg</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1024</span><span class="p">)</span>
+<span class="nx">C</span><span class="p">.</span><span class="nf">free</span><span class="p">(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Pointer</span><span class="p">(</span><span class="nx">cfile</span><span class="p">))</span>
+<span class="nx">C</span><span class="p">.</span><span class="nf">free</span><span class="p">(</span><span class="nx">unsafe</span><span class="p">.</span><span class="nf">Pointer</span><span class="p">(</span><span class="nx">ckey</span><span class="p">))</span>
+</code></pre></div><hr>
+<p>等等其他可能造成内存泄露的代码</p>
+<h4 id="二查看goroutine是否泄露">二.查看goroutine是否泄露</h4>
+<p>压测过程中，使用 <em><strong>pprof</strong></em> ，访问 （对应的IP和端口）<a href="http://10.12.205.56:8305/debug/pprof/goroutine?debug=1"target="_blank" rel="noopener noreferrer">http://127.0.0.1:8305/debug/pprof/goroutine?debug=1</a>
+</p>
+<p>查看goroutine数量是否稳定在一个区间：</p>
+<p>如果goroutine不断增长，确定为<em><strong>goroutine</strong></em><strong>泄露</strong></p>
+<h4 id="三查看实时内存">三.查看实时内存</h4>
+<p>压测过程中，当内存达到一个高值以后，使用命令 （对应IP和端口）</p>
+<p>生成实时内存数据：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">go tool pprof http://127.0.0.1:8080/debug/pprof/heap?debug<span class="o">=</span><span class="m">1</span>
+</code></pre></div><p>安装并使用graphviz 绘制对应的图形</p>
+<p>使用命令：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">go tool pprof http://127.0.0.1:8080/debug/pprof/heap?debug<span class="o">=</span><span class="m">1</span>
+</code></pre></div><p>访问 <a href="http://127.0.0.1:8090/ui"target="_blank" rel="noopener noreferrer">http://127.0.0.1:8090/ui</a>
+ 查看内存路线图和火焰图，帮助定位问题</p>
+<p>火焰图的查看方法为：从上到下为调用链路，左右间距越大标识占用内存越多</p>
+<h4 id="四查看累积内存">四.查看累积内存</h4>
+<p>如果实时内存无法定位问题，可以查看累积时间申请的内存，帮助定位问题</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">go tool pprof http://127.0.0.1:8080/debug/pprof/heap -seconds <span class="m">30</span>
+</code></pre></div><h2 id="4内存监控">4.内存监控</h2>
+<p>没有对应的内存监控工具，可以使用命令</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash">ps aux <span class="p">|</span> grep 对应pid
+</code></pre></div><p>查看<strong>RSS</strong>查看实时占用内存</p>
+<h2 id="5查看gc">5.查看GC</h2>
+<p>查看GC是否正常，使用命令</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">GODEBUG</span><span class="o">=</span><span class="nv">gctrace</span><span class="o">=</span><span class="m">1</span> go run main.go
+</code></pre></div></article><section class="article labels"><a class="category" href=/categories/go/>go</a><a class="tag" href=/tags/go/>go</a><a class="tag" href=/tags/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/>内存泄露</a></section>
+</div>
+<div class="article bottom"><section class="article navigation"><p><a class="link" href="/post/writing_skill/"><span class="iconfont icon-article"></span>做笔记的心得体会</a></p></section><section class="article discussion"><div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "chaoxin-site" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a></section></div></section><section id="footer"><div class="footer-wrap">
+    <p class="copyright">©2022 Chaoxin.</p>
+    <p class="powerby"><span>Powered&nbsp;by&nbsp;</span><a href="https://gohugo.io" 
+        target="_blank" rel="noopener noreferrer">Hugo</a><span>&nbsp;&amp;&nbsp;</span><a href="https://themes.gohugo.io/hugo-notepadium/" 
+        target="_blank" rel="noopener noreferrer">Notepadium</a>
+<a href='https://ipv6-test.com/validate.php?url=referer'
+  ><img src='https://ipv6-test.com/button-ipv6-80x15.png' 
+        alt='ipv6 ready' title='ipv6 ready' border='0' 
+/></a>
+</p></div>
+</section><script src="/js/hljs.min.72e76ccf211868d08e31d7ca45c02501991bd760f28809c52045fa79fb7b7428664bb54ae875b46031ebc760c77b9562.js" integrity="sha384-cudszyEYaNCOMdfKRcAlAZkb12DyiAnFIEX6eft7dChmS7VK6HW0YDHrx2DHe5Vi"></script><script>hljs.initHighlightingOnLoad();</script>
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-47315632-2', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<script src="/js/core.min.9f370520a66bbb5abf9da80de13b900f5ac7b2b7d9f65b4cad6222af5640db998bd09c07cf4e89324bc074507c527517.js" integrity="sha384-nzcFIKZru1q/nagN4TuQD1rHsrfZ9ltMrWIir1ZA25mL0JwHz06JMkvAdFB8UnUX"></script></body>
+
+</html>
