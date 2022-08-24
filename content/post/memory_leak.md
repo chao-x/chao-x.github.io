@@ -15,7 +15,7 @@ toc: true
 
 *监控实例：*
 
-![](http://rte.weiyun.baidu.com/api/imageDownloadAddress?attachId=60810991bd67426faadc33c895f6c62d)
+![image 3.png](https://s2.loli.net/2022/08/24/eh9W7GMHmpfIRKT.png)
 
 正常的内存监控曲线应该稳定在一个区间内起伏。而内存泄露后，可以看到，内存一直都在上涨，在打满后，实例直接崩溃重启，然后又重新打满，又重启，如此循环。
 
@@ -32,7 +32,7 @@ toc: true
 
 pprof是 Go 语言中分析程序运行性能的工具，它能提供各种性能数据：
 
-![](http://rte.weiyun.baidu.com/api/imageDownloadAddress?attachId=65677d01b08641699f15b6e9022416a5)
+![image 4.png](https://s2.loli.net/2022/08/24/bE7CRUJfQpKOeua.png)
 
 ### 建议排查步骤
 
