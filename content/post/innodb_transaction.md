@@ -3,10 +3,10 @@ title: "Mysql innoDB事务隔离性"
 date: 2023-02-05T23:59:27+08:00
 draft: false
 tags:
-- go
-- 内存泄露
+- mysql
+- 事务
 categories:
-- go
+- 数据库
 toc: true
 ---
 ## 事务有哪些特性？
