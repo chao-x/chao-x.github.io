@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml"><url>
-    <loc>http://chaoxin.site/categories/</loc><lastmod>2022-08-23T12:07:24+08:00</lastmod></url><url>
-    <loc>http://chaoxin.site/</loc><lastmod>2022-08-23T12:07:24+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/post/kubernates_in_action_1/</loc><lastmod>2023-02-12T17:08:21+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/categories/</loc><lastmod>2023-02-12T17:08:21+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/</loc><lastmod>2023-02-12T17:08:21+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/tags/docker/</loc><lastmod>2023-02-12T17:08:21+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/tags/kubernates/</loc><lastmod>2023-02-12T17:08:21+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/categories/kubernates/</loc><lastmod>2023-02-12T17:08:21+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/post/</loc><lastmod>2023-02-12T17:08:21+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/tags/</loc><lastmod>2023-02-12T17:08:21+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/tags/mysql/</loc><lastmod>2023-02-05T23:59:27+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/post/innodb_transaction/</loc><lastmod>2023-02-05T23:59:27+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/tags/%E4%BA%8B%E5%8A%A1/</loc><lastmod>2023-02-05T23:59:27+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc><lastmod>2023-02-05T23:59:27+08:00</lastmod></url><url>
     <loc>http://chaoxin.site/tags/go/</loc><lastmod>2022-08-23T12:07:24+08:00</lastmod></url><url>
     <loc>http://chaoxin.site/categories/go/</loc><lastmod>2022-08-23T12:07:24+08:00</lastmod></url><url>
-    <loc>http://chaoxin.site/post/</loc><lastmod>2022-08-23T12:07:24+08:00</lastmod></url><url>
-    <loc>http://chaoxin.site/tags/</loc><lastmod>2022-08-23T12:07:24+08:00</lastmod></url><url>
-    <loc>http://chaoxin.site/tags/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/</loc><lastmod>2022-08-23T12:07:24+08:00</lastmod></url><url>
     <loc>http://chaoxin.site/post/memory_leak/</loc><lastmod>2022-08-23T12:07:24+08:00</lastmod></url><url>
-    <loc>http://chaoxin.site/post/writing_skill/</loc><lastmod>2022-06-04T14:28:33+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/tags/%E5%86%85%E5%AD%98%E6%B3%84%E9%9C%B2/</loc><lastmod>2022-08-23T12:07:24+08:00</lastmod></url><url>
+    <loc>http://chaoxin.site/tags/%E7%AC%94%E8%AE%B0/</loc><lastmod>2022-06-04T14:28:33+08:00</lastmod></url><url>
     <loc>http://chaoxin.site/tags/%E5%BF%83%E5%BE%97/</loc><lastmod>2022-06-04T14:28:33+08:00</lastmod></url><url>
     <loc>http://chaoxin.site/categories/%E5%BF%83%E5%BE%97/</loc><lastmod>2022-06-04T14:28:33+08:00</lastmod></url><url>
-    <loc>http://chaoxin.site/tags/%E7%AC%94%E8%AE%B0/</loc><lastmod>2022-06-04T14:28:33+08:00</lastmod></url></urlset>
+    <loc>http://chaoxin.site/post/writing_skill/</loc><lastmod>2022-06-04T14:28:33+08:00</lastmod></url></urlset>
