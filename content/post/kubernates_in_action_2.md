@@ -1,6 +1,6 @@
 ---
 title: "《Kubernetes in Action》读书笔记第二章：开始使用Kubernetes和Docker"
-date: 2023-02-12T18:08:21+08:00
+date: 2023-02-12T18:00:21+08:00
 draft: false
 tags:
 - kubernates
