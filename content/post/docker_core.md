@@ -9,7 +9,6 @@ categories:
 toc: true
 ---
 
-> 大部分内容转载自：[https://lxkaka.wang/docker-principle/](https://lxkaka.wang/docker-principle/)
 
 ## Docker 的优势
 Build once, Run anywhere 
@@ -17,6 +16,9 @@ Build once, Run anywhere
 - 应用标准化 无论什么语言开发的应用，我们都能用 dockerfile 和构建脚本方便的进行应用构建打包，代码库 + 构建 + registry 统一了 CI/CD 流程，也提升了效率
 - 环境一致 由于应用和依赖全部构建成镜像，做到了一次构建多次交付，无论是开发，测试还是上线环境都是一致的。大大提高了开发效率
 - 应用隔离 由于通过 docker 部署的应用，容器之间相互隔离，并且能按需分配资源。大大提高了运维效率和资源利用率
+
+> 大部分内容转载自：[https://lxkaka.wang/docker-principle/](https://lxkaka.wang/docker-principle/)
+
 ## 架构
 Docker使用了 C/S 体系架构，Docker 客户端与 Docker 守护进程通信。
 Docker 守护进程负责构建，运行和分发 Docker 容器。
